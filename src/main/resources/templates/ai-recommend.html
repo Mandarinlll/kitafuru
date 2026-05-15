@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>AIおすすめ表示</title>
+	<meta charset="UTF-8">
+	<title>あなたへのおすすめ</title>
+
+	<style>
+		.recommend-box {
+			border: 2px solid #6b4fa3;
+			border-left: 10px solid #6b4fa3;
+			padding: 16px;
+			background-color: #faf7ff;
+		}
+
+		.recommend-title {
+			font-size: 20px;
+			font-weight: bold;
+			color: #2b236b;
+		}
+
+		.product-list {
+			display: flex;
+			gap: 12px;
+			margin-top: 15px;
+		}
+
+		.product-card {
+			width: 180px;
+			height: 120px;
+			border: 1px solid #d8cfc4;
+			background-color: white;
+			padding: 10px;
+		}
+
+		.product-name {
+			font-weight: bold;
+		}
+
+		.product-price {
+			color: #b00020;
+			margin-top: 8px;
+		}
+
+		.message {
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
 </head>
+
 <body>
 
+	<div class="recommend-box">
+
+		<div class="recommend-title">あなたへのおすすめ</div>
+
+		<p>購入した商品やカートに入れている商品からおすすめ商品を表示しています。</p>
+
+	</div>
+
+	<div class="message" th:if="${recommendedProducts != null or recommendedProducts.isNotEmpty()}">
+		ユーザが購入した商品と一緒に購入されることが多い商品
+	</div>
+	<div class="product-list" th:if="${recommendedProducts != null and !recommendedProducts.isEmpty()}">
+		<div class="product-card" th:each="product : ${recommendedProducts}">
+			<div class="product-name" th:text="${product.name}">商品名</div>
+			<div class="product-price">
+				¥<span th:text="${product.price}">1000</span>
+			</div>
+		</div>
+	</div>
+
 </body>
+
 </html>
