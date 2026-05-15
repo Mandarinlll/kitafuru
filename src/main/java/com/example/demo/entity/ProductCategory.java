@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 public class ProductCategory {
+	//生産者id
 	private int productId;
+	//カテゴリーid
 	private int categoryId;
 
 	public int getProductId() {

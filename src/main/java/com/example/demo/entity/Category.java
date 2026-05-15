@@ -1,7 +1,12 @@
 package com.example.demo.entity;
 
 public class Category {
+	//カテゴリid
 	private int id;
+	//カテゴリ名
+	private String name;
+	//カテゴリ説明文
+	private String description;
 
 	public int getId() {
 		return id;
@@ -27,6 +32,4 @@ public class Category {
 		this.description = description;
 	}
 
-	private String name;
-	private String description;
 }
