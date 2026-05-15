@@ -2,10 +2,10 @@ package com.example.demo.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Product;
 import com.example.demo.mapper.ProductMapper;
 
 @Service
@@ -16,7 +16,7 @@ public class ProductSeasonService {
 		this.productMapper = productMapper;
 	}
 
-	public List<Product> getSeasonProducts() {
+	public List<Map<String, Object>> getSeasonProducts() {
 		int currentMonth = LocalDate.now().getMonthValue();
 		return productMapper.findAllSeason(currentMonth);
 	}
