@@ -3,9 +3,13 @@ package com.example.demo.entity;
 import java.security.Timestamp;
 
 public class GiftDiagnosisLog {
+	//ギフト診断履歴id
 	private int id;
+	//ユーザーid
 	private int userId;
+	//結果
 	private String diagnosisResult;
+	//診断日
 	private Timestamp diagnosisAt;
 
 	public int getId() {
