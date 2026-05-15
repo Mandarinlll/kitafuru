@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ProductMapper">
+
+	<select id="findAllSeason" resultType="com.example.demo.entity.Product">
+		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
+		ps.product_id JOIN seasons s ON ps.season_id = s.id WHERE (
+		s.start_month &lt;= s.end_month
+                AND #{month} BETWEEN s.start_month AND s.end_month
+            )
+            OR
+            (
+                s.start_month> s.end_month AND ( #{month} &gt;= s.start_month OR #{month} &lt;= s.end_month
+                )
+            )
+        ORDER BY p.recommendation_score DESC
+        LIMIT 4
+	</select>
+
+
+</mapper>
