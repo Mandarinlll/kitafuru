@@ -4,52 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>あなたへのおすすめ</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/ai-recommend.css}">
 
 	<style>
-		.recommend-box {
-			border: 2px solid #6b4fa3;
-			border-left: 10px solid #6b4fa3;
-			padding: 16px;
-			background-color: #faf7ff;
-		}
-
-		.recommend-title {
-			font-size: 20px;
-			font-weight: bold;
-			color: #2b236b;
-		}
-
-		.product-list {
-			display: flex;
-			gap: 12px;
-			margin-top: 15px;
-		}
-
-		.product-card {
-			width: 180px;
-			height: 120px;
-			border: 1px solid #d8cfc4;
-			background-color: white;
-			padding: 10px;
-		}
-
-		.product-name {
-			font-weight: bold;
-		}
-
-		.product-price {
-			color: #b00020;
-			margin-top: 8px;
-		}
-
-		.message {
-			text-align: center;
-			margin-top: 20px;
-		}
+		
 	</style>
 </head>
 
 <body>
+	<header th:replace="layout/_header :: header"></header>
 
 	<div class="recommend-box">
 
@@ -70,7 +34,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<header th:replace="layout/_footer :: footer"></header>
 </body>
 
 </html>
