@@ -221,6 +221,26 @@ body {
 }
 
 /* =========================
+   エラーメッセージ
+========================= */
+
+.error-message {
+	color: #d93025;
+	background: #fff1f0;
+	border: 1px solid #f5c2c7;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 14px;
+	margin: 0 0 16px;
+}
+
+.field-error {
+	color: #d93025;
+	font-size: 12px;
+	margin-top: 6px;
+}
+
+/* =========================
    ボタン
 ========================= */
 
