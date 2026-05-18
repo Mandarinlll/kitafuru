@@ -1,12 +1,130 @@
-<!DOCTYPE html>
-<html>
+<!--UserLoginController-->
+<!-- login.html -->
+<!doctype html>
+<html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ECサイト 北ふる | ログイン</title>
+
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
+
 <body>
-<!--	ページ遷移確認用-->
-<p>ユーザーログイン</p>
+
+	<header class="login-header">
+		<div class="header-inner">
+			<a href="/" class="header-logo">LOGO</a>
+			<span class="header-nav">Header navigation</span>
+		</div>
+	</header>
+
+	<main class="login-layout">
+
+		<!-- 左 -->
+		<section class="login-hero">
+
+			<p class="hero-sub">WELCOME BACK</p>
+
+			<h1 class="hero-title">
+				おかえりなさい。<br>
+				北海道の食卓へ。
+			</h1>
+
+			<div class="hero-line"></div>
+
+			<p class="hero-text">
+				ログインして、お気に入り商品の確認、<br>
+				注文履歴、ギフト診断の結果を再表示できます。
+			</p>
+
+			<div class="new-user-box">
+				<p class="new-user-title">FOR NEW USERS</p>
+
+				<p class="new-user-text">
+					初めての方も、新規登録から会員ページをご利用いただけます。
+				</p>
+
+				
+				<a th:href="@{/register}"
+					class="register-button">
+					新規登録はこちら →
+				</a>
+			</div>
+
+		</section>
+
+		<!-- 右 -->
+		<section class="login-panel">
+
+			<p class="panel-subtitle">LOGIN</p>
+
+			<h2 class="panel-title">ログイン</h2>
+
+			<div class="panel-line"></div>
+
+			<form class="login-form"
+			      th:action="@{/login}"
+			      th:object="${form}"
+			      method="post">
+
+			    <!-- メールアドレス -->
+			    <div class="form-group">
+			        <label>メールアドレス</label>
+
+			        <input type="email"
+			               th:field="*{email}"
+			               placeholder="example@email.com">
+
+			        <!-- バリデーションエラー -->
+			        <p class="field-error"
+			           th:if="${#fields.hasErrors('email')}"
+			           th:errors="*{email}">
+			        </p>
+			    </div>
+
+			    <!-- パスワード -->
+			    <div class="form-group">
+			        <label>パスワード</label>
+
+			        <input type="password"
+			               th:field="*{password}"
+			               placeholder="••••••••">
+
+			        <!-- バリデーションエラー -->
+			        <p class="field-error"
+			           th:if="${#fields.hasErrors('password')}"
+			           th:errors="*{password}">
+			        </p>
+			    </div>
+
+			    <!-- ログイン失敗メッセージ -->
+			    <p class="error-message"
+			       th:if="${loginError}"
+			       th:text="${loginError}">
+			    </p>
+
+			    <!-- ログインボタン -->
+			    <button type="submit" class="login-button">
+			        ログインする
+			    </button>
+
+			</form>
+
+			<p class="login-note">
+				ログインすることで、
+				<a href="#">利用規約</a>
+				および
+				<a href="#">プライバシーポリシー</a>
+				に同意したものとみなされます。
+			</p>
+
+		</section>
+
+	</main>
 
 </body>
+
 </html>
