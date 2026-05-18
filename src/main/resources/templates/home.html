@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>北ふるトップページ</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/home.css}">
+	
 </head>
+
 <body>
-<p>top page</p>
+	<header th:replace="layout/_header :: header"></header>
+
+	<section class="main-visual">
+
+		<h1 class="main-title">
+			旅するように出会う、<br>
+			北海道の隠れた名産品。
+		</h1>
+
+		<p class="main-subtitle">
+			生産者の想いとともに、全国へ。
+		</p>
+
+		<div class="main-buttons">
+
+			<a href="#">商品を探す</a>
+
+			<a href="#">地域から探す</a>
+
+			<a href="#">ギフト診断</a>
+
+		</div>
+
+	</section>
+
+	<div class="content-layout">
+
+		<div class="main-content">
+			<h2 class="section-title">
+				季節のおすすめ商品
+			</h2>
+			<section>
+
+				<div class="product-card" th:each="product : ${seasonProducts}">
+
+					<img th:src="${product.image}" alt="商品画像">
+
+					<div class="product-info">
+
+						<h3 class="product-name" th:text="${product.name}">
+						</h3>
+
+						<p class="product-price">
+							¥<span th:text="${product.price}"></span>
+						</p>
+						<p class="product-producer">
+							生産者：<span th:text="${product.producer_name}"></span>
+						</p>
+
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+
+		<aside class="side-content">
+
+			地域から探す
+			生産者ストーリー
+
+		</aside>
+
+	</div>
+	<footer th:replace="layout/_footer :: footer"></footer>
+
 </body>
+
 </html>

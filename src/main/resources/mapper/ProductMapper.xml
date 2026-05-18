@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<!-- ProductMapper用SQL -->
 <mapper namespace="com.example.demo.mapper.ProductMapper">
-
-	<!-- 商品一覧取得 -->
+    <!-- 商品一覧取得 -->
 	<select id="findAll"
 		resultType="com.example.demo.entity.Product">
 
@@ -26,7 +21,92 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			update_at
 		FROM products
 		ORDER BY id
-
+	<!--季節おすすめ-->
+	<select id="findAllSeason" resultType="com.example.demo.entity.Product">
+		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
+		ps.product_id JOIN seasons s ON ps.season_id = s.id WHERE (
+		s.start_month &lt;= s.end_month
+		AND #{month} BETWEEN s.start_month AND s.end_month
+		)
+		OR
+		(
+		s.start_month> s.end_month AND ( #{month} &gt;= s.start_month OR
+		#{month} &lt;= s.end_month
+		)
+		)
+		ORDER BY p.recommendation_score DESC
+		LIMIT 4
 	</select>
+	<!-- 関連おすすめ -->
+	<select id="findRecommendProducts"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT DISTINCT p.*
+		FROM products p
+
+		WHERE p.id IN (
+
+		SELECT oi2.product_id
+
+		FROM order_items oi1
+
+		INNER JOIN order_items oi2
+		ON oi1.order_id = oi2.order_id
+
+		WHERE oi1.product_id IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		AND oi2.product_id NOT IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		GROUP BY oi2.product_id
+
+		ORDER BY COUNT(*) DESC
+
+		)
+	</select>
+	<!-- AI用おすすめ商品取得 -->
+	<select id="searchForAi" resultType="com.example.demo.entity.Product">SELECT
+		*
+		FROM products
+		ORDER BY recommendation_score DESC
+	</select>
+	<!-- AI用価格条件付き商品取得 -->
+	<select id="searchForAiWithMaxPrice"
+		resultType="com.example.demo.entity.Product">
+		SELECT *
+		FROM products
+		WHERE price &lt;= #{maxPrice}
+		ORDER BY recommendation_score DESC
+		LIMIT 10
+	</select>
+	<!-- ID一覧から商品取得 -->
+	<select id="findByIds" resultType="com.example.demo.entity.Product"> SELECT
+		* FROM products WHERE id IN <foreach collection="list" item="id"
+			open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
 
 </mapper>
