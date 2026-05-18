@@ -76,11 +76,11 @@ INSERT INTO product_seasons (product_id, season_id) VALUES
 (8, 5);
  
 -- orders
-INSERT INTO orders (id, user_id, price, payment_method, shipping_address, order_at) VALUES
-(1, 1, 9800, 'credit_card', '東京都渋谷区1-1-1', CURRENT_TIMESTAMP),
-(2, 2, 5700, 'bank_transfer', '大阪府大阪市2-2-2', CURRENT_TIMESTAMP),
-(3, 3, 5200, 'convenience_store', '神奈川県横浜市3-3-3', CURRENT_TIMESTAMP),
-(4, 2, 6000, 'credit_card', '大阪府大阪市2-2-2', CURRENT_TIMESTAMP);
+INSERT INTO orders (id, user_id, price, payment_method, shipping_address, status, order_at) VALUES
+(1, 1, 9800, 'credit_card', '東京都渋谷区1-1-1', 'new', CURRENT_TIMESTAMP),
+(2, 2, 5700, 'bank_transfer', '大阪府大阪市2-2-2', 'preparing', CURRENT_TIMESTAMP),
+(3, 3, 5200, 'convenience_store', '神奈川県横浜市3-3-3', 'shipped', CURRENT_TIMESTAMP),
+(4, 2, 6000, 'credit_card', '大阪府大阪市2-2-2', 'delivered', CURRENT_TIMESTAMP);
  
 -- order_items
 INSERT INTO order_items (id, order_id, product_id, quantity) VALUES
@@ -149,3 +149,19 @@ INSERT INTO product_relations (id, product_id, related_product_id) VALUES
 (6, 8, 7),
 (7, 5, 6),
 (8, 6, 5);
+
+-- identity sequence reset
+SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE((SELECT MAX(id) FROM users), 1), true);
+SELECT setval(pg_get_serial_sequence('producers', 'id'), COALESCE((SELECT MAX(id) FROM producers), 1), true);
+SELECT setval(pg_get_serial_sequence('categories', 'id'), COALESCE((SELECT MAX(id) FROM categories), 1), true);
+SELECT setval(pg_get_serial_sequence('seasons', 'id'), COALESCE((SELECT MAX(id) FROM seasons), 1), true);
+SELECT setval(pg_get_serial_sequence('gift_tags', 'id'), COALESCE((SELECT MAX(id) FROM gift_tags), 1), true);
+SELECT setval(pg_get_serial_sequence('products', 'id'), COALESCE((SELECT MAX(id) FROM products), 1), true);
+SELECT setval(pg_get_serial_sequence('orders', 'id'), COALESCE((SELECT MAX(id) FROM orders), 1), true);
+SELECT setval(pg_get_serial_sequence('order_items', 'id'), COALESCE((SELECT MAX(id) FROM order_items), 1), true);
+SELECT setval(pg_get_serial_sequence('cart_items', 'id'), COALESCE((SELECT MAX(id) FROM cart_items), 1), true);
+SELECT setval(pg_get_serial_sequence('favorite_products', 'id'), COALESCE((SELECT MAX(id) FROM favorite_products), 1), true);
+SELECT setval(pg_get_serial_sequence('product_views', 'id'), COALESCE((SELECT MAX(id) FROM product_views), 1), true);
+SELECT setval(pg_get_serial_sequence('gift_diagnosis_logs', 'log_id'), COALESCE((SELECT MAX(log_id) FROM gift_diagnosis_logs), 1), true);
+SELECT setval(pg_get_serial_sequence('recommendation_logs', 'id'), COALESCE((SELECT MAX(id) FROM recommendation_logs), 1), true);
+SELECT setval(pg_get_serial_sequence('product_relations', 'id'), COALESCE((SELECT MAX(id) FROM product_relations), 1), true);
