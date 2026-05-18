@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: sans-serif;
+	color: #12384f;
+	background-color: #ffffff;
+}
+
+/* ヘッダー */
+.header {
+	height: 36px;
+	background-color: #173d56;
+	color: orange;
+	display: flex;
+	align-items: center;
+	padding: 0 14px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.header span {
+	margin: 0 6px;
+	color: white;
+}
+
+/* 全体 */
+.container {
+	padding: 16px 14px;
+}
+
+.title-box {
+	border: 1px solid #999;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	padding-left: 2px;
+	margin-bottom: 2px;
+}
+
+.title-box h1 {
+	margin: 0;
+	font-size: 24px;
+	color: #073856;
+}
+
+.lead {
+	font-size: 12px;
+	color: #777;
+	margin: 0 0 20px;
+}
+
+/* 質問エリア */
+.question-area {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 18px;
+}
+
+.question-card {
+	flex: 1;
+	border: 1px solid #f0b45f;
+	background-color: #fbf5ec;
+	padding: 16px 20px;
+	min-height: 135px;
+}
+
+.question-number {
+	color: #e35b2f;
+	font-size: 10px;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.question-title {
+	font-size: 15px;
+	font-weight: bold;
+	color: #12384f;
+	margin-bottom: 14px;
+}
+
+.btn-group {
+	display: flex;
+	gap: 5px;
+	flex-wrap: wrap;
+}
+
+.choice-btn {
+	background-color: white;
+	border: 1px solid #e36d4d;
+	color: #d74d2a;
+	width: 63px;
+	height: 29px;
+	font-size: 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.choice-btn.wide {
+	width: 108px;
+}
+
+.choice-btn:hover {
+	background-color: #fff0e8;
+}
+
+/* 結果エリア */
+.result-area {
+	background-color: #173d56;
+	padding: 16px 27px 13px;
+	color: white;
+}
+
+.result-label {
+	color: orange;
+	font-size: 10px;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.result-title {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+.product-list {
+	display: flex;
+	gap: 10px;
+}
+
+.product-card {
+	flex: 1;
+	height: 260px;
+	background-color: #365a70;
+	border: 1px solid #77715f;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: flex-start;
+
+	padding: 15px;
+	gap: 10px;
+
+	font-size: 11px;
+	font-weight: bold;
+
+	text-decoration: none;
+	color: white;
+}

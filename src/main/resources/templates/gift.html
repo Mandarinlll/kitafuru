@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<title>ギフト商品</title>
+	<meta charset="UTF-8">
+	<title>北海道ギフト診断</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/gift.css}">
 </head>
+
 <body>
 
+	<header th:replace="layout/_header :: header"></header>
+
+	<main class="container">
+
+		<div class="title-box">
+			<h1>北海道ギフトページ</h1>
+		</div>
+		<hr>
+		<div class="question-number">人気ギフト商品TOP3</div>
+		<section class="question-area">
+
+			<a class="question-card" th:each="product, stat : ${topGiftProducts}"
+				th:href="@{/products/{id}(id=${product.id})}">
+
+				<div class="question-number" th:text="'TOP' + ${stat.count}">
+					TOP1
+				</div>
+
+				<img th:src="@{${product.image}}">
+
+				<h3 th:text="${product.name}"></h3>
+
+				<p th:text="'¥' + ${product.price}"></p>
+
+			</a>
+
+		</section>
+
+
+		<section class="result-area">
+
+			<div class="result-label">
+				その他のギフトとして選ばれている商品
+			</div>
+
+			<div class="product-list">
+
+				<a class="product-card" th:each="product : ${otherGiftProducts}"
+					th:href="@{/products/{id}(id=${product.id})}">
+
+					<img th:src="@{${product.image}}">
+
+					<h3 th:text="${product.name}"></h3>
+
+					<p th:text="'¥' + ${product.price}"></p>
+
+				</a>
+
+			</div>
+
+		</section>
+
+	</main>
+
+	<header th:replace="layout/_footer :: footer"></header>
+
 </body>
+
 </html>
