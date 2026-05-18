@@ -1,0 +1,293 @@
+@charset "UTF-8";
+
+/* =========================
+   全体
+========================= */
+
+body {
+	background: #f7f4ee;
+}
+
+/* =========================
+   Header
+========================= */
+
+.login-header {
+	height: 24px;
+	background: var(--navy);
+	display: flex;
+	align-items: center;
+	padding: 0 18px;
+}
+
+.header-inner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.header-logo {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--gold);
+	letter-spacing: 0.08em;
+}
+
+.header-nav {
+	font-size: 10px;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================
+   レイアウト
+========================= */
+
+.login-layout {
+	display: grid;
+	grid-template-columns: 43% 57%;
+	min-height: calc(100vh - 24px);
+}
+
+/* =========================
+   左側
+========================= */
+
+.login-hero {
+	background: #214b68;
+	color: white;
+
+	padding:
+		70px
+		60px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.hero-sub {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--gold);
+	letter-spacing: 0.08em;
+	margin-bottom: 18px;
+}
+
+.hero-title {
+	font-size: 52px;
+	line-height: 1.25;
+	font-weight: 900;
+	margin-bottom: 40px;
+}
+
+.hero-line {
+	width: 56px;
+	height: 3px;
+	background: var(--gold);
+	margin-bottom: 28px;
+}
+
+.hero-text {
+	font-size: 14px;
+	line-height: 2;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.new-user-box {
+	margin-top: auto;
+	padding-top: 80px;
+}
+
+.new-user-title {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--gold);
+	letter-spacing: 0.08em;
+	margin-bottom: 14px;
+}
+
+.new-user-text {
+	font-size: 13px;
+	line-height: 1.8;
+	margin-bottom: 24px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.register-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 170px;
+	height: 46px;
+
+	border: 1px solid rgba(228, 180, 78, 0.7);
+
+	color: var(--gold);
+	font-size: 13px;
+	font-weight: 700;
+
+	transition:
+		background 0.2s,
+		color 0.2s;
+}
+
+.register-button:hover {
+	background: var(--gold);
+	color: var(--navy);
+}
+
+/* =========================
+   右側
+========================= */
+
+.login-panel {
+	background: #f8f6f2;
+
+	padding:
+		70px
+		80px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.panel-subtitle {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--muted);
+	letter-spacing: 0.08em;
+	margin-bottom: 10px;
+}
+
+.panel-title {
+	font-size: 42px;
+	font-weight: 900;
+	color: var(--navy);
+	margin-bottom: 20px;
+}
+
+.panel-line {
+	width: 56px;
+	height: 3px;
+	background: var(--gold);
+	margin-bottom: 42px;
+}
+
+/* =========================
+   フォーム
+========================= */
+
+.login-form {
+	width: 100%;
+	max-width: 700px;
+}
+
+.form-group {
+	margin-bottom: 28px;
+}
+
+.form-group label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	color: var(--text);
+}
+
+.form-group input {
+	width: 100%;
+	height: 52px;
+
+	padding: 0 16px;
+
+	border: 1px solid #d5c9b4;
+	background: white;
+
+	font-size: 14px;
+
+	outline: none;
+
+	transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+	border-color: var(--gold);
+}
+
+.form-group input::placeholder {
+	color: #c5b8a1;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+.login-button {
+	width: 100%;
+	height: 56px;
+
+	border: none;
+
+	background: var(--navy);
+	color: var(--gold);
+
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+
+	cursor: pointer;
+
+	margin-top: 18px;
+
+	transition: background 0.2s;
+}
+
+.login-button:hover {
+	background: var(--navy-soft);
+}
+
+/* =========================
+   注意文
+========================= */
+
+.login-note {
+	margin-top: 40px;
+
+	font-size: 11px;
+	line-height: 1.8;
+
+	color: #8d8577;
+}
+
+.login-note a {
+	text-decoration: underline;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+	.login-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.login-hero {
+		padding: 50px 30px;
+	}
+
+	.login-panel {
+		padding: 50px 30px;
+	}
+
+	.hero-title {
+		font-size: 36px;
+	}
+
+	.panel-title {
+		font-size: 32px;
+	}
+}

@@ -9,7 +9,18 @@ import com.example.demo.entity.Product;
 
 @Mapper
 public interface ProductMapper {
+	// 商品一覧取得
+	List<Product> findAll();
+
 	List<Map<String, Object>> findAllSeason(int month);
 
 	Product findById(int id);
+	
+	List<Product> findRecommendProducts(Integer userId);
+
+	List<Product> searchForAi(String keyword);
+
+	List<Product> searchForAiWithMaxPrice(String keyword, Integer maxPrice);
+
+	List<Product> findByIds(List<Integer> ids);
 }

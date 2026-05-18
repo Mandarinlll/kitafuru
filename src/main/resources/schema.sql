@@ -124,6 +124,7 @@ CREATE TABLE orders (
     price INTEGER NOT NULL DEFAULT 0,
     payment_method VARCHAR(30) NOT NULL,
     shipping_address VARCHAR(255) NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'new',
     order_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_orders_user
         FOREIGN KEY (user_id) REFERENCES users(id),
@@ -133,6 +134,13 @@ CREATE TABLE orders (
         'bank_transfer',
         'convenience_store',
         'cash_on_delivery'
+    )),
+    CHECK (status IN (
+        'new',
+        'preparing',
+        'shipped',
+        'delivered',
+        'cancelled'
     ))
 );
  
