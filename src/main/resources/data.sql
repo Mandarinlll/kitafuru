@@ -79,7 +79,8 @@ INSERT INTO product_seasons (product_id, season_id) VALUES
 INSERT INTO orders (id, user_id, price, payment_method, shipping_address, order_at) VALUES
 (1, 1, 9800, 'credit_card', '東京都渋谷区1-1-1', CURRENT_TIMESTAMP),
 (2, 2, 5700, 'bank_transfer', '大阪府大阪市2-2-2', CURRENT_TIMESTAMP),
-(3, 3, 5200, 'convenience_store', '神奈川県横浜市3-3-3', CURRENT_TIMESTAMP);
+(3, 3, 5200, 'convenience_store', '神奈川県横浜市3-3-3', CURRENT_TIMESTAMP),
+(4, 2, 6000, 'credit_card', '大阪府大阪市2-2-2', CURRENT_TIMESTAMP);
  
 -- order_items
 INSERT INTO order_items (id, order_id, product_id, quantity) VALUES
@@ -87,7 +88,9 @@ INSERT INTO order_items (id, order_id, product_id, quantity) VALUES
 (2, 1, 1, 1),
 (3, 2, 5, 1),
 (4, 2, 6, 1),
-(5, 3, 8, 1);
+(5, 3, 8, 1),
+(6, 4, 1, 1),
+(7, 4, 2, 1);
  
 -- cart_items
 INSERT INTO cart_items (id, user_id, product_id, quantity) VALUES
