@@ -5,28 +5,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.demo.entity.Product;
+import com.example.demo.service.ProductService;
+
 /*
  * 商品詳細画面Controller
  */
 @Controller
 public class ProductDetailController {
 
+	private final ProductService productService;
+
+	public ProductDetailController(ProductService productService) {
+		this.productService = productService;
+	}
+
 	/*
 	 * 商品詳細画面
-	 * 
-	 * /products/1
-	 * /products/2
-	 * のようなURLを受け取る
 	 */
 	@GetMapping("/products/{product_id}")
 	public String showDetail(
 			@PathVariable("product_id") int productId,
 			Model model) {
 
-		// HTMLへ商品IDを渡す
-		model.addAttribute("productId", productId);
+		// 商品取得
+		Product product = productService.getProductById(productId);
 
-		// product/detail.html を表示
+		// HTMLへ渡す
+		model.addAttribute("product", product);
+
+		// product/detail.html
 		return "product/detail";
 	}
 }

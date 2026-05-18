@@ -29,4 +29,13 @@ public class ProductService {
 		// Mapperから商品取得
 		return productMapper.findAll();
 	}
+
+	/*
+	 * 商品詳細取得
+	 */
+	public Product getProductById(int id) {
+
+		// 商品1件取得
+		return productMapper.findById(id);
+	}
 }
