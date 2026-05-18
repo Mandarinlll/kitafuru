@@ -6,7 +6,7 @@
 	<title>北ふるトップページ</title>
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
 	<link rel="stylesheet" th:href="@{/css/home.css}">
-	
+
 </head>
 
 <body>
@@ -43,7 +43,8 @@
 			</h2>
 			<section>
 
-				<div class="product-card" th:each="product : ${seasonProducts}">
+				<a class="product-card" th:each="product : ${seasonProducts}"
+					th:href="@{/products/{id}(id=${product.id})}">
 
 					<img th:src="${product.image}" alt="商品画像">
 
@@ -55,13 +56,16 @@
 						<p class="product-price">
 							¥<span th:text="${product.price}"></span>
 						</p>
+
 						<p class="product-producer">
-							生産者：<span th:text="${product.producer_name}"></span>
+							生産者：
+							<span th:text="${product.producer_name}"></span>
 						</p>
 
 					</div>
 
-				</div>
+				</a>
+
 			</section>
 
 		</div>
