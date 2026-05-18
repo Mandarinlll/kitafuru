@@ -7,15 +7,65 @@
 		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
 		ps.product_id JOIN seasons s ON ps.season_id = s.id WHERE (
 		s.start_month &lt;= s.end_month
-                AND #{month} BETWEEN s.start_month AND s.end_month
-            )
-            OR
-            (
-                s.start_month> s.end_month AND ( #{month} &gt;= s.start_month OR #{month} &lt;= s.end_month
-                )
-            )
-        ORDER BY p.recommendation_score DESC
-        LIMIT 4
+		AND #{month} BETWEEN s.start_month AND s.end_month
+		)
+		OR
+		(
+		s.start_month> s.end_month AND ( #{month} &gt;= s.start_month OR
+		#{month} &lt;= s.end_month
+		)
+		)
+		ORDER BY p.recommendation_score DESC
+		LIMIT 4
+	</select>
+
+	<!-- 関連おすすめ -->
+	<select id="findRecommendProducts"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT DISTINCT p.*
+		FROM products p
+
+		WHERE p.id IN (
+
+		SELECT oi2.product_id
+
+		FROM order_items oi1
+
+		INNER JOIN order_items oi2
+		ON oi1.order_id = oi2.order_id
+
+		WHERE oi1.product_id IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		AND oi2.product_id NOT IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		GROUP BY oi2.product_id
+
+		ORDER BY COUNT(*) DESC
+
+		)
 	</select>
 
 
