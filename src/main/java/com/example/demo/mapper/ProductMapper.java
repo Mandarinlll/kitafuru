@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.entity.Product;
 
 @Mapper
 public interface ProductMapper {
+
 	// 商品一覧取得
 	List<Product> findAll();
 
@@ -35,6 +38,19 @@ public interface ProductMapper {
 	// 複数の商品IDから商品一覧を取得する
 	// ids に含まれる商品をまとめて検索
 	List<Product> findByIds(List<Integer> ids);
+
+	/*
+	 * 商品詳細取得
+	 */
+	@Select("""
+			SELECT
+			    *
+			FROM
+			    products
+			WHERE
+			    id = #{productId}
+			""")
+	Product findDetailById(@Param("productId") int productId);
 
 	List<Product> findTopGiftProducts();
 

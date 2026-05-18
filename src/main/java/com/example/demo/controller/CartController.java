@@ -113,26 +113,37 @@ public class CartController {
 	}
 
 	// 商品追加
-	@GetMapping("/cart/add")
+	@PostMapping("/cart/add")
 	public String addCart(
+			@RequestParam("productId") int productId,
+			@RequestParam("quantity") int quantity,
 			HttpSession session) {
 
 		// sessionからカート取得
 		List<CartItem> cart = cartService.getCart(session);
 
-		// 新しいカート商品作成
+		// 同じ商品があるか確認
+		for (CartItem cartItem : cart) {
+
+			if (cartItem.getProduct_id() == productId) {
+
+				// 数量加算
+				cartItem.setQuantity(
+						cartItem.getQuantity() + quantity);
+
+				return "redirect:/cart";
+			}
+		}
+
+		// 新しい商品追加
 		CartItem item = new CartItem();
 
-		// 商品IDを設定
-		item.setProduct_id(1);
+		item.setProduct_id(productId);
 
-		// 数量を設定
-		item.setQuantity(1);
+		item.setQuantity(quantity);
 
-		// カートへ追加
 		cart.add(item);
 
-		// カート画面へ戻る
 		return "redirect:/cart";
 	}
 

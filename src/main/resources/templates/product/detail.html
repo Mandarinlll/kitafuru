@@ -1,14 +1,190 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	
-<!--	ページ遷移確認用 -->
-<p>商品詳細ページ </p>
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title th:text="${product.name}">商品詳細</title>
+
+	<!-- 共通CSS -->
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+
+	<!-- 商品詳細専用CSS -->
+	<link rel="stylesheet" th:href="@{/css/product-detail.css}">
+</head>
+
+<body>
+
+	<!-- 共通ヘッダー -->
+	<div th:replace="~{layout/_header :: header}"></div>
+
+	<main class="detail-page">
+
+		<section class="detail-container">
+
+			<!-- 上部バー -->
+			<div class="detail-topbar">
+				<span>LOGO</span>
+				<span>Header navigation</span>
+			</div>
+
+			<!-- パンくず -->
+			<p class="breadcrumb">
+				ホーム \ 商品一覧 \
+				<span th:text="${product.name}"></span>
+			</p>
+
+			<!-- 商品詳細 -->
+			<div class="detail-layout">
+
+				<!-- 左側 -->
+				<section class="product-detail">
+
+					<!-- 商品画像 -->
+					<div class="product-image">
+
+						<img
+							th:src="@{${product.image}}"
+							th:alt="${product.name}">
+
+					</div>
+
+					<!-- 商品情報 -->
+					<div class="product-info">
+
+						<!-- 商品名 -->
+						<h1 th:text="${product.name}">
+							商品名
+						</h1>
+
+						<!-- 商品情報 -->
+						<p class="product-meta">
+							産地：
+							<span th:text="${product.originArea}"></span>
+						</p>
+
+						<!-- 価格 -->
+						<p class="product-price">
+
+							<span class="price-main">
+								¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span>
+							</span>
+
+							<span class="price-sub">
+								（税込・送料別）
+							</span>
+
+						</p>
+
+						<!-- カート追加フォーム -->
+						<form th:action="@{/cart/add}" method="post">
+
+							<!-- 商品ID -->
+							<input
+								type="hidden"
+								name="productId"
+								th:value="${product.id}">
+
+							<!-- 数量 -->
+							<div class="quantity-box">
+
+								<span>数量</span>
+
+								<div class="quantity-control">
+
+									<input
+										type="number"
+										name="quantity"
+										value="1"
+										min="1"
+										class="quantity-input">
+
+								</div>
+
+							</div>
+
+							<!-- カートボタン -->
+							<button class="cart-button" type="submit">
+								🛒 カートに入れる
+							</button>
+
+						</form>
+
+						<!-- お気に入り -->
+						<button class="favorite-button">
+							♡ この商品をお気に入り
+						</button>
+
+						<!-- 商品説明 -->
+						<div class="description">
+
+							<h2>商品説明</h2>
+
+							<p th:text="${product.body}">
+								商品説明
+							</p>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<!-- 右側 -->
+				<aside class="shop-card">
+
+					<h2>この商品を作っている人</h2>
+
+					<div class="shop-header">
+
+						<div class="shop-icon"></div>
+
+						<div>
+
+							<h3>生産者情報</h3>
+
+							<p>
+								北海道の素材にこだわり、
+								安心して食べられる商品づくりを行っています。
+							</p>
+
+						</div>
+
+					</div>
+
+					<a href="#" class="story-link">
+						→ 生産者ストーリーを見る
+					</a>
+
+				</aside>
+
+			</div>
+
+			<!-- 関連商品 -->
+			<section class="related-products">
+
+				<h2>関連商品</h2>
+
+				<div class="related-grid">
+
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+
+				</div>
+
+			</section>
+
+		</section>
+
+	</main>
+
+	<!-- 共通フッター -->
+	<div th:replace="~{layout/_footer :: footer}"></div>
 
 </body>
+
 </html>

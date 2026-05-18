@@ -1,0 +1,355 @@
+.detail-page {
+  background: #f2efe7;
+  padding: 8px;
+}
+
+/* =========================
+   全体
+========================= */
+
+.detail-container {
+  border: 1px solid #d2c7b5;
+  background: #f7f5ef;
+  padding-bottom: 12px;
+}
+
+/* =========================
+   上部バー
+========================= */
+
+.detail-topbar {
+  height: 22px;
+  background: #17384f;
+  color: #f3b84c;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 10px;
+
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+/* =========================
+   パンくず
+========================= */
+
+.breadcrumb {
+  margin: 8px 10px 10px;
+
+  color: #8e836f;
+  font-size: 0.6rem;
+}
+
+/* =========================
+   レイアウト
+========================= */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 14px;
+
+  padding: 0 10px;
+}
+
+/* =========================
+   左側
+========================= */
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 14px;
+}
+
+/* =========================
+   商品画像
+========================= */
+
+.product-image {
+  height: 260px;
+
+  background: #e7d5af;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* =========================
+   商品情報
+========================= */
+
+.product-info h1 {
+  margin: 0 0 10px;
+
+  color: #17384f;
+  font-size: 1.5rem;
+}
+
+.product-meta {
+  margin-bottom: 14px;
+
+  color: #7f7460;
+  font-size: 0.75rem;
+}
+
+/* =========================
+   価格
+========================= */
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+
+  margin: 0 0 14px;
+}
+
+.price-main {
+  color: #c35b32;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.price-sub {
+  margin-left: 8px;
+
+  font-size: 0.7rem;
+  color: #6f6657;
+}
+
+/* =========================
+   数量
+========================= */
+
+.quantity-box {
+  margin-bottom: 14px;
+}
+
+.quantity-box span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #6c6254;
+  font-size: 0.7rem;
+}
+
+.quantity-control {
+  width: 76px;
+  height: 26px;
+
+  border: 1px solid #cbbda6;
+  background: #f7f3ea;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 8px;
+}
+
+.quantity-control button {
+  border: none;
+  background: none;
+
+  cursor: pointer;
+
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.quantity-control span {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+.cart-button {
+  width: 100%;
+  height: 36px;
+
+  margin-bottom: 8px;
+
+  border: none;
+
+  background: #c35b32;
+  color: #fff;
+
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.favorite-button {
+  width: 100%;
+  height: 36px;
+
+  border: 1px solid #8ba0b6;
+
+  background: #f8f8f8;
+  color: #17384f;
+
+  font-size: 0.75rem;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+/* =========================
+   商品説明
+========================= */
+
+.description {
+  margin-top: 14px;
+}
+
+.description h2 {
+  margin: 0 0 6px;
+
+  color: #17384f;
+  font-size: 0.85rem;
+}
+
+.description p {
+  margin: 0;
+
+  color: #4f473d;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* =========================
+   生産者カード
+========================= */
+
+.shop-card {
+  border: 1px solid #e3b65c;
+  background: #faf8f2;
+
+  padding: 12px;
+}
+
+.shop-card h2 {
+  margin: 0 0 12px;
+
+  color: #c35b32;
+  font-size: 0.85rem;
+}
+
+.shop-header {
+  display: flex;
+  gap: 10px;
+}
+
+.shop-icon {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  background: #e3c98d;
+}
+
+.shop-header h3 {
+  margin: 0 0 4px;
+
+  color: #17384f;
+  font-size: 0.9rem;
+}
+
+.shop-header p {
+  margin: 0;
+
+  color: #655c4e;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.story-link {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  color: #c35b32;
+
+  font-size: 0.75rem;
+  font-weight: bold;
+
+  text-decoration: none;
+}
+
+/* =========================
+   関連商品
+========================= */
+
+.related-products {
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.related-products h2 {
+  margin: 0 0 8px;
+
+  color: #17384f;
+  font-size: 0.85rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.related-item {
+  height: 24px;
+
+  border: 1px solid #d2c7b5;
+  background: #f3f0e8;
+}
+
+/* =========================
+   レスポンシブ
+========================= */
+
+@media (max-width: 900px) {
+
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image {
+    height: 220px;
+  }
+}
