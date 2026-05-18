@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+body {
+	background: #f8f6f2;
+}
+
+/* =========================
+   Header
+========================= */
+
+.login-header {
+	height: 24px;
+	background: var(--navy);
+	display: flex;
+	align-items: center;
+	padding: 0 18px;
+}
+
+.header-inner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.header-logo {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--gold);
+	letter-spacing: 0.08em;
+}
+
+.header-nav {
+	font-size: 10px;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================
+   Page
+========================= */
+
+.register-page {
+	min-height: calc(100vh - 24px);
+	padding: 18px 16px 30px;
+}
+
+.step-bar {
+	width: 100%;
+	height: 48px;
+
+	border: 1px solid #d5c9b4;
+	background: #f5f0e6;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+
+	font-size: 12px;
+	color: #8d8577;
+	margin-bottom: 10px;
+}
+
+.step-bar .active {
+	color: #b65d3c;
+	font-weight: 700;
+}
+
+.register-panel {
+	width: 100%;
+	max-width: 980px;
+	margin: 0 auto;
+	padding-top: 4px;
+}
+
+.register-subtitle {
+	font-size: 10px;
+	font-weight: 700;
+	color: var(--muted);
+	letter-spacing: 0.08em;
+	margin-bottom: 8px;
+}
+
+.register-title {
+	font-size: 28px;
+	font-weight: 900;
+	color: var(--navy);
+	margin-bottom: 24px;
+}
+
+/* =========================
+   Form
+========================= */
+
+.register-form {
+	width: 100%;
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+}
+
+.form-group {
+	margin-bottom: 18px;
+}
+
+.form-group label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	color: var(--text);
+	margin-bottom: 7px;
+}
+
+.form-group label span,
+.check-area span {
+	color: #c35f3b;
+}
+
+.form-group input,
+.form-group select {
+	width: 100%;
+	height: 46px;
+
+	border: 1px solid #d5c9b4;
+	background: #fff;
+
+	padding: 0 14px;
+
+	font-size: 13px;
+	color: var(--text);
+
+	outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+	border-color: var(--gold);
+}
+
+.form-group input::placeholder {
+	color: #b8aa94;
+}
+
+.form-group select {
+	appearance: none;
+}
+
+/* =========================
+   Check
+========================= */
+
+.check-area {
+	margin: 2px 0 20px;
+	font-size: 12px;
+	color: var(--text);
+}
+
+.check-area label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+.check-area a {
+	text-decoration: underline;
+	color: var(--navy);
+}
+
+/* =========================
+   Error
+========================= */
+
+.error-message {
+	color: #d93025;
+	background: #fff1f0;
+	border: 1px solid #f5c2c7;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 13px;
+	margin: 0 0 14px;
+}
+
+.field-error {
+	color: #d93025;
+	font-size: 12px;
+	margin-top: 6px;
+}
+
+/* =========================
+   Button
+========================= */
+
+.register-submit {
+	width: 100%;
+	height: 52px;
+
+	border: none;
+	background: #bd5b38;
+	color: #fff;
+
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+
+	cursor: pointer;
+
+	transition: background 0.2s;
+}
+
+.register-submit:hover {
+	background: #a84f30;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 700px) {
+	.register-page {
+		padding: 14px;
+	}
+
+	.step-bar {
+		font-size: 10px;
+		gap: 6px;
+	}
+
+	.form-row {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.register-title {
+		font-size: 24px;
+	}
+}

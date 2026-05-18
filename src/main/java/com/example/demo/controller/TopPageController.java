@@ -11,7 +11,7 @@ public class TopPageController {
 
 	private final ProductSeasonService productSeasonService;
 
-	public TopPageController(ProductSeasonService productSeasonService, RegisterController registerController) {
+	public TopPageController(ProductSeasonService productSeasonService) {
 		this.productSeasonService = productSeasonService;
 	}
 

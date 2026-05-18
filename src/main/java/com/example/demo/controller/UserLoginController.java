@@ -22,12 +22,12 @@ public class UserLoginController {
 	private UserService userService;
 
 	// ログイン画面表示
-	@GetMapping("/user-login")
+	@GetMapping("/login")
 	public String showLoginForm(Model model) {
 
 		model.addAttribute("form", new LoginForm());
 
-		return "login";
+		return "/login";
 	}
 
 	// ログイン処理
