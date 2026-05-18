@@ -7,40 +7,22 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Product;
 import com.example.demo.mapper.ProductMapper;
 
-/*
- * 商品処理を行うService
- */
 @Service
-public class ProductService {
+public class GiftProductService {
 
-	// DB操作用Mapper
 	private final ProductMapper productMapper;
 
-	// Mapperを受け取る
-	public ProductService(ProductMapper productMapper) {
+	//ProductMapperを受け取り代入
+	public GiftProductService(ProductMapper productMapper) {
 		this.productMapper = productMapper;
 	}
 
-	/*
-	 * 商品一覧取得
-	 */
-	public List<Product> getAllProducts() {
-
-		// Mapperから商品取得
-		return productMapper.findAll();
-	}
-
-	/*
-	 * 商品詳細取得
-	 */
-	public Product getProductById(int id) {
-
-		// 商品1件取得
-		return productMapper.findById(id);
+	//人気ギフトTOP3を取得
 	public List<Product> findTopGiftProducts() {
 		return productMapper.findTopGiftProducts();
 	}
 
+	//その他ギフト商品を取得
 	public List<Product> findOtherGiftProducts() {
 		return productMapper.findOtherGiftProducts();
 	}

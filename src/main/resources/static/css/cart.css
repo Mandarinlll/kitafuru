@@ -1,0 +1,270 @@
+:root {
+  --navy: #16384d;
+  --paper: #f5f1ea;
+  --line: #d8ccb8;
+  --text: #2c2c2c;
+  --muted: #7d7467;
+  --accent: #b86138;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    sans-serif;
+  color: var(--text);
+  background: #f7f7f7;
+}
+
+/* Header */
+
+.header {
+  height: 56px;
+  background: var(--navy);
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+}
+
+.logo {
+  font-weight: bold;
+  margin-right: 24px;
+}
+
+.header-nav {
+  font-size: 14px;
+}
+
+/* Page */
+
+.cart-page {
+  padding: 28px 36px;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 36px;
+  color: var(--navy);
+}
+
+.page-heading p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Layout */
+
+.cart-layout {
+  margin-top: 28px;
+
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Cart Table */
+
+.cart-section {
+  background: white;
+}
+
+.cart-table-header {
+  background: var(--navy);
+  color: white;
+
+  display: grid;
+  grid-template-columns: 1.8fr 120px 150px 120px 80px;
+
+  padding: 14px 18px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1.8fr 120px 150px 120px 80px;
+
+  align-items: center;
+
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-top: none;
+
+  background: #fff;
+}
+
+/* Item Info */
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.item-image {
+  width: 86px;
+  height: 70px;
+  background: #dfcfaa;
+}
+
+.item-image.light {
+  background: #ece6d9;
+}
+
+.item-detail h2 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--navy);
+}
+
+.item-detail p {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Price */
+
+.item-price,
+.item-subtotal {
+  font-size: 14px;
+}
+
+.item-subtotal {
+  color: #c45b31;
+  font-weight: bold;
+}
+
+/* Quantity */
+
+.item-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line);
+  width: 96px;
+  height: 42px;
+}
+
+.item-qty button {
+  border: none;
+  background: transparent;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.item-qty span {
+  width: 28px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Remove */
+
+.item-remove a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* Summary */
+
+.summary-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+
+  padding: 24px;
+}
+
+.summary-box h3 {
+  margin-top: 0;
+  margin-bottom: 28px;
+
+  font-size: 13px;
+  color: #8d7e68;
+  letter-spacing: 1px;
+}
+
+.summary-row,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.summary-row {
+  font-size: 14px;
+}
+
+.summary-total {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.checkout-btn {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 24px;
+
+  border: none;
+  background: var(--accent);
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.summary-note {
+  margin-top: 18px;
+
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* Responsive */
+
+@media (max-width: 960px) {
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-table-header {
+    display: none;
+  }
+
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .item-qty {
+    justify-self: start;
+  }
+}
