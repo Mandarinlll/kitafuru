@@ -73,13 +73,19 @@
   height: 260px;
 
   background: #e7d5af;
-  color: #a48b5f;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 0.8rem;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 }
 
 /* =========================
@@ -100,15 +106,26 @@
   font-size: 0.75rem;
 }
 
-.product-price {
-  margin: 0 0 14px;
+/* =========================
+   価格
+========================= */
 
+.product-price {
+  display: flex;
+  align-items: baseline;
+
+  margin: 0 0 14px;
+}
+
+.price-main {
   color: #c35b32;
   font-size: 2rem;
   font-weight: bold;
 }
 
-.product-price span {
+.price-sub {
+  margin-left: 8px;
+
   font-size: 0.7rem;
   color: #6f6657;
 }
@@ -155,6 +172,7 @@
 }
 
 .quantity-control span {
+  margin: 0;
   font-size: 0.75rem;
 }
 
