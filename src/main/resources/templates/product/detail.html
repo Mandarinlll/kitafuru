@@ -7,184 +7,121 @@
 
 	<title th:text="${product.name}">商品詳細</title>
 
-	<!-- 共通CSS -->
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
-
-	<!-- 商品詳細専用CSS -->
 	<link rel="stylesheet" th:href="@{/css/product-detail.css}">
 </head>
 
 <body>
 
-	<!-- 共通ヘッダー -->
-	<div th:replace="~{layout/_header :: header}"></div>
+<div th:replace="~{layout/_header :: header}"></div>
 
-	<main class="detail-page">
+<main class="detail-page">
 
-		<section class="detail-container">
+	<section class="detail-container">
 
-			<!-- 上部バー -->
-			<div class="detail-topbar">
-				<span>LOGO</span>
-				<span>Header navigation</span>
-			</div>
+		<div class="detail-layout">
 
-			<!-- パンくず -->
-			<p class="breadcrumb">
-				ホーム \ 商品一覧 \
-				<span th:text="${product.name}"></span>
-			</p>
+			<section class="product-detail">
 
-			<!-- 商品詳細 -->
-			<div class="detail-layout">
+				<!-- 商品画像 -->
+				<div class="product-image">
 
-				<!-- 左側 -->
-				<section class="product-detail">
+					<img
+						th:src="@{${product.image}}"
+						th:alt="${product.name}">
 
-					<!-- 商品画像 -->
-					<div class="product-image">
+				</div>
 
-						<img
-							th:src="@{${product.image}}"
-							th:alt="${product.name}">
+				<!-- 商品情報 -->
+				<div class="product-info">
 
-					</div>
+					<h1 th:text="${product.name}"></h1>
 
-					<!-- 商品情報 -->
-					<div class="product-info">
+					<p class="product-meta">
+						産地：
+						<span th:text="${product.originArea}"></span>
+					</p>
 
-						<!-- 商品名 -->
-						<h1 th:text="${product.name}">
-							商品名
-						</h1>
+					<p class="product-price">
 
-						<!-- 商品情報 -->
-						<p class="product-meta">
-							産地：
-							<span th:text="${product.originArea}"></span>
-						</p>
+						<span class="price-main">
+							¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span>
+						</span>
 
-						<!-- 価格 -->
-						<p class="product-price">
+						<span class="price-sub">
+							（税込・送料別）
+						</span>
 
-							<span class="price-main">
-								¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span>
-							</span>
+					</p>
 
-							<span class="price-sub">
-								（税込・送料別）
-							</span>
+					<!-- カート追加フォーム -->
+					<form th:action="@{/cart/add}" method="post">
 
-						</p>
+						<input
+							type="hidden"
+							name="productId"
+							th:value="${product.id}">
 
-						<!-- カート追加フォーム -->
-						<form th:action="@{/cart/add}" method="post">
+						<div class="quantity-box">
 
-							<!-- 商品ID -->
-							<input
-								type="hidden"
-								name="productId"
-								th:value="${product.id}">
+							<span>数量</span>
 
-							<!-- 数量 -->
-							<div class="quantity-box">
+							<div class="quantity-control">
 
-								<span>数量</span>
+								<!-- マイナス -->
+								<button
+									type="submit"
+									formaction="/products/decrease"
+									class="quantity-btn">
 
-								<div class="quantity-control">
+									−
 
-									<input
-										type="number"
-										name="quantity"
-										value="1"
-										min="1"
-										class="quantity-input">
+								</button>
 
-								</div>
+								<!-- 数量 -->
+								<input
+									type="text"
+									name="quantity"
+									th:value="${quantity != null ? quantity : 1}"
+									readonly
+									class="quantity-input">
+
+								<!-- プラス -->
+								<button
+									type="submit"
+									formaction="/products/increase"
+									class="quantity-btn">
+
+									＋
+
+								</button>
 
 							</div>
 
-							<!-- カートボタン -->
-							<button class="cart-button" type="submit">
-								🛒 カートに入れる
-							</button>
+						</div>
 
-						</form>
+						<!-- カート追加 -->
+						<button
+							type="submit"
+							class="cart-button">
 
-						<!-- お気に入り -->
-						<button class="favorite-button">
-							♡ この商品をお気に入り
+							🛒 カートに入れる
+
 						</button>
 
-						<!-- 商品説明 -->
-						<div class="description">
-
-							<h2>商品説明</h2>
-
-							<p th:text="${product.body}">
-								商品説明
-							</p>
-
-						</div>
-
-					</div>
-
-				</section>
-
-				<!-- 右側 -->
-				<aside class="shop-card">
-
-					<h2>この商品を作っている人</h2>
-
-					<div class="shop-header">
-
-						<div class="shop-icon"></div>
-
-						<div>
-
-							<h3>生産者情報</h3>
-
-							<p>
-								北海道の素材にこだわり、
-								安心して食べられる商品づくりを行っています。
-							</p>
-
-						</div>
-
-					</div>
-
-					<a href="#" class="story-link">
-						→ 生産者ストーリーを見る
-					</a>
-
-				</aside>
-
-			</div>
-
-			<!-- 関連商品 -->
-			<section class="related-products">
-
-				<h2>関連商品</h2>
-
-				<div class="related-grid">
-
-					<div class="related-item"></div>
-					<div class="related-item"></div>
-					<div class="related-item"></div>
-					<div class="related-item"></div>
-					<div class="related-item"></div>
+					</form>
 
 				</div>
 
 			</section>
 
-		</section>
+		</div>
 
-	</main>
+	</section>
 
-	<!-- 共通フッター -->
-	<div th:replace="~{layout/_footer :: footer}"></div>
+</main>
+
+<div th:replace="~{layout/_footer :: footer}"></div>
 
 </body>
-
 </html>
