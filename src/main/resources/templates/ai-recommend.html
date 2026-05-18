@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>AIおすすめ表示</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="UTF-8">
+	<title>あなたへのおすすめ</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/ai-recommend.css}">
+
+	<style>
+		
+	</style>
+</head>
+
+<body>
+	<header th:replace="layout/_header :: header"></header>
+
+	<div class="recommend-box">
+
+		<div class="recommend-title">あなたへのおすすめ</div>
+
+		<p>購入した商品やカートに入れている商品からおすすめ商品を表示しています。</p>
+
+	</div>
+
+	<div class="message" th:if="${recommendedProducts != null or recommendedProducts.isNotEmpty()}">
+		ユーザが購入した商品と一緒に購入されることが多い商品
+	</div>
+	<div class="product-list" th:if="${recommendedProducts != null and !recommendedProducts.isEmpty()}">
+		<div class="product-card" th:each="product : ${recommendedProducts}">
+			<div class="product-name" th:text="${product.name}">商品名</div>
+			<div class="product-price">
+				¥<span th:text="${product.price}">1000</span>
+			</div>
+		</div>
+	</div>
+	
+	<header th:replace="layout/_footer :: footer"></header>
 </body>
+
 </html>

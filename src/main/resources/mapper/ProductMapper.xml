@@ -3,30 +3,69 @@
 
 <mapper namespace="com.example.demo.mapper.ProductMapper">
 
-	<select id="findAllSeason" resultType="map"> SELECT p.*, pr.name AS
-		producer_name, COALESCE(SUM(oi.quantity), 0) AS total_sales FROM
-		products p JOIN product_seasons ps ON p.id = ps.product_id JOIN seasons
-		s ON ps.season_id = s.id JOIN producers pr ON p.producer_id = pr.id LEFT
-		JOIN order_items oi ON p.id = oi.product_id WHERE ( s.start_month &lt;= s.end_month
+	<select id="findAllSeason" resultType="com.example.demo.entity.Product">
+		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
+		ps.product_id JOIN seasons s ON ps.season_id = s.id WHERE (
+		s.start_month &lt;= s.end_month
+		AND #{month} BETWEEN s.start_month AND s.end_month
+		)
+		OR
+		(
+		s.start_month> s.end_month AND ( #{month} &gt;= s.start_month OR
+		#{month} &lt;= s.end_month
+		)
+		)
+		ORDER BY p.recommendation_score DESC
+		LIMIT 4
+	</select>
 
-        AND #{month}
-        BETWEEN s.start_month
-        AND s.end_month
-      )
+	<!-- 関連おすすめ -->
+	<select id="findRecommendProducts"
+		resultType="com.example.demo.entity.Product">
 
-OR (
+		SELECT DISTINCT p.*
+		FROM products p
 
-        s.start_month>
-		s.end_month AND ( #{month} &gt;= s.start_month OR #{month} &lt;= s.end_month
-        )
-    )
+		WHERE p.id IN (
 
-GROUP BY
-    p.id,
-    pr.name
+		SELECT oi2.product_id
 
-ORDER BY
-    total_sales DESC
+		FROM order_items oi1
+
+		INNER JOIN order_items oi2
+		ON oi1.order_id = oi2.order_id
+
+		WHERE oi1.product_id IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		AND oi2.product_id NOT IN (
+
+		SELECT oi.product_id
+
+		FROM orders o
+
+		INNER JOIN order_items oi
+		ON o.id = oi.order_id
+
+		WHERE o.user_id = #{userId}
+
+		)
+
+		GROUP BY oi2.product_id
+
+		ORDER BY COUNT(*) DESC
+
+		)
 	</select>
 
 
