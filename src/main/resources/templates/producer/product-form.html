@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ユーザー管理</title>
+<title th:text="${pageTitle}">商品登録</title>
 <link rel="stylesheet" th:href="@{/css/producer.css}">
 </head>
 <body>
 	<header class="producer-header">
 		<a class="logo-box" th:href="@{/home}">LOGO</a>
 		<label class="site-search">
-			<span class="search-mark">🔍</span>
+			<span class="search-mark">検索</span>
 			<input type="search" placeholder="商品名・産地・生産者を検索">
 		</label>
 		<div class="header-actions">
@@ -29,92 +29,70 @@
 			</div>
 			<nav class="side-nav" aria-label="生産者メニュー">
 				<a class="side-nav-item" th:href="@{/producer-dashboard}"><span>▥</span>ダッシュボード</a>
-				<a class="side-nav-item" th:href="@{/producer/products}"><span>□</span>商品管理</a>
+				<a class="side-nav-item active" th:href="@{/producer/products}"><span>□</span>商品管理</a>
 				<a class="side-nav-item" th:href="@{/producer/orders}"><span>▤</span>注文管理</a>
-				<a class="side-nav-item active" th:href="@{/producer-page}"><span>●</span>ユーザー管理</a>
+				<a class="side-nav-item" th:href="@{/producer-page}"><span>●</span>ユーザー管理</a>
 			</nav>
-			<a class="logout-link" th:href="@{/user-login}">→ ログアウト</a>
+			<a class="logout-link" th:href="@{/user-logout}">→ ログアウト</a>
 		</aside>
 
 		<main class="producer-main">
 			<div class="page-title-row">
-				<h1>ユーザー管理</h1>
+				<h1 th:text="${pageTitle}">商品登録</h1>
 				<time th:text="${#temporals.format(businessDate, 'yyyy/MM/dd')}">2025/05/12</time>
 			</div>
 
-			<div class="tab-row" aria-label="ユーザー管理タブ">
-				<span class="tab active">基本情報</span>
-				<span class="tab">ブランド情報</span>
-				<span class="tab">店舗情報</span>
-				<span class="tab">通知設定</span>
-			</div>
-
-			<p class="save-message" th:if="${savedMessage}" th:text="${savedMessage}">店舗・自社情報を保存しました。</p>
-
-			<form class="admin-panel profile-form" th:action="@{/producer-page}" th:object="${profile}" method="post">
+			<form class="admin-panel profile-form" th:object="${productForm}" method="post"
+				th:action="@{/producer/products/save}">
 				<input type="hidden" th:field="*{id}">
+				<input type="hidden" th:field="*{producerId}">
 
 				<section class="form-section">
 					<div class="section-title-row">
 						<div>
-							<h2>基本情報</h2>
-							<p>自社・自店の公開プロフィールと連絡先を管理します。</p>
+							<h2>商品情報</h2>
+							<p>入力した内容はproductsテーブルへ保存されます。</p>
 						</div>
 					</div>
-					<div class="form-grid">
-						<label>
-							<span>屋号 / 店舗名</span>
-							<input type="text" th:field="*{shopName}" required>
-						</label>
-						<label>
-							<span>法人名</span>
-							<input type="text" th:field="*{companyName}">
-						</label>
-						<label>
-							<span>代表者</span>
-							<input type="text" th:field="*{representativeName}">
-						</label>
-						<label>
-							<span>地域</span>
-							<input type="text" th:field="*{area}" required>
-						</label>
-						<label class="form-wide">
-							<span>所在地</span>
-							<input type="text" th:field="*{postalAddress}">
-						</label>
-						<label>
-							<span>電話</span>
-							<input type="tel" th:field="*{phone}">
-						</label>
-						<label>
-							<span>メール</span>
-							<input type="email" th:field="*{email}">
-						</label>
-					</div>
-				</section>
 
-				<section class="form-section">
-					<div class="section-title-row compact">
-						<div>
-							<h2>ブランド情報</h2>
-							<p>店舗紹介文と外部リンクを編集します。</p>
-						</div>
-					</div>
 					<div class="form-grid">
 						<label class="form-wide">
-							<span>紹介文</span>
-							<textarea th:field="*{brandDescription}" rows="5"></textarea>
+							<span>商品名</span>
+							<input type="text" th:field="*{name}" required>
+						</label>
+						<label>
+							<span>価格</span>
+							<input type="number" th:field="*{price}" min="0" required>
+						</label>
+						<label>
+							<span>在庫数</span>
+							<input type="number" th:field="*{stock}" min="0" required>
+						</label>
+						<label>
+							<span>カテゴリ</span>
+							<select th:field="*{categoryId}" required>
+								<option th:each="category : ${categories}" th:value="${category.id}"
+									th:text="${category.name}">乳製品</option>
+							</select>
+						</label>
+						<label>
+							<span>地域 / 産地</span>
+							<input type="text" th:field="*{originArea}" required>
 						</label>
 						<label class="form-wide">
-							<span>SNS / 公式サイト</span>
-							<input type="url" th:field="*{snsLink}">
+							<span>商品画像URL</span>
+							<input type="text" th:field="*{image}" placeholder="/images/products/sample.jpg">
+						</label>
+						<label class="form-wide">
+							<span>商品説明</span>
+							<textarea th:field="*{body}" rows="6"></textarea>
 						</label>
 					</div>
 				</section>
 
 				<div class="form-actions">
-					<button class="primary-button" type="submit">保存する</button>
-					<a class="secondary-button" th:href="@{/producer-dashboard}">ダッシュボードへ戻る</a>
+					<button class="primary-button" type="submit" th:text="${productForm.id == 0 ? '登録する' : '更新する'}">登録する</button>
+					<a class="secondary-button" th:href="@{/producer/products}">一覧へ戻る</a>
 				</div>
 			</form>
 		</main>
