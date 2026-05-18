@@ -23,12 +23,6 @@
 
 		<section class="products-container">
 
-			<!-- 上部バー -->
-			<div class="products-topbar">
-				<span>LOGO</span>
-				<span>Header navigation</span>
-			</div>
-
 			<!-- パンくず -->
 			<p class="breadcrumb">
 				ホーム \ 商品を探す
@@ -39,12 +33,12 @@
 
 				<div>
 					<h1>
-						検索結果：
-						<span>「北海道チーズ」</span>
+						商品一覧
 					</h1>
 
+					<!-- 商品件数表示 -->
 					<p class="result-count">
-						全48件中 1-12件を表示
+						全<span th:text="${#lists.size(productList)}"></span>件
 					</p>
 				</div>
 
@@ -78,7 +72,7 @@
 
 						<label><input type="checkbox"> 乳製品</label>
 						<label><input type="checkbox"> スイーツ</label>
-						<label><input type="checkbox"> 日配品</label>
+						<label><input type="checkbox"> 海産物</label>
 					</div>
 
 					<div class="filter-group">
@@ -87,21 +81,6 @@
 						<label><input type="checkbox"> 十勝</label>
 						<label><input type="checkbox"> 富良野</label>
 						<label><input type="checkbox"> 函館</label>
-					</div>
-
-					<div class="filter-group">
-						<p class="filter-title">用途</p>
-
-						<label><input type="checkbox"> 自宅用</label>
-						<label><input type="checkbox"> ギフト</label>
-					</div>
-
-					<div class="filter-group">
-						<p class="filter-title">価格帯</p>
-
-						<label><input type="radio" name="price"> ～3,000円</label>
-						<label><input type="radio" name="price"> 3,000〜5,000円</label>
-						<label><input type="radio" name="price"> 5,000円以上</label>
 					</div>
 
 					<button class="filter-button">
@@ -113,44 +92,52 @@
 				<!-- 商品一覧 -->
 				<section class="products-grid">
 
-					<!-- 商品カード -->
-					<article class="product-card active">
+					<!-- 商品を繰り返し表示 -->
+					<article class="product-card"
+						th:each="product : ${productList}">
 
+						<!-- 商品画像 -->
 						<div class="product-image">
-							[商品画像]
+
+							<img th:src="${product.image}"
+								th:alt="${product.name}">
+
 						</div>
 
 						<div class="product-body">
 
-							<p class="product-name">
-								十勝チーズセット
+							<!-- 商品名 -->
+							<p class="product-name"
+								th:text="${product.name}">
 							</p>
 
-							<p class="product-description">
-								濃厚な味わい・100%北海道産
+							<!-- 商品説明 -->
+							<p class="product-description"
+								th:text="${product.body}">
 							</p>
 
+							<!-- 商品価格 -->
 							<p class="product-price">
-								¥3,980
+								¥<span th:text="${product.price}"></span>
 							</p>
 
 							<div class="product-footer">
-								<a href="#">+ 詳細を見る</a>
 
-								<button>♡</button>
+								<!-- 商品詳細 -->
+								<a href="#">
+									+ 詳細を見る
+								</a>
+
+								<!-- お気に入り -->
+								<button>
+									♡
+								</button>
+
 							</div>
 
 						</div>
-					</article>
 
-					<!-- ダミーカード -->
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
-					<article class="product-card empty">[商品カード]</article>
+					</article>
 
 				</section>
 
