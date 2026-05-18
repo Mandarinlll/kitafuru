@@ -44,14 +44,14 @@ public interface ProductMapper {
 	 */
 	@Select("""
 			SELECT
-				*
+			    *
 			FROM
-				products
+			    products
 			WHERE
-				id = #{id}
+			    id = #{productId}
 			""")
-	Product findById(@Param("id") int id);
-	
+	Product findDetailById(@Param("productId") int productId);
+
 	List<Product> findTopGiftProducts();
 
 	List<Product> findOtherGiftProducts();

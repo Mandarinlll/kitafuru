@@ -31,7 +31,7 @@
 
 			<!-- パンくず -->
 			<p class="breadcrumb">
-				ホーム / 商品一覧 / 
+				ホーム \ 商品一覧 \
 				<span th:text="${product.name}"></span>
 			</p>
 
@@ -77,24 +77,41 @@
 
 						</p>
 
-						<!-- 数量 -->
-						<div class="quantity-box">
+						<!-- カート追加フォーム -->
+						<form th:action="@{/cart/add}" method="post">
 
-							<span>数量</span>
+							<!-- 商品ID -->
+							<input
+								type="hidden"
+								name="productId"
+								th:value="${product.id}">
 
-							<div class="quantity-control">
-								<button type="button">-</button>
-								<span>1</span>
-								<button type="button">+</button>
+							<!-- 数量 -->
+							<div class="quantity-box">
+
+								<span>数量</span>
+
+								<div class="quantity-control">
+
+									<input
+										type="number"
+										name="quantity"
+										value="1"
+										min="1"
+										class="quantity-input">
+
+								</div>
+
 							</div>
 
-						</div>
+							<!-- カートボタン -->
+							<button class="cart-button" type="submit">
+								🛒 カートに入れる
+							</button>
 
-						<!-- ボタン -->
-						<button class="cart-button">
-							🛒 カートに入れる
-						</button>
+						</form>
 
+						<!-- お気に入り -->
 						<button class="favorite-button">
 							♡ この商品をお気に入り
 						</button>

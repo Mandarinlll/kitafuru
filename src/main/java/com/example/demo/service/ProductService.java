@@ -36,7 +36,9 @@ public class ProductService {
 	public Product getProductById(int id) {
 
 		// 商品1件取得
-		return productMapper.findById(id);
+		return productMapper.findDetailById(id);
+	}
+
 	public List<Product> findTopGiftProducts() {
 		return productMapper.findTopGiftProducts();
 	}
