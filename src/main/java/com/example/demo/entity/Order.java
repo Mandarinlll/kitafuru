@@ -3,26 +3,13 @@ package com.example.demo.entity;
 import java.sql.Timestamp;
 
 public class Order {
-
-	// 注文ID
 	private int id;
-
-	// ユーザーID
 	private int userId;
-
-	// 合計金額
 	private int totalPrice;
-
-	// 支払い方法
 	private String paymentMethod;
-
-	// 配送先住所
 	private String shippingAddress;
-
-	// 注文日時
+	private String status;
 	private Timestamp orderAt;
-
-	// ===== Getter / Setter =====
 
 	public int getId() {
 		return id;
@@ -62,6 +49,14 @@ public class Order {
 
 	public void setShippingAddress(String shippingAddress) {
 		this.shippingAddress = shippingAddress;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Timestamp getOrderAt() {

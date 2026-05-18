@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品管理</title>
+<link rel="stylesheet" th:href="@{/css/producer.css}">
+</head>
+<body>
+	<header class="producer-header">
+		<a class="logo-box" th:href="@{/home}">LOGO</a>
+		<label class="site-search">
+			<span class="search-mark">検索</span>
+			<input type="search" placeholder="商品名・産地・生産者を検索">
+		</label>
+		<div class="header-actions">
+			<a class="header-action" th:href="@{/favorite-products}">♡</a>
+			<a class="header-action" th:href="@{/cart}">カート</a>
+			<a class="header-login" th:href="@{/user-login}">ログイン / マイページ</a>
+		</div>
+	</header>
+
+	<div class="producer-shell">
+		<aside class="producer-sidebar">
+			<div class="producer-card">
+				<p class="sidebar-label">PRODUCER DB</p>
+				<p class="producer-name">十勝○○工房</p>
+				<p class="producer-id">生産者ID：PR-00821</p>
+			</div>
+			<nav class="side-nav" aria-label="生産者メニュー">
+				<a class="side-nav-item" th:href="@{/producer-dashboard}"><span>▥</span>ダッシュボード</a>
+				<a class="side-nav-item active" th:href="@{/producer/products}"><span>□</span>商品管理</a>
+				<a class="side-nav-item" th:href="@{/producer/orders}"><span>▤</span>注文管理</a>
+				<a class="side-nav-item" th:href="@{/producer-page}"><span>●</span>ユーザー管理</a>
+			</nav>
+			<a class="logout-link" th:href="@{/user-logout}">→ ログアウト</a>
+		</aside>
+
+		<main class="producer-main">
+			<div class="page-title-row">
+				<h1>商品管理</h1>
+				<time th:text="${#temporals.format(businessDate, 'yyyy/MM/dd')}">2025/05/12</time>
+			</div>
+
+			<p class="save-message" th:if="${savedMessage}" th:text="${savedMessage}">商品情報を保存しました。</p>
+
+			<form class="filter-bar" th:action="@{/producer/products}" method="get">
+				<label class="filter-search">
+					<span>商品検索</span>
+					<input type="search" name="keyword" th:value="${keyword}" placeholder="商品名・産地・カテゴリ">
+				</label>
+				<label>
+					<span>カテゴリ</span>
+					<select name="categoryId">
+						<option value="">すべて</option>
+						<option th:each="category : ${categories}" th:value="${category.id}"
+							th:selected="${categoryId != null and category.id == categoryId}"
+							th:text="${category.name}">乳製品</option>
+					</select>
+				</label>
+				<label>
+					<span>在庫</span>
+					<select name="stockFilter">
+						<option value="" th:selected="${stockFilter == null or stockFilter == ''}">すべて</option>
+						<option value="in" th:selected="${stockFilter == 'in'}">在庫あり</option>
+						<option value="low" th:selected="${stockFilter == 'low'}">在庫少</option>
+						<option value="out" th:selected="${stockFilter == 'out'}">在庫切れ</option>
+					</select>
+				</label>
+				<button class="secondary-button compact-button" type="submit">絞り込み</button>
+				<a class="primary-button compact-button" th:href="@{/producer/products/new}">新規商品登録</a>
+			</form>
+
+			<section class="admin-panel report-panel">
+				<div class="section-title-row">
+					<div>
+						<h2>商品一覧</h2>
+						<p>在庫数、カテゴリ、価格を一覧で確認できます。</p>
+					</div>
+					<p class="table-count" th:text="${products.size() + '件'}">0件</p>
+				</div>
+				<div class="table-wrap">
+					<table class="admin-table product-table">
+						<thead>
+							<tr>
+								<th>画像</th>
+								<th>商品名 / SKU</th>
+								<th>カテゴリ</th>
+								<th>価格</th>
+								<th>在庫数</th>
+								<th>状態</th>
+								<th>産地</th>
+								<th>最終更新</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="product : ${products}">
+								<td><div class="product-thumb"></div></td>
+								<td>
+									<strong th:text="${product.name}">十勝産チーズセット</strong>
+									<small th:text="${product.sku}">PRD-001</small>
+								</td>
+								<td th:text="${product.categoryName}">乳製品</td>
+								<td class="amount" th:text="|¥${#numbers.formatInteger(product.price, 0, 'COMMA')}|">¥3,980</td>
+								<td th:text="${product.stock + '点'}">128点</td>
+								<td><span class="status-badge" th:classappend="${product.stockClass}" th:text="${product.stockLabel}">公開中</span></td>
+								<td th:text="${product.originArea}">十勝</td>
+								<td th:text="${product.updateAt != null ? #temporals.format(product.updateAt, 'yyyy/MM/dd') : '-'}">2025/05/10</td>
+								<td><a class="text-link" th:href="@{/producer/products/{id}/edit(id=${product.id})}">編集</a></td>
+							</tr>
+							<tr th:if="${products.isEmpty()}">
+								<td colspan="9" class="empty-cell">該当する商品はありません。</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<footer class="producer-footer">
+		<nav aria-label="フッターメニュー">
+			<a href="#">ご利用ガイド</a>
+			<a href="#">配送・送料</a>
+			<a href="#">よくある質問</a>
+			<a href="#">お問い合わせ</a>
+			<a href="#">生産者の方へ</a>
+			<a href="#">会社情報</a>
+			<a href="#">利用規約</a>
+			<a href="#">プライバシーポリシー</a>
+		</nav>
+		<span>© Kita no Furusato EC</span>
+	</footer>
+</body>
+</html>
