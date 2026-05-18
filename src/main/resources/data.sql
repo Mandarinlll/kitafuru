@@ -12,16 +12,16 @@ INSERT INTO users (id, name, age, address, email, password, image, create_at) VA
 
 -- producers
 INSERT INTO producers (id, name, body, area, image, email, phone, sns_link, create_at) VALUES
-(1, '北ふる海産工房', '海産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
-(2, '北ふる農園連合', '農産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
-(3, '北ふる畜産工房', '畜産品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
-(4, '北ふるミルク工房', '乳製品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
-(5, '北ふる菓子工房', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
-(6, '北ふる主食工房', '麺類・主食を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
-(7, '北ふる惣菜工房', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
-(8, '北ふる発酵工房', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
-(9, '北ふる飲料工房', '飲料を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
-(10, '北ふるギフト工房', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
+(1, '伊勢谷海産工房', '海産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
+(2, 'たなか農園', '農産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
+(3, '真崎畜産', '畜産品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
+(4, '子安乳業', '乳製品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
+(5, 'パティスリーSuzuki', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
+(6, '吐師炭水化物工房', '麺類・主食を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
+(7, '久米惣菜', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
+(8, '発酵食品のホンマ', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
+(9, 'ムラカミ飲料', '飲料を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
+(10, 'ギフトショップ山下', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
 
 -- categories
 INSERT INTO categories (id, name, description) VALUES
