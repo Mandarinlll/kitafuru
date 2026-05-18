@@ -21,6 +21,7 @@
 			update_at
 		FROM products
 		ORDER BY id
+	</select>
 	<!--季節おすすめ-->
 	<select id="findAllSeason" resultType="com.example.demo.entity.Product">
 		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
