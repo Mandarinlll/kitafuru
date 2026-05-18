@@ -28,6 +28,14 @@ GROUP BY
 ORDER BY
     total_sales DESC
 	</select>
+<select id="findById"
+			resultType="com.example.demo.entity.Product">
 
+		SELECT *
+		FROM products
+		WHERE id = #{id}
+
+	</select>
+	
 
 </mapper>
