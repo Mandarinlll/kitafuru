@@ -108,6 +108,14 @@
 			#{id}
 		</foreach>
 	</select>
+<select id="findById"
+			resultType="com.example.demo.entity.Product">
 
+		SELECT *
+		FROM products
+		WHERE id = #{id}
+
+	</select>
+	
 
 </mapper>
