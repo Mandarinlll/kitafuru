@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生産者ダッシュボード</title>
+<link rel="stylesheet" th:href="@{/css/producer.css}">
 </head>
 <body>
-<!--ページ遷移確認用-->
-	<p>生産者ダッシュボード</p>
+	<header class="producer-header">
+		<a class="logo-box" th:href="@{/home}">LOGO</a>
+		<label class="site-search">
+			<span class="search-mark">🔍</span>
+			<input type="search" placeholder="商品名・産地・生産者を検索">
+		</label>
+		<div class="header-actions">
+			<a class="header-action" th:href="@{/favorite-products}">♡</a>
+			<a class="header-action" th:href="@{/cart}">カート</a>
+			<a class="header-login" th:href="@{/user-login}">ログイン / マイページ</a>
+		</div>
+	</header>
+
+	<div class="producer-shell">
+		<aside class="producer-sidebar">
+			<div class="producer-card">
+				<p class="sidebar-label">PRODUCER DB</p>
+				<p class="producer-name">十勝○○工房</p>
+				<p class="producer-id">生産者ID：PR-00821</p>
+			</div>
+			<nav class="side-nav" aria-label="生産者メニュー">
+				<a class="side-nav-item active" th:href="@{/producer-dashboard}"><span>▥</span>ダッシュボード</a>
+				<a class="side-nav-item" th:href="@{/product}"><span>□</span>商品管理</a>
+				<a class="side-nav-item" th:href="@{/order-confirmation}"><span>▤</span>注文管理</a>
+				<a class="side-nav-item" th:href="@{/producer-page}"><span>●</span>ユーザー管理</a>
+			</nav>
+			<a class="logout-link" th:href="@{/user-login}">→ ログアウト</a>
+		</aside>
+
+		<main class="producer-main">
+			<div class="page-title-row">
+				<h1>ダッシュボード</h1>
+				<time th:text="${#temporals.format(businessDate, 'yyyy/MM/dd')}">2025/05/12</time>
+			</div>
+
+			<section class="metric-grid" aria-label="売上サマリー">
+				<div class="metric-card accent-green">
+					<p class="metric-label">本日の注文数</p>
+					<p class="metric-value"><span th:text="${summary.todayOrderCount}">12</span><small>件</small></p>
+					<p class="metric-change positive"
+						th:text="${summary.orderCountDiff >= 0 ? '▲ 前日比 +' + summary.orderCountDiff + '件' : '▼ 前日比 ' + summary.orderCountDiff + '件'}">▲ 前日比 +3件</p>
+				</div>
+				<div class="metric-card accent-red">
+					<p class="metric-label">本日の売上</p>
+					<p class="metric-value" th:text="|¥${#numbers.formatInteger(summary.todaySales, 0, 'COMMA')}|">¥85,000</p>
+					<p class="metric-change positive"
+						th:text="${summary.salesGrowthRate >= 0 ? '▲ 前日比 +' + summary.salesGrowthRate + '%' : '▼ 前日比 ' + summary.salesGrowthRate + '%'}">▲ 前日比 +12%</p>
+				</div>
+				<div class="metric-card accent-blue">
+					<p class="metric-label">今月の売上</p>
+					<p class="metric-value" th:text="|¥${#numbers.formatInteger(summary.monthlySales, 0, 'COMMA')}|">¥1,000,000</p>
+					<p class="metric-change muted">月初から本日まで</p>
+				</div>
+			</section>
+
+			<section class="admin-panel report-panel">
+				<div class="section-title-row">
+					<div>
+						<h2>売上・注文レポート</h2>
+						<p>日別の売上金額、注文数、販売点数を確認できます。</p>
+					</div>
+				</div>
+				<div class="table-wrap">
+					<table class="admin-table">
+						<thead>
+							<tr>
+								<th>日付</th>
+								<th>注文数</th>
+								<th>販売点数</th>
+								<th>売上金額</th>
+								<th>平均注文単価</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="report : ${salesReports}">
+								<td th:text="${#temporals.format(report.reportDate, 'yyyy/MM/dd')}">2025/05/12</td>
+								<td th:text="${report.orderCount + '件'}">12件</td>
+								<td th:text="${report.totalQuantity + '点'}">18点</td>
+								<td class="amount" th:text="|¥${#numbers.formatInteger(report.salesAmount, 0, 'COMMA')}|">¥85,000</td>
+								<td th:text="|¥${#numbers.formatInteger(report.averageOrderAmount, 0, 'COMMA')}|">¥7,083</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<footer class="producer-footer">
+		<nav aria-label="フッターメニュー">
+			<a href="#">ご利用ガイド</a>
+			<a href="#">配送・送料</a>
+			<a href="#">よくある質問</a>
+			<a href="#">お問い合わせ</a>
+			<a href="#">生産者の方へ</a>
+			<a href="#">会社情報</a>
+			<a href="#">利用規約</a>
+			<a href="#">プライバシーポリシー</a>
+		</nav>
+		<span>© Kita no Furusato EC</span>
+	</footer>
 </body>
 </html>
