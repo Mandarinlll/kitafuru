@@ -36,7 +36,7 @@
 						商品一覧
 					</h1>
 
-					<!-- 商品件数表示 -->
+					<!-- 商品件数 -->
 					<p class="result-count">
 						全<span th:text="${#lists.size(productList)}"></span>件
 					</p>
@@ -92,52 +92,55 @@
 				<!-- 商品一覧 -->
 				<section class="products-grid">
 
-					<!-- 商品を繰り返し表示 -->
-					<article class="product-card"
-						th:each="product : ${productList}">
+					<!-- 商品カード -->
+					<a th:each="product : ${productList}"
+						th:href="@{/products/{id}(id=${product.id})}"
+						class="product-link">
 
-						<!-- 商品画像 -->
-						<div class="product-image">
+						<article class="product-card">
 
-							<img th:src="${product.image}"
-								th:alt="${product.name}">
+							<!-- 商品画像 -->
+							<div class="product-image">
 
-						</div>
-
-						<div class="product-body">
-
-							<!-- 商品名 -->
-							<p class="product-name"
-								th:text="${product.name}">
-							</p>
-
-							<!-- 商品説明 -->
-							<p class="product-description"
-								th:text="${product.body}">
-							</p>
-
-							<!-- 商品価格 -->
-							<p class="product-price">
-								¥<span th:text="${product.price}"></span>
-							</p>
-
-							<div class="product-footer">
-
-								<!-- 商品詳細 -->
-								<a href="#">
-									+ 詳細を見る
-								</a>
-
-								<!-- お気に入り -->
-								<button>
-									♡
-								</button>
+								<img th:src="${product.image}"
+									th:alt="${product.name}">
 
 							</div>
 
-						</div>
+							<div class="product-body">
 
-					</article>
+								<!-- 商品名 -->
+								<p class="product-name"
+									th:text="${product.name}">
+								</p>
+
+								<!-- 商品説明 -->
+								<p class="product-description"
+									th:text="${product.body}">
+								</p>
+
+								<!-- 商品価格 -->
+								<p class="product-price">
+									¥<span th:text="${product.price}"></span>
+								</p>
+
+								<div class="product-footer">
+
+									<span>
+										+ 詳細を見る
+									</span>
+
+									<button type="button">
+										♡
+									</button>
+
+								</div>
+
+							</div>
+
+						</article>
+
+					</a>
 
 				</section>
 

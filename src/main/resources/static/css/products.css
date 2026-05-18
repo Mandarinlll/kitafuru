@@ -311,3 +311,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* 商品カードリンク */
+.product-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
