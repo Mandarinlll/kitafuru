@@ -17,11 +17,11 @@ public class GiftController {
 
 	@GetMapping("/gift")
 	public String gift(Model model) {
-
+		//人気ギフトTOP3をHTMLへ返す
 		model.addAttribute(
 				"topGiftProducts",
 				productService.findTopGiftProducts());
-
+		//その他のギフト商品をHTMLへ返す
 		model.addAttribute(
 				"otherGiftProducts",
 				productService.findOtherGiftProducts());

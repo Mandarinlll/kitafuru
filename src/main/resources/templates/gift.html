@@ -23,17 +23,17 @@
 
 			<a class="question-card" th:each="product, stat : ${topGiftProducts}"
 				th:href="@{/products/{id}(id=${product.id})}">
-
+				<!-- topGiftProducts を1件ずつ取り出し、商品詳細ページへのリンクを設定 -->
 				<div class="question-number" th:text="'TOP' + ${stat.count}">
 					TOP1
 				</div>
 
 				<img th:src="@{${product.image}}">
-
+				<!-- 商品画像を表示 -->
 				<h3 th:text="${product.name}"></h3>
-
+				<!-- 商品名を表示 -->
 				<p th:text="'¥' + ${product.price}"></p>
-
+				<!-- 商品価格を表示 -->
 			</a>
 
 		</section>
@@ -49,13 +49,13 @@
 
 				<a class="product-card" th:each="product : ${otherGiftProducts}"
 					th:href="@{/products/{id}(id=${product.id})}">
-
+					<!-- otherGiftProducts を1件ずつ取り出し、商品詳細ページへのリンクを設定 -->
 					<img th:src="@{${product.image}}">
-
+					<!-- 商品画像を表示 -->
 					<h3 th:text="${product.name}"></h3>
-
+					<!-- 商品名を表示 -->
 					<p th:text="'¥' + ${product.price}"></p>
-
+					<!-- 商品価格を表示 -->
 				</a>
 
 			</div>
