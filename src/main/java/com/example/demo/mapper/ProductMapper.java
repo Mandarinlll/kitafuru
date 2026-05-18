@@ -35,4 +35,8 @@ public interface ProductMapper {
 	// 複数の商品IDから商品一覧を取得する
 	// ids に含まれる商品をまとめて検索
 	List<Product> findByIds(List<Integer> ids);
+
+	List<Product> findTopGiftProducts();
+
+	List<Product> findOtherGiftProducts();
 }

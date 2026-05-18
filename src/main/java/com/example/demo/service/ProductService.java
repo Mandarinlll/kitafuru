@@ -29,4 +29,12 @@ public class ProductService {
 		// Mapperから商品取得
 		return productMapper.findAll();
 	}
+
+	public List<Product> findTopGiftProducts() {
+		return productMapper.findTopGiftProducts();
+	}
+
+	public List<Product> findOtherGiftProducts() {
+		return productMapper.findOtherGiftProducts();
+	}
 }
