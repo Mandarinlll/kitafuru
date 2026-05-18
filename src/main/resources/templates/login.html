@@ -47,7 +47,9 @@
 					初めての方も、新規登録から会員ページをご利用いただけます。
 				</p>
 
-				<a href="#" class="register-button">
+				
+				<a th:href="@{/register}"
+					class="register-button">
 					新規登録はこちら →
 				</a>
 			</div>
@@ -63,21 +65,51 @@
 
 			<div class="panel-line"></div>
 
-			<form class="login-form">
+			<form class="login-form"
+			      th:action="@{/login}"
+			      th:object="${form}"
+			      method="post">
 
-				<div class="form-group">
-					<label>メールアドレス</label>
-					<input type="email" placeholder="example@email.com">
-				</div>
+			    <!-- メールアドレス -->
+			    <div class="form-group">
+			        <label>メールアドレス</label>
 
-				<div class="form-group">
-					<label>パスワード</label>
-					<input type="password" placeholder="••••••••">
-				</div>
+			        <input type="email"
+			               th:field="*{email}"
+			               placeholder="example@email.com">
 
-				<button type="submit" class="login-button">
-					ログインする
-				</button>
+			        <!-- バリデーションエラー -->
+			        <p class="field-error"
+			           th:if="${#fields.hasErrors('email')}"
+			           th:errors="*{email}">
+			        </p>
+			    </div>
+
+			    <!-- パスワード -->
+			    <div class="form-group">
+			        <label>パスワード</label>
+
+			        <input type="password"
+			               th:field="*{password}"
+			               placeholder="••••••••">
+
+			        <!-- バリデーションエラー -->
+			        <p class="field-error"
+			           th:if="${#fields.hasErrors('password')}"
+			           th:errors="*{password}">
+			        </p>
+			    </div>
+
+			    <!-- ログイン失敗メッセージ -->
+			    <p class="error-message"
+			       th:if="${loginError}"
+			       th:text="${loginError}">
+			    </p>
+
+			    <!-- ログインボタン -->
+			    <button type="submit" class="login-button">
+			        ログインする
+			    </button>
 
 			</form>
 
