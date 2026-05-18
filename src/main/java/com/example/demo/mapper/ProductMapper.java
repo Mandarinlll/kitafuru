@@ -9,6 +9,9 @@ import com.example.demo.entity.Product;
 
 @Mapper
 public interface ProductMapper {
+	// 商品一覧取得
+	List<Product> findAll();
+
 	List<Map<String, Object>> findAllSeason(int month);
 
 	List<Product> findRecommendProducts(Integer userId);

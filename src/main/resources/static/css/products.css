@@ -1,0 +1,320 @@
+.products-page {
+  background: #f2efe7;
+  padding: 12px;
+}
+
+/* =========================
+   全体
+========================= */
+
+.products-container {
+  border: 1px solid #d2c7b5;
+  background: #f7f5ef;
+  padding-bottom: 10px;
+}
+
+/* =========================
+   上部バー
+========================= */
+
+.products-topbar {
+  height: 24px;
+  background: #17384f;
+  color: #f3b84c;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 12px;
+
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* =========================
+   パンくず
+========================= */
+
+.breadcrumb {
+  margin: 10px 12px 0;
+  color: #978b78;
+  font-size: 0.7rem;
+}
+
+/* =========================
+   タイトル
+========================= */
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin: 4px 12px 14px;
+}
+
+.result-header h1 {
+  margin: 0;
+  color: #17384f;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+/* 「北海道チーズ」の部分 */
+
+.result-header h1 span {
+  font-size: 2.1rem;
+}
+
+.result-count {
+  margin-top: 8px;
+  color: #8c816d;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   並び替え
+========================= */
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 6px;
+}
+
+.sort-box label {
+  color: #8a7d68;
+  font-size: 0.8rem;
+}
+
+.sort-box select {
+  width: 140px;
+  height: 28px;
+
+  border: 1px solid #c6baa5;
+  background: #fff;
+
+  font-size: 0.75rem;
+  padding: 0 8px;
+}
+
+/* =========================
+   レイアウト
+========================= */
+
+.products-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+
+  padding: 0 10px;
+}
+
+/* =========================
+   サイドバー
+========================= */
+
+.filter-sidebar {
+  border: 1px solid #d3c8b6;
+  background: #f5f1e8;
+
+  padding: 14px;
+}
+
+.filter-sidebar h2 {
+  margin: 0 0 14px;
+
+  color: #17384f;
+  font-size: 1rem;
+}
+
+.filter-group {
+  margin-bottom: 22px;
+}
+
+.filter-title {
+  margin-bottom: 10px;
+
+  color: #7e715d;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.filter-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #50483d;
+  font-size: 0.75rem;
+}
+
+/* ボタン */
+
+.filter-button {
+  width: 100%;
+  height: 32px;
+
+  border: none;
+
+  background: #17384f;
+  color: #f3b84c;
+
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+/* =========================
+   商品一覧
+========================= */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* =========================
+   商品カード
+========================= */
+
+.product-card {
+  min-height: 220px;
+
+  border: 1px solid #d2c7b5;
+  background: #fff;
+}
+
+/* 選択中カード */
+
+.product-card.active {
+  border: 1px solid #7b96b1;
+}
+
+/* 空カード */
+
+.product-card.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f3f0e8;
+  color: #c4b79f;
+
+  font-size: 0.7rem;
+}
+
+/* =========================
+   商品画像
+========================= */
+
+.product-image {
+  height: 110px;
+
+  background: #eadab6;
+  color: #c5b08a;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.7rem;
+}
+
+/* =========================
+   商品情報
+========================= */
+
+.product-body {
+  padding: 10px;
+}
+
+.product-name {
+  margin: 0 0 4px;
+
+  color: #17384f;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.product-description {
+  margin: 0 0 8px;
+
+  color: #8d816d;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.product-price {
+  margin: 0 0 8px;
+
+  color: #c2472a;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* =========================
+   カード下部
+========================= */
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-footer a {
+  color: #17384f;
+  font-size: 0.7rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.product-footer button {
+  border: none;
+  background: none;
+
+  color: #b89c97;
+
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* =========================
+   レスポンシブ
+========================= */
+
+@media (max-width: 900px) {
+
+  .products-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .result-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 商品カードリンク */
+.product-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}

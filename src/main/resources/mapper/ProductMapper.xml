@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.ProductMapper">
+    <!-- 商品一覧取得 -->
+	<select id="findAll"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT
+			id,
+			producer_id,
+			name,
+			body,
+			price,
+			stock,
+			category_id,
+			origin_area,
+			image,
+			recommendation_score,
+			create_at,
+			update_at
+		FROM products
+		ORDER BY id
 	<!--季節おすすめ-->
 	<select id="findAllSeason" resultType="com.example.demo.entity.Product">
 		SELECT DISTINCT p.* FROM products p JOIN product_seasons ps ON p.id =
