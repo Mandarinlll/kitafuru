@@ -95,11 +95,6 @@ body {
 	width: 100%;
 }
 
-.form-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 24px;
-}
 
 .form-group {
 	margin-bottom: 18px;
@@ -226,10 +221,6 @@ body {
 		gap: 6px;
 	}
 
-	.form-row {
-		grid-template-columns: 1fr;
-		gap: 0;
-	}
 
 	.register-title {
 		font-size: 24px;
