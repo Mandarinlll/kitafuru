@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.form.UserForm;
 import com.example.demo.service.UserService;
@@ -24,7 +24,7 @@ public class RegisterController {
 	 * 新規登録画面を表示
 	 */
 	@GetMapping("/register")
-	public String showRegisterForm(Model model) {
+	public String showRegisterForm(org.springframework.ui.Model model) {
 
 		model.addAttribute("form", new UserForm());
 
@@ -38,7 +38,7 @@ public class RegisterController {
 	public String register(
 			@Validated @ModelAttribute("form") UserForm form,
 			BindingResult bindingResult,
-			Model model) {
+			RedirectAttributes redirectAttributes) {
 
 		// バリデーションエラー
 		if (bindingResult.hasErrors()) {
@@ -47,6 +47,11 @@ public class RegisterController {
 
 		// ユーザー登録
 		userService.register(form);
+
+		// フラッシュメッセージを追加
+		redirectAttributes.addFlashAttribute(
+				"successMessage",
+				"会員登録が完了しました!");
 
 		// ログイン画面へリダイレクト
 		return "redirect:/login";

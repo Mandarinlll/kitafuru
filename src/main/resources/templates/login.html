@@ -58,6 +58,11 @@
 
 		<!-- 右 -->
 		<section class="login-panel">
+			
+			<div th:if="${successMessage}" id="toast" class="toast-message">
+				<span class="toast-icon">✓</span>
+				<span th:text="${successMessage}"></span>
+			</div>
 
 			<p class="panel-subtitle">LOGIN</p>
 
@@ -125,6 +130,18 @@
 
 	</main>
 
+	<script>
+		window.addEventListener('load', function () {
+			const toast = document.getElementById('toast');
+
+			if (toast) {
+				setTimeout(function () {
+					toast.classList.add('hide');
+				}, 5000);
+			}
+		});
+	</script>
+	
 </body>
 
 </html>
