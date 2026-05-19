@@ -33,27 +33,30 @@
 
 /* 左メニュー */
 .mypage-menu {
-	background: var(--paper);
-	border: 1px solid var(--line);
+	background: #ebe4d7;
+	border: 1px solid #cdbfa5;	
 	min-height: 360px;
 }
 
 .mypage-menu h2 {
-	margin: 0;
-	padding: 14px 18px;
-	font-size: 0.8rem;
-	color: var(--muted);
-	border-bottom: 1px solid var(--line);
-}
+		margin: 0;
+		padding: 16px 22px 28px;
+		font-size: 0.8rem;
+		color: var(--muted);
+		border-bottom: 1px solid var(--line);
+	}
 
 .mypage-menu nav {
 	display: flex;
 	flex-direction: column;
 }
 
+
 .mypage-menu a {
-	padding: 13px 18px;
-	font-size: 0.9rem;
+	display: block;
+	width: 100%;
+	padding: 16px 22px;
+	font-size: 0.95rem;
 	color: var(--text);
 	transition: 0.2s;
 }
@@ -63,18 +66,16 @@
 }
 
 .mypage-menu a:nth-child(1)::before { content: "▦"; }
-.mypage-menu a:nth-child(2)::before { content: "♡"; }
-.mypage-menu a:nth-child(3)::before { content: "☞"; }
-.mypage-menu a:nth-child(4)::before { content: "◎"; }
-.mypage-menu a:nth-child(5)::before { content: "📍"; }
-.mypage-menu a:nth-child(6)::before { content: "▣"; }
-.mypage-menu a:nth-child(7)::before { content: "→"; }
+/*.mypage-menu a:nth-child(2)::before { content: "♡"; }*/
+.mypage-menu a:nth-child(2)::before { content: "◎"; }
+.mypage-menu a:nth-child(3)::before { content: "▣"; }
 
 .mypage-menu a:hover,
 .mypage-menu a.active {
 	background: var(--navy);
-	color: #fff;
-}
+		color: var(--gold);
+		font-weight: 700;
+	}
 
 /* 右コンテンツ */
 .mypage-content {
@@ -98,8 +99,8 @@
 }
 
 .order-card {
-	border: 1px solid var(--line);
-	background: #fff;
+	border: 1px solid #e4b44e;
+	background: #fbf5eb;
 	padding: 16px;
 	display: flex;
 	gap: 16px;
@@ -131,23 +132,7 @@
 	color: #a85a25;
 }
 
-/* お気に入り店舗 */
-.shop-grid {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 14px;
-}
 
-.shop-card {
-	height: 90px;
-	border: 1px solid #e4b44e;
-	background: #fbf5eb;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #a85a25;
-	font-size: 0.8rem;
-}
 
 /* AIおすすめ */
 .recommend-section {
@@ -185,7 +170,6 @@
 	}
 
 	.order-list,
-	.shop-grid,
 	.recommend-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -197,7 +181,6 @@
 	}
 
 	.order-list,
-	.shop-grid,
 	.recommend-grid {
 		grid-template-columns: 1fr;
 	}
