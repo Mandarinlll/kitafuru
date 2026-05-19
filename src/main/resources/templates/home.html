@@ -46,7 +46,7 @@
 				<article class="product-card" th:each="product : ${seasonProducts}">
 
 					<a class="home-product-main" th:href="@{/products/{id}(id=${product.id})}">
-						<img th:src="${product.image}" alt="商品画像">
+						<img th:src="@{/images/案１.png}" alt="商品画像">
 					</a>
 
 					<div class="product-info">
