@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>商品検索</title>
+
+	<!-- 共通CSS -->
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+
+	<!-- 検索ページ専用CSS -->
+	<link rel="stylesheet" th:href="@{/css/search.css}">
+</head>
+
+<body>
+
+	<!-- 共通ヘッダー -->
+	<header th:replace="~{layout/_header :: header}"></header>
+
+	<main class="search-page">
+
+		<!-- パンくず -->
+		<nav class="breadcrumb">
+			<a th:href="@{/}">ホーム</a>
+			<span>＞</span>
+			<span>商品を探す・検索</span>
+		</nav>
+
+		<!-- タイトル -->
+		<section class="search-header">
+			<h1>商品を探す</h1>
+			<p>
+				キーワード、カテゴリー、地域から北海道の名産品を検索できます
+			</p>
+		</section>
+
+		<!-- 検索フォーム -->
+		<section class="search-box-section">
+
+			<form th:action="@{/search/result}" method="get" class="search-form">
+
+				<!-- キーワード検索 -->
+				<div class="search-input-area">
+
+					<div class="search-input-wrapper">
+
+						<span class="search-icon">🔍</span>
+
+						<input
+							type="text"
+							name="keyword"
+							placeholder="例：十勝チーズ / 富良野メロン / 鮭とば">
+
+					</div>
+
+					<button type="submit" class="search-button">
+						検索する
+					</button>
+
+					<button type="reset" class="clear-button">
+						クリア
+					</button>
+
+				</div>
+
+				<!-- 検索条件 -->
+				<section class="search-filter-section">
+
+					<!-- カテゴリー -->
+					<div class="category-area">
+
+						<div class="section-title">
+							CATEGORY ／ カテゴリーから探す
+						</div>
+
+						<div class="category-grid">
+
+							<label class="category-card">
+								<input type="checkbox" name="category" value="seafood">
+
+								<div class="card-content">
+									<div class="jp">海産物</div>
+									<div class="en">SEAFOOD</div>
+								</div>
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="dairy">
+
+								<div class="card-content">
+									<div class="jp">乳製品</div>
+									<div class="en">DAIRY</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="sweets">
+
+								<div class="card-content">
+									<div class="jp">スイーツ</div>
+									<div class="en">SWEETS</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="crops">
+
+								<div class="card-content">
+									<div class="jp">農作物</div>
+									<div class="en">CROPS</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="sake">
+
+								<div class="card-content">
+									<div class="jp">お酒</div>
+									<div class="en">SAKE</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="processed">
+
+								<div class="card-content">
+									<div class="jp">加工品</div>
+									<div class="en">PROCESSED</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="seasoning">
+
+								<div class="card-content">
+									<div class="jp">調味料</div>
+									<div class="en">SEASONING</div>
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input type="checkbox" name="category" value="gift">
+
+								<div class="card-content">
+									<div class="jp">ギフト</div>
+									<div class="en">GIFT</div>
+								</div>
+
+							</label>
+
+						</div>
+
+					</div>
+
+					<!-- 地域 -->
+					<div class="region-area">
+
+						<div class="section-title">
+							REGION ／ 地域から探す
+						</div>
+
+						<div class="region-content">
+
+							<div class="hokkaido-map">
+								北海道マップ画像
+							</div>
+
+							<div class="region-buttons">
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="道央">
+
+									道央
+
+								</label>
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="道東">
+
+									道東
+
+								</label>
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="道南">
+
+									道南
+
+								</label>
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="十勝">
+
+									十勝
+
+								</label>
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="道北">
+
+									道北
+
+								</label>
+
+								<label class="region-button">
+
+									<input
+										type="checkbox"
+										name="region"
+										value="オホーツク">
+
+									オホーツク
+
+								</label>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+			</form>
+
+		</section>
+
+		<!-- 選択条件 -->
+		<section class="selected-section">
+
+			<div class="selected-left">
+
+				<span class="selected-label">
+					検索キーワード：
+				</span>
+
+				<div class="selected-tag">
+					キーワード検索
+				</div>
+
+			</div>
+
+			<div class="selected-right">
+
+				<div class="result-count">
+					商品を検索できます
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+
+	<!-- 共通フッター -->
+	<footer th:replace="~{layout/_footer :: footer}"></footer>
+
+</body>
+
+</html>
