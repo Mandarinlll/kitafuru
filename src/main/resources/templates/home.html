@@ -43,28 +43,32 @@
 			</h2>
 			<section>
 
-				<a class="product-card" th:each="product : ${seasonProducts}"
-					th:href="@{/products/{id}(id=${product.id})}">
+				<article class="product-card" th:each="product : ${seasonProducts}">
 
-					<img th:src="${product.image}" alt="商品画像">
+					<a class="home-product-main" th:href="@{/products/{id}(id=${product.id})}">
+						<img th:src="${product.image}" alt="商品画像">
+					</a>
 
 					<div class="product-info">
 
-						<h3 class="product-name" th:text="${product.name}">
-						</h3>
+						<a class="home-product-main" th:href="@{/products/{id}(id=${product.id})}">
+							<h3 class="product-name" th:text="${product.name}">
+							</h3>
 
-						<p class="product-price">
-							¥<span th:text="${product.price}"></span>
-						</p>
+							<p class="product-price">
+								¥<span th:text="${product.price}"></span>
+							</p>
+						</a>
 
 						<p class="product-producer">
 							生産者：
-							<span th:text="${product.producer_name}"></span>
+							<a class="producer-story-link" th:href="@{/producer-page(id=${product.producer_id})}"
+								th:text="${product.producer_name}"></a>
 						</p>
 
 					</div>
 
-				</a>
+				</article>
 
 			</section>
 

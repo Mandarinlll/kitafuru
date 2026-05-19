@@ -121,6 +121,26 @@
 		WHERE id = #{id}
 
 	</select>
+	<select id="findByProducerId"
+		resultType="com.example.demo.entity.Product">
+		SELECT
+		id,
+		producer_id,
+		name,
+		body,
+		price,
+		stock,
+		category_id,
+		origin_area,
+		image,
+		recommendation_score,
+		create_at,
+		update_at
+		FROM products
+		WHERE producer_id = #{producerId}
+		ORDER BY recommendation_score DESC, id
+		LIMIT #{limit}
+	</select>
 	<!--ギフトとして選ばれている商品トップ３取得-->
 	<select id="findTopGiftProducts"
 		resultType="com.example.demo.entity.Product">SELECT p.*

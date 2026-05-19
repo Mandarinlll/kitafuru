@@ -93,11 +93,9 @@
 				<section class="products-grid">
 
 					<!-- 商品カード -->
-					<a th:each="product : ${productList}"
-						th:href="@{/products/{id}(id=${product.id})}"
-						class="product-link">
+					<article th:each="product : ${productList}" class="product-card">
 
-						<article class="product-card">
+						<a th:href="@{/products/{id}(id=${product.id})}" class="product-link">
 
 							<!-- 商品画像 -->
 							<div class="product-image">
@@ -138,9 +136,13 @@
 
 							</div>
 
-						</article>
+						</a>
 
-					</a>
+						<div class="product-producer-link">
+							<a th:href="@{/producer-page(id=${product.producerId})}">生産者ページを見る</a>
+						</div>
+
+					</article>
 
 				</section>
 

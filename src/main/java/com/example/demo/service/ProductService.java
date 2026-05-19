@@ -39,6 +39,10 @@ public class ProductService {
 		return productMapper.findDetailById(id);
 	}
 
+	public List<Product> getProductsByProducerId(int producerId, int limit) {
+		return productMapper.findByProducerId(producerId, limit);
+	}
+
 	public List<Product> findTopGiftProducts() {
 		return productMapper.findTopGiftProducts();
 	}

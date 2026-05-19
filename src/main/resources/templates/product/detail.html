@@ -166,7 +166,7 @@
 				<!-- 右側 -->
 				<aside class="shop-card">
 
-					<h2>この商品を作っている人</h2>
+					<h2>この商品を作っている生産者</h2>
 
 					<div class="shop-header">
 
@@ -174,18 +174,18 @@
 
 						<div>
 
-							<h3>生産者名</h3>
+							<h3 th:text="${producer.shopName}">生産者名</h3>
 
 							<p>
-								地元の素材を使用し、
-								丁寧な製法で作っています。
+								<span th:text="${producer.area}">北海道</span>の素材を扱う生産者です。<br>
+								<span th:text="${producer.brandDescription}">丁寧な製法で作っています。</span>
 							</p>
 
 						</div>
 
 					</div>
 
-					<a href="#" class="story-link">
+					<a th:href="@{/producer-page(id=${product.producerId})}" class="story-link">
 
 						→ 生産者ストーリーを見る
 

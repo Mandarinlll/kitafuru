@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Product;
+import com.example.demo.service.ProducerProfileService;
 import com.example.demo.service.ProductService;
 
 /*
@@ -18,12 +19,15 @@ public class ProductDetailController {
 
 	// 商品処理Service
 	private final ProductService productService;
+	private final ProducerProfileService producerProfileService;
 
 	// コンストラクタ
 	public ProductDetailController(
-			ProductService productService) {
+			ProductService productService,
+			ProducerProfileService producerProfileService) {
 
 		this.productService = productService;
+		this.producerProfileService = producerProfileService;
 	}
 
 	/*
@@ -40,11 +44,7 @@ public class ProductDetailController {
 		// 商品取得
 		Product product = productService.getProductById(productId);
 
-		// HTMLへ渡す
-		model.addAttribute("product", product);
-
-		// 初期数量
-		model.addAttribute("quantity", 1);
+		addDetailAttributes(model, product, 1);
 
 		// product/detail.html
 		return "product/detail";
@@ -65,11 +65,7 @@ public class ProductDetailController {
 		// 商品取得
 		Product product = productService.getProductById(productId);
 
-		// HTMLへ渡す
-		model.addAttribute("product", product);
-
-		// 数量を渡す
-		model.addAttribute("quantity", quantity);
+		addDetailAttributes(model, product, quantity);
 
 		// detail画面表示
 		return "product/detail";
@@ -93,13 +89,15 @@ public class ProductDetailController {
 		// 商品取得
 		Product product = productService.getProductById(productId);
 
-		// HTMLへ渡す
-		model.addAttribute("product", product);
-
-		// 数量を渡す
-		model.addAttribute("quantity", quantity);
+		addDetailAttributes(model, product, quantity);
 
 		// detail画面表示
 		return "product/detail";
+	}
+
+	private void addDetailAttributes(Model model, Product product, int quantity) {
+		model.addAttribute("product", product);
+		model.addAttribute("producer", producerProfileService.getProfile(product.getProducerId()));
+		model.addAttribute("quantity", quantity);
 	}
 }
