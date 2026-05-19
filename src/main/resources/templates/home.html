@@ -6,18 +6,17 @@
 	<title>北ふるトップページ</title>
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
 	<link rel="stylesheet" th:href="@{/css/home.css}">
-
 </head>
 
 <body>
 
-		
-		<div th:if="${successMessage}" id="toast" class="toast-message">
-			<span class="toast-icon">✓</span>
-			<span th:text="${successMessage}"></span>
-		</div>
-	
+	<div th:if="${successMessage}" id="toast" class="toast-message">
+		<span class="toast-icon">✓</span>
+		<span th:text="${successMessage}"></span>
+	</div>
+
 	<header th:replace="~{layout/_header :: header}"></header>
+	<div th:replace="layout/_sidebar :: sidebar"></div>
 
 	<section class="main-visual">
 
@@ -31,13 +30,9 @@
 		</p>
 
 		<div class="main-buttons">
-
 			<a href="#">商品を探す</a>
-
 			<a href="#">地域から探す</a>
-
 			<a th:href="@{/gift}">ギフト診断</a>
-
 		</div>
 
 	</section>
@@ -45,10 +40,12 @@
 	<div class="content-layout">
 
 		<div class="main-content">
+
 			<h2 class="section-title">
 				季節のおすすめ商品
 			</h2>
-			<section>
+
+			<section class="product-list" id="productList">
 
 				<article class="product-card" th:each="product : ${seasonProducts}">
 
@@ -59,8 +56,7 @@
 					<div class="product-info">
 
 						<a class="home-product-main" th:href="@{/products/{id}(id=${product.id})}">
-							<h3 class="product-name" th:text="${product.name}">
-							</h3>
+							<h3 class="product-name" th:text="${product.name}"></h3>
 
 							<p class="product-price">
 								¥<span th:text="${product.price}"></span>
@@ -70,7 +66,8 @@
 						<p class="product-producer">
 							生産者：
 							<a class="producer-story-link" th:href="@{/producer-page(id=${product.producer_id})}"
-								th:text="${product.producer_name}"></a>
+								th:text="${product.producer_name}">
+							</a>
 						</p>
 
 					</div>
@@ -79,32 +76,103 @@
 
 			</section>
 
+			<div class="pagination">
+				<button id="prevButton" onclick="changePage(-1)">前へ</button>
+				<span id="pageInfo"></span>
+				<button id="nextButton" onclick="changePage(1)">次へ</button>
+			</div>
+
 		</div>
 
 		<aside class="side-content">
-
 			地域から探す
 			生産者ストーリー
-
 		</aside>
 
 	</div>
-	<footer th:replace="~{layout/_footer :: footer}"></footer>
-	
-		<script>
-			window.addEventListener('load', function () {
-				const toast = document.getElementById('toast');
 
-				if (toast) {
-					setTimeout(function () {
-						toast.classList.add('hide');
-					}, 5000);
+	<footer th:replace="~{layout/_footer :: footer}"></footer>
+
+	<script>
+		window.addEventListener('load', function () {
+			const toast = document.getElementById('toast');
+
+			if (toast) {
+				setTimeout(function () {
+					toast.classList.add('hide');
+				}, 5000);
+			}
+		});
+
+		let currentPage = 1;
+
+		const cards = document.querySelectorAll(".product-card");
+		const pageInfo = document.getElementById("pageInfo");
+		const prevButton = document.getElementById("prevButton");
+		const nextButton = document.getElementById("nextButton");
+
+		function getItemsPerPage() {
+			if (window.innerWidth <= 600) {
+				return 4;
+			}
+
+			if (window.innerWidth <= 900) {
+				return 8;
+			}
+
+			return 16;
+		}
+
+		function showPage(page) {
+			const itemsPerPage = getItemsPerPage();
+			const totalPages = Math.ceil(cards.length / itemsPerPage);
+
+			if (cards.length === 0) {
+				pageInfo.textContent = "0 / 0";
+				prevButton.disabled = true;
+				nextButton.disabled = true;
+				return;
+			}
+
+			if (page < 1) {
+				page = 1;
+			}
+
+			if (page > totalPages) {
+				page = totalPages;
+			}
+
+			currentPage = page;
+
+			const start = (currentPage - 1) * itemsPerPage;
+			const end = start + itemsPerPage;
+
+			cards.forEach((card, index) => {
+				if (index >= start && index < end) {
+					card.style.display = "block";
+				} else {
+					card.style.display = "none";
 				}
 			});
-		</script>
 
-	</body>
+			pageInfo.textContent = currentPage + " / " + totalPages;
+
+			prevButton.disabled = currentPage === 1;
+			nextButton.disabled = currentPage === totalPages;
+		}
+
+		function changePage(direction) {
+			showPage(currentPage + direction);
+		}
+
+		window.addEventListener("resize", function () {
+			currentPage = 1;
+			showPage(currentPage);
+		});
+
+		showPage(currentPage);
+	</script>
 
 </body>
 
-</html>
+</html>s
