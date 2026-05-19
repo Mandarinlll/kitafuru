@@ -4,11 +4,11 @@
 
 -- users
 INSERT INTO users (id, name, address, email, password, image, create_at) VALUES
-(1, '荷宮 徳幸', '東京都渋谷区', 'ninoIkemen@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
-(2, '山下 華那', '北海道恵庭市', 'ohana@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
-(3, '中村 駿之介 ', '北海道江別市野幌町', 'syunchan@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
-(4, '小出 叶望 ', '北海道札幌市', 'kanaminTV@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
-(5, '吐師 昊冴', '沖縄県那覇市', 'itsumoarigato@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
+(1, '荷宮徳幸', '東京都渋谷区', 'ninoIkemen@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
+(2, '山下華那', '北海道恵庭市', 'ohana@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
+(3, '中村駿之介 ', '北海道江別市野幌町', 'syunchan@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
+(4, '小出叶望 ', '北海道札幌市', 'kanaminTV@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
+(5, '吐師昊冴', '沖縄県那覇市', 'itsumoarigato@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
 
 SELECT setval(
     pg_get_serial_sequence('users', 'id'),
