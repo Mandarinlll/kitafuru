@@ -16,22 +16,113 @@
 
 <body>
 
+	<!-- 共通ヘッダー -->
 	<div th:replace="~{layout/_header :: header}"></div>
 
 	<main class="search-result-page">
 
+		<!-- 検索ヘッダー -->
 		<section class="search-header">
 
-			<h1>検索結果</h1>
+			<h1>
+
+				検索結果
+
+				<span
+					th:if="${keyword != null and keyword != ''}"
+					th:text="'：「' + ${keyword} + '」'">
+				</span>
+
+			</h1>
 
 			<p class="result-count">
-				<span th:text="${count}">0</span>件の商品が見つかりました
+
+				<span th:text="${count}">
+					0
+				</span>
+
+				件の商品が見つかりました
+
 			</p>
 
 		</section>
 
+		<!-- 選択中条件 -->
+		<section class="selected-section">
+
+			<div class="selected-left">
+
+				<span class="selected-label">
+					選択中の条件：
+				</span>
+
+				<!-- キーワード -->
+				<div
+					th:if="${keyword != null and keyword != ''}"
+					class="selected-tag"
+					th:text="${keyword}">
+				</div>
+
+				<!-- カテゴリ -->
+				<div
+					th:if="${categories != null}"
+					th:each="category : ${categories}"
+					class="selected-tag">
+
+					<span th:switch="${category}">
+
+						<span th:case="'1'">
+							海産物
+						</span>
+
+						<span th:case="'2'">
+							乳製品
+						</span>
+
+						<span th:case="'3'">
+							スイーツ
+						</span>
+
+						<span th:case="'4'">
+							農作物
+						</span>
+
+						<span th:case="'5'">
+							お酒
+						</span>
+
+						<span th:case="'6'">
+							加工品
+						</span>
+
+						<span th:case="'7'">
+							調味料
+						</span>
+
+						<span th:case="'8'">
+							ギフト
+						</span>
+
+					</span>
+
+				</div>
+
+				<!-- 地域 -->
+				<div
+					th:if="${regions != null}"
+					th:each="region : ${regions}"
+					class="selected-tag"
+					th:text="${region}">
+				</div>
+
+			</div>
+
+		</section>
+
+		<!-- 商品一覧 -->
 		<section class="products-grid">
 
+			<!-- 商品なし -->
 			<div
 				th:if="${count == 0}"
 				class="no-result">
@@ -40,6 +131,7 @@
 
 			</div>
 
+			<!-- 商品カード -->
 			<a
 				th:each="product : ${productList}"
 				th:href="@{/products/{id}(id=${product.id})}"
@@ -47,6 +139,7 @@
 
 				<article class="product-card active">
 
+					<!-- 商品画像 -->
 					<div class="product-image">
 
 						<img
@@ -55,6 +148,7 @@
 
 					</div>
 
+					<!-- 商品情報 -->
 					<div class="product-body">
 
 						<p
@@ -94,7 +188,10 @@
 
 	</main>
 
+	<!-- 共通フッター -->
 	<div th:replace="~{layout/_footer :: footer}"></div>
+	
+	
 
 </body>
 
