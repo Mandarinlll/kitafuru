@@ -167,23 +167,29 @@
 	resultType="com.example.demo.entity.Product">
 
 	SELECT
-		*
+		p.*
 	FROM
-		products
+		products p
+	LEFT JOIN producers pr
+		ON p.producer_id = pr.id
+
 	WHERE
 		1 = 1
 
-	<!-- キーワード検索 -->
+	<!-- キーワード検索（商品名 + 生産者名） -->
 	<if test="keyword != null and keyword != ''">
 
-		AND name LIKE CONCAT('%', #{keyword}, '%')
+		AND (
+			p.name LIKE CONCAT('%', #{keyword}, '%')
+			OR pr.name LIKE CONCAT('%', #{keyword}, '%')
+		)
 
 	</if>
 
 	<!-- カテゴリ検索 -->
 	<if test="categories != null and categories.size() > 0">
 
-		AND category_id IN
+		AND p.category_id IN
 
 		<foreach
 			collection="categories"
@@ -201,7 +207,7 @@
 	<!-- 地域検索 -->
 	<if test="regions != null and regions.size() > 0">
 
-		AND origin_area IN
+		AND p.origin_area IN
 
 		<foreach
 			collection="regions"
@@ -216,7 +222,7 @@
 
 	</if>
 
-	ORDER BY id DESC
+	ORDER BY p.id DESC
 
 </select>
 
