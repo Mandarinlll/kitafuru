@@ -73,4 +73,9 @@ public interface ProductMapper {
 			    id DESC
 			""")
 	List<Product> searchByKeyword(@Param("keyword") String keyword);
+
+	List<Product> searchProducts(
+			@Param("keyword") String keyword,
+			@Param("categories") List<Integer> categories,
+			@Param("regions") List<String> regions);
 }

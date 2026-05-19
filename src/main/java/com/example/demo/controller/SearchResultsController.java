@@ -17,25 +17,31 @@ public class SearchResultsController {
 	@Autowired
 	private ProductMapper productMapper;
 
-	/*
-	 * 検索結果ページ
-	 */
 	@GetMapping("/search/result")
 	public String searchResults(
+
 			@RequestParam(name = "keyword", defaultValue = "") String keyword,
+
+			@RequestParam(name = "category", required = false) List<Integer> categories,
+
+			@RequestParam(name = "region", required = false) List<String> regions,
+
 			Model model) {
 
-		// 商品検索
-		List<Product> productList = productMapper.searchByKeyword(keyword);
+		List<Product> productList = productMapper.searchProducts(
+				keyword,
+				categories,
+				regions);
 
-		// HTMLへ渡す
 		model.addAttribute("productList", productList);
 
-		// キーワードを渡す
 		model.addAttribute("keyword", keyword);
 
-		// 件数を渡す
 		model.addAttribute("count", productList.size());
+
+		model.addAttribute("categories", categories);
+
+		model.addAttribute("regions", regions);
 
 		return "search/results";
 	}
