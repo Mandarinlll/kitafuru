@@ -7,121 +7,218 @@
 
 	<title th:text="${product.name}">商品詳細</title>
 
+	<!-- 共通CSS -->
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
+
+	<!-- 商品詳細CSS -->
 	<link rel="stylesheet" th:href="@{/css/product-detail.css}">
 </head>
 
 <body>
 
-<div th:replace="~{layout/_header :: header}"></div>
+	<!-- ヘッダー -->
+	<div th:replace="~{layout/_header :: header}"></div>
 
-<main class="detail-page">
+	<main class="detail-page">
 
-	<section class="detail-container">
+		<section class="detail-container">
 
-		<div class="detail-layout">
+			<!-- 上部バー -->
+			<div class="detail-topbar">
+				<span>LOGO</span>
+				<span>Header navigation</span>
+			</div>
 
-			<section class="product-detail">
+			<!-- パンくず -->
+			<p class="breadcrumb">
+				ホーム \ 商品詳細 \ 
+				<span th:text="${product.name}"></span>
+			</p>
 
-				<!-- 商品画像 -->
-				<div class="product-image">
+			<!-- メインレイアウト -->
+			<div class="detail-layout">
 
-					<img
-						th:src="@{${product.image}}"
-						th:alt="${product.name}">
+				<!-- 左側 -->
+				<section class="product-detail">
 
-				</div>
+					<!-- 商品画像 -->
+					<div class="product-image">
 
-				<!-- 商品情報 -->
-				<div class="product-info">
+						<img
+							th:src="@{${product.image}}"
+							th:alt="${product.name}">
 
-					<h1 th:text="${product.name}"></h1>
+					</div>
 
-					<p class="product-meta">
-						産地：
-						<span th:text="${product.originArea}"></span>
-					</p>
+					<!-- 商品情報 -->
+					<div class="product-info">
 
-					<p class="product-price">
+						<!-- 商品名 -->
+						<h1 th:text="${product.name}"></h1>
 
-						<span class="price-main">
-							¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span>
-						</span>
+						<!-- 産地 -->
+						<p class="product-meta">
 
-						<span class="price-sub">
-							（税込・送料別）
-						</span>
+							産地：
+							<span th:text="${product.originArea}"></span>
 
-					</p>
+						</p>
 
-					<!-- カート追加フォーム -->
-					<form th:action="@{/cart/add}" method="post">
+						<!-- 価格 -->
+						<p class="product-price">
 
-						<input
-							type="hidden"
-							name="productId"
-							th:value="${product.id}">
+							<span class="price-main">
 
-						<div class="quantity-box">
+								¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span>
 
-							<span>数量</span>
+							</span>
 
-							<div class="quantity-control">
+							<span class="price-sub">
 
-								<!-- マイナス -->
-								<button
-									type="submit"
-									formaction="/products/decrease"
-									class="quantity-btn">
+								（税込・送料別）
 
-									−
+							</span>
 
-								</button>
+						</p>
 
-								<!-- 数量 -->
-								<input
-									type="text"
-									name="quantity"
-									th:value="${quantity != null ? quantity : 1}"
-									readonly
-									class="quantity-input">
+						<!-- カート追加フォーム -->
+						<form
+							th:action="@{/cart/add}"
+							method="post">
 
-								<!-- プラス -->
-								<button
-									type="submit"
-									formaction="/products/increase"
-									class="quantity-btn">
+							<!-- 商品ID -->
+							<input
+								type="hidden"
+								name="productId"
+								th:value="${product.id}">
 
-									＋
+							<!-- 数量 -->
+							<div class="quantity-box">
 
-								</button>
+								<span>数量</span>
+
+								<div class="quantity-control">
+
+									<!-- マイナス -->
+									<button
+										type="submit"
+										formaction="/products/decrease"
+										class="quantity-btn">
+
+										−
+
+									</button>
+
+									<!-- 数量 -->
+									<input
+										type="text"
+										name="quantity"
+										th:value="${quantity != null ? quantity : 1}"
+										readonly
+										class="quantity-input">
+
+									<!-- プラス -->
+									<button
+										type="submit"
+										formaction="/products/increase"
+										class="quantity-btn">
+
+										＋
+
+									</button>
+
+								</div>
 
 							</div>
 
-						</div>
+							<!-- カート追加 -->
+							<button
+								type="submit"
+								class="cart-button">
 
-						<!-- カート追加 -->
-						<button
-							type="submit"
-							class="cart-button">
+								🛒 カートに入れる
 
-							🛒 カートに入れる
+							</button>
+
+						</form>
+
+						<!-- お気に入り -->
+						<button class="favorite-button">
+
+							♡ このお店をお気に入り
 
 						</button>
 
-					</form>
+						<!-- 商品説明 -->
+						<div class="description">
+
+							<h2>商品説明</h2>
+
+							<p th:text="${product.body}">
+							</p>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<!-- 右側 -->
+				<aside class="shop-card">
+
+					<h2>この商品を作っている人</h2>
+
+					<div class="shop-header">
+
+						<div class="shop-icon"></div>
+
+						<div>
+
+							<h3>生産者名</h3>
+
+							<p>
+								地元の素材を使用し、
+								丁寧な製法で作っています。
+							</p>
+
+						</div>
+
+					</div>
+
+					<a href="#" class="story-link">
+
+						→ 生産者ストーリーを見る
+
+					</a>
+
+				</aside>
+
+			</div>
+
+			<!-- 関連商品 -->
+			<section class="related-products">
+
+				<h2>関連商品</h2>
+
+				<div class="related-grid">
+
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
+					<div class="related-item"></div>
 
 				</div>
 
 			</section>
 
-		</div>
+		</section>
 
-	</section>
+	</main>
 
-</main>
-
-<div th:replace="~{layout/_footer :: footer}"></div>
+	<!-- フッター -->
+	<div th:replace="~{layout/_footer :: footer}"></div>
 
 </body>
+
 </html>
