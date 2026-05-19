@@ -4,11 +4,11 @@
 
 -- users
 INSERT INTO users (id, name, address, email, password, image, create_at) VALUES
-(1, '佐藤 花子', '東京都渋谷区', 'hanako@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
-(2, '鈴木 太郎', '大阪府大阪市', 'taro@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
-(3, '高橋 美咲', '神奈川県横浜市', 'misaki@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
-(4, '田中 健太', '北海道札幌市', 'kenta@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
-(5, '伊藤 玲奈', '愛知県名古屋市', 'reina@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
+(1, '佐藤花子', '東京都渋谷区', 'hanako@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
+(2, '鈴木太郎', '大阪府大阪市', 'taro@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
+(3, '高橋美咲', '神奈川県横浜市', 'misaki@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
+(4, '田中健太', '北海道札幌市', 'kenta@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
+(5, '伊藤玲奈', '愛知県名古屋市', 'reina@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
 
 -- producers
 INSERT INTO producers (id, name, body, area, image, email, phone, sns_link, create_at) VALUES
