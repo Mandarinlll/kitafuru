@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	flex: 1;
+}
+
 .recommend-box {
 	border: 2px solid #6b4fa3;
 	border-left: 10px solid #6b4fa3;

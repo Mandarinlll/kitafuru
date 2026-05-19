@@ -12,4 +12,5 @@ public interface UserMapper {
 
 	/** ユーザを登録する */
 	void insert(User user);
+
 }

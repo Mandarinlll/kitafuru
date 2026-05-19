@@ -49,47 +49,37 @@
 
 		SELECT DISTINCT p.*
 		FROM products p
-
 		WHERE p.id IN (
 
-		SELECT oi2.product_id
+		SELECT oi3.product_id
+		FROM orders my_order
 
-		FROM order_items oi1
+		JOIN order_items my_item
+		ON my_order.id = my_item.order_id
 
-		INNER JOIN order_items oi2
-		ON oi1.order_id = oi2.order_id
+		JOIN order_items other_same_item
+		ON my_item.product_id = other_same_item.product_id
 
-		WHERE oi1.product_id IN (
+		JOIN orders other_order
+		ON other_same_item.order_id = other_order.id
 
+		JOIN order_items oi3
+		ON other_order.id = oi3.order_id
+
+		WHERE my_order.user_id = #{userId}
+		AND other_order.user_id &lt;&gt; #{userId}
+		AND oi3.product_id NOT IN (
 		SELECT oi.product_id
-
 		FROM orders o
-
-		INNER JOIN order_items oi
+		JOIN order_items oi
 		ON o.id = oi.order_id
-
 		WHERE o.user_id = #{userId}
-
 		)
 
-		AND oi2.product_id NOT IN (
-
-		SELECT oi.product_id
-
-		FROM orders o
-
-		INNER JOIN order_items oi
-		ON o.id = oi.order_id
-
-		WHERE o.user_id = #{userId}
-
-		)
-
-		GROUP BY oi2.product_id
-
+		GROUP BY oi3.product_id
 		ORDER BY COUNT(*) DESC
-
 		)
+
 	</select>
 	<!-- AI用おすすめ商品取得 -->
 	<select id="searchForAi" resultType="com.example.demo.entity.Product">SELECT
