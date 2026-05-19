@@ -45,18 +45,22 @@
 				その他のギフトとして選ばれている商品
 			</div>
 
-			<div class="product-list">
+			<div class="gift-slider">
 
-				<a class="product-card" th:each="product : ${otherGiftProducts}"
-					th:href="@{/products/{id}(id=${product.id})}">
-					<!-- otherGiftProducts を1件ずつ取り出し、商品詳細ページへのリンクを設定 -->
-					<img th:src="@{${product.image}}">
-					<!-- 商品画像を表示 -->
-					<h3 th:text="${product.name}"></h3>
-					<!-- 商品名を表示 -->
-					<p th:text="'¥' + ${product.price}"></p>
-					<!-- 商品価格を表示 -->
-				</a>
+				<button type="button" class="slider-btn prev-btn">＜</button>
+
+				<div class="product-list">
+
+					<a class="product-card" th:each="product : ${otherGiftProducts}"
+						th:href="@{/products/{id}(id=${product.id})}">
+						<img th:src="@{${product.image}}">
+						<h3 th:text="${product.name}"></h3>
+						<p th:text="'¥' + ${product.price}"></p>
+					</a>
+
+				</div>
+
+				<button type="button" class="slider-btn next-btn">＞</button>
 
 			</div>
 
@@ -66,6 +70,61 @@
 
 	<header th:replace="layout/_footer :: footer"></header>
 
+	<script>
+		const cards = document.querySelectorAll('.product-list .product-card');
+		const prevBtn = document.querySelector('.prev-btn');
+		const nextBtn = document.querySelector('.next-btn');
+
+		let startIndex = 0;
+		let displayCount = 4;
+
+		function updateDisplayCount() {
+			displayCount = window.innerWidth <= 600 ? 1 : 4;
+		}
+
+		function showCards() {
+			updateDisplayCount();
+
+			cards.forEach(card => {
+				card.classList.remove('show');
+			});
+
+			for (let i = startIndex; i < startIndex + displayCount && i < cards.length; i++) {
+				cards[i].classList.add('show');
+			}
+		}
+
+		nextBtn.addEventListener('click', () => {
+			updateDisplayCount();
+
+			if (startIndex + displayCount < cards.length) {
+				startIndex += displayCount;
+			} else {
+				startIndex = 0;
+			}
+
+			showCards();
+		});
+
+		prevBtn.addEventListener('click', () => {
+			updateDisplayCount();
+
+			if (startIndex - displayCount >= 0) {
+				startIndex -= displayCount;
+			} else {
+				startIndex = Math.max(cards.length - displayCount, 0);
+			}
+
+			showCards();
+		});
+
+		window.addEventListener('resize', () => {
+			startIndex = 0;
+			showCards();
+		});
+
+		showCards();
+	</script>
 </body>
 
 </html>
