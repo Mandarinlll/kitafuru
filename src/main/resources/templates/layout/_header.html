@@ -1,12 +1,13 @@
 <header class="store-header" th:fragment="header">
-	<a class="logo-box" href="../dashboard/">LOGO</a>
+	<a class="logo-box" th:href="@{/home}">
+		<img th:src="@{/images/案１.png}" alt="アプリのアイコン">
+	</a>
 	<label class="site-search">
-		<span>🔍</span>
 		<input type="search" placeholder="商品名・産地・生産者を検索" aria-label="商品名・産地・生産者を検索">
 	</label>
 	<div class="header-actions">
-		<a class="header-action" href="#">♡</a>
-		<a class="header-action" href="#">🛒 カート</a>
-		<a class="header-action header-login" href="#">ログイン / マイページ</a>
+		<a class="header-action" th:href="@{/favorite-products}">♡</a>
+		<a class="header-action" th:href="@{/cart}">🛒 カート</a>
+		<a class="header-action header-login" th:href="@{/login}">ログアウト</a>
 	</div>
 </header>
