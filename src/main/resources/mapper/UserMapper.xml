@@ -14,8 +14,8 @@
 
 	<!-- ユーザ登録 -->
 	<insert id="insert">
-		INSERT INTO users (name, email, password)
-		VALUES (#{name}, #{email}, #{password})
+		INSERT INTO users (name, address, email, password)
+		VALUES (#{name}, #{address}, #{email}, #{password})
 	</insert>
 
 </mapper>

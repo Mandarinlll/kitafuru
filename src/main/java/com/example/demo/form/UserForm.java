@@ -8,6 +8,9 @@ public class UserForm {
 	@NotBlank(message = "名前を入力してください")
 	private String name;
 
+	@NotBlank(message = "住所を入力してください")
+	private String address;
+
 	@NotBlank(message = "メールアドレスを入力してください")
 	@Email(message = "メールアドレスの形式が正しくありません")
 	private String email;
@@ -21,6 +24,14 @@ public class UserForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmail() {
