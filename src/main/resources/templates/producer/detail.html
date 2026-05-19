@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ユーザー管理</title>
+<title th:text="${profile.shopName} + '｜生産者詳細'">生産者詳細</title>
 <link rel="stylesheet" th:href="@{/css/producer.css}">
 </head>
 <body>
 	<header class="producer-header">
 		<a class="logo-box" th:href="@{/home}">LOGO</a>
 		<label class="site-search">
-			<span class="search-mark">🔍</span>
+			<span class="search-mark">検索</span>
 			<input type="search" placeholder="商品名・産地・生産者を検索">
 		</label>
 		<div class="header-actions">
@@ -24,96 +24,64 @@
 		<aside class="producer-sidebar">
 			<div class="producer-card">
 				<p class="sidebar-label">PRODUCER DB</p>
-				<p class="producer-name">十勝○○工房</p>
-				<p class="producer-id">生産者ID：PR-00821</p>
+				<p class="producer-name" th:text="${profile.shopName}">十勝○○工房</p>
+				<p class="producer-id">生産者ID：PR-<span th:text="${#numbers.formatInteger(profile.id, 5)}">00001</span></p>
 			</div>
 			<nav class="side-nav" aria-label="生産者メニュー">
-				<a class="side-nav-item" th:href="@{/producer-dashboard}"><span>▥</span>ダッシュボード</a>
+				<a class="side-nav-item" th:href="@{/producer-dashboard}"><span>▣</span>ダッシュボード</a>
 				<a class="side-nav-item" th:href="@{/producer/products}"><span>□</span>商品管理</a>
 				<a class="side-nav-item" th:href="@{/producer/orders}"><span>▤</span>注文管理</a>
-				<a class="side-nav-item active" th:href="@{/producer-page}"><span>●</span>ユーザー管理</a>
+				<a class="side-nav-item active" th:href="@{/producer-page(id=${profile.id})}"><span>●</span>生産者詳細</a>
 			</nav>
 			<a class="logout-link" th:href="@{/user-login}">→ ログアウト</a>
 		</aside>
 
-		<main class="producer-main">
-			<div class="page-title-row">
-				<h1>ユーザー管理</h1>
-				<time th:text="${#temporals.format(businessDate, 'yyyy/MM/dd')}">2025/05/12</time>
-			</div>
+		<main class="producer-main producer-story-main">
+			<section class="story-hero">
+				<p class="story-label">PRODUCER STORY ／ <span th:text="${profile.area}">北海道</span></p>
+				<h1 th:text="${profile.shopName}">十勝○○工房</h1>
+				<p class="story-lead" th:text="${profile.brandDescription}">
+					北海道十勝で、地元牛乳を使った乳製品を製造。
+				</p>
+				<p class="story-lead">素材の力を信じて、添加物に頼らない、ありのままの味づくり。</p>
+			</section>
 
-			<div class="tab-row profile-tab-row" aria-label="ユーザー管理タブ">
-				<span class="tab active">基本情報</span>
-			</div>
+			<section class="story-section">
+				<h2>ストーリー</h2>
+				<div class="story-layout">
+					<div class="story-copy">
+						<h3>なぜこの商品を作っているのか</h3>
+						<p>素材を最大限に活かすため、仕入れから加工まで丁寧に向き合っています。</p>
 
-			<p class="save-message" th:if="${savedMessage}" th:text="${savedMessage}">店舗・自社情報を保存しました。</p>
+						<h3>どんな地域で作られているのか</h3>
+						<p><span th:text="${profile.area}">北海道</span>の自然と気候が、商品の個性と旨味を育てています。</p>
 
-			<form class="admin-panel profile-form" th:action="@{/producer-page}" th:object="${profile}" method="post">
-				<input type="hidden" th:field="*{id}">
-
-				<section class="form-section">
-					<div class="section-title-row">
-						<div>
-							<h2>基本情報</h2>
-							<p>自社・自店の公開プロフィールと連絡先を管理します。</p>
-						</div>
+						<h3>お店からのメッセージ</h3>
+						<p th:text="${profile.brandDescription}">地域の味を大切にしながら、毎日の食卓に届く商品を作っています。</p>
 					</div>
-					<div class="form-grid">
-						<label>
-							<span>屋号 / 店舗名</span>
-							<input type="text" th:field="*{shopName}" required>
-						</label>
-						<label>
-							<span>法人名</span>
-							<input type="text" th:field="*{companyName}">
-						</label>
-						<label>
-							<span>代表者</span>
-							<input type="text" th:field="*{representativeName}">
-						</label>
-						<label>
-							<span>地域</span>
-							<input type="text" th:field="*{area}" required>
-						</label>
-						<label class="form-wide">
-							<span>所在地</span>
-							<input type="text" th:field="*{postalAddress}">
-						</label>
-						<label>
-							<span>電話</span>
-							<input type="tel" th:field="*{phone}">
-						</label>
-						<label>
-							<span>メール</span>
-							<input type="email" th:field="*{email}">
-						</label>
+					<div class="producer-face">
+						<span>生産者の顔</span>
 					</div>
-				</section>
-
-				<section class="form-section">
-					<div class="section-title-row compact">
-						<div>
-							<h2>ブランド情報</h2>
-							<p>店舗紹介文と外部リンクを編集します。</p>
-						</div>
-					</div>
-					<div class="form-grid">
-						<label class="form-wide">
-							<span>紹介文</span>
-							<textarea th:field="*{brandDescription}" rows="5"></textarea>
-						</label>
-						<label class="form-wide">
-							<span>SNS / 公式サイト</span>
-							<input type="url" th:field="*{snsLink}">
-						</label>
-					</div>
-				</section>
-
-				<div class="form-actions">
-					<button class="primary-button" type="submit">保存する</button>
-					<a class="secondary-button" th:href="@{/producer-dashboard}">ダッシュボードへ戻る</a>
 				</div>
-			</form>
+			</section>
+
+			<section class="story-section">
+				<h2>取扱商品</h2>
+				<div class="story-products">
+					<a class="story-product-card" th:each="product : ${products}"
+						th:href="@{/products/{id}(id=${product.id})}">
+						<div class="story-product-image">
+							<img th:if="${product.image != null and !#strings.isEmpty(product.image)}"
+								th:src="${product.image}" th:alt="${product.name}">
+						</div>
+						<p class="story-product-name" th:text="${product.name}">商品名</p>
+						<p class="story-product-price">¥<span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">1,580</span></p>
+					</a>
+					<div class="story-product-card story-product-empty" th:if="${#lists.isEmpty(products)}">
+						取扱商品は準備中です
+					</div>
+				</div>
+			</section>
 		</main>
 	</div>
 

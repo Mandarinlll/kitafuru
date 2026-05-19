@@ -285,6 +285,17 @@
   cursor: pointer;
 }
 
+.product-producer-link {
+  padding: 0 10px 10px;
+}
+
+.product-producer-link a {
+  color: #17384f;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 /* =========================
    レスポンシブ
 ========================= */

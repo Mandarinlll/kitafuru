@@ -21,7 +21,7 @@ public class ProducerProfileService {
 
 	public synchronized ProducerProfile getProfile(int producerId) {
 		String sql = """
-				SELECT id, name, body, area, email, phone, sns_link
+				SELECT id, name, body, area, image, email, phone, sns_link
 				FROM producers
 				WHERE id = ?
 				""";
@@ -54,8 +54,8 @@ public class ProducerProfileService {
 				""";
 
 		try {
-			jdbcTemplate.update(sql, emptyToDefault(profile.getShopName(), "十勝○○工房"),
-					emptyToDefault(profile.getBrandDescription(), ""), emptyToDefault(profile.getArea(), "十勝"),
+			jdbcTemplate.update(sql, emptyToDefault(profile.getShopName(), "北ふる海産工房"),
+					emptyToDefault(profile.getBrandDescription(), ""), emptyToDefault(profile.getArea(), "北海道"),
 					emptyToNull(profile.getEmail()), emptyToNull(profile.getPhone()), emptyToNull(profile.getSnsLink()),
 					profile.getId());
 		} catch (DataAccessException ex) {
@@ -69,6 +69,7 @@ public class ProducerProfileService {
 		profile.setShopName(rs.getString("name"));
 		profile.setBrandDescription(rs.getString("body"));
 		profile.setArea(rs.getString("area"));
+		profile.setImage(rs.getString("image"));
 		profile.setEmail(rs.getString("email"));
 		profile.setPhone(rs.getString("phone"));
 		profile.setSnsLink(rs.getString("sns_link"));
@@ -76,7 +77,7 @@ public class ProducerProfileService {
 	}
 
 	private void mergeExtendedFields(ProducerProfile profile) {
-		profile.setCompanyName(emptyToDefault(cachedProfile.getCompanyName(), "株式会社十勝マルマル"));
+		profile.setCompanyName(emptyToDefault(cachedProfile.getCompanyName(), "株式会社 北ふる"));
 		profile.setRepresentativeName(emptyToDefault(cachedProfile.getRepresentativeName(), "田中 牧夫"));
 		profile.setPostalAddress(emptyToDefault(cachedProfile.getPostalAddress(), "〒080-0010 北海道帯広市西○条南○丁目○-○"));
 	}
@@ -84,15 +85,16 @@ public class ProducerProfileService {
 	private ProducerProfile createDefaultProfile() {
 		ProducerProfile profile = new ProducerProfile();
 		profile.setId(ProducerDashboardService.DEFAULT_PRODUCER_ID);
-		profile.setShopName("十勝○○工房");
-		profile.setCompanyName("株式会社十勝マルマル");
+		profile.setShopName("北ふる海産工房");
+		profile.setCompanyName("株式会社 北ふる");
 		profile.setRepresentativeName("田中 牧夫");
-		profile.setArea("十勝");
+		profile.setArea("北海道");
 		profile.setPostalAddress("〒080-0010 北海道帯広市西○条南○丁目○-○");
 		profile.setPhone("0155-XX-XXXX");
-		profile.setEmail("info@tokachi-marumaru.jp");
-		profile.setBrandDescription("十勝産の素材を使った乳製品・スイーツを製造しています。");
-		profile.setSnsLink("https://example.com/tokachi-marumaru");
+		profile.setEmail("producer01@kitafuru.example.com");
+		profile.setBrandDescription("北海道の素材を活かし、地域の味を丁寧に届ける北ふる登録生産者です。");
+		profile.setSnsLink("https://example.com/producers/01");
+		profile.setImage("/images/producers/producer-01.jpg");
 		return profile;
 	}
 
@@ -108,6 +110,7 @@ public class ProducerProfileService {
 		profile.setEmail(source.getEmail());
 		profile.setBrandDescription(source.getBrandDescription());
 		profile.setSnsLink(source.getSnsLink());
+		profile.setImage(source.getImage());
 		return profile;
 	}
 

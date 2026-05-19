@@ -11,6 +11,7 @@ public class ProducerProfile {
 	private String email;
 	private String brandDescription;
 	private String snsLink;
+	private String image;
 
 	public int getId() {
 		return id;
@@ -90,5 +91,13 @@ public class ProducerProfile {
 
 	public void setSnsLink(String snsLink) {
 		this.snsLink = snsLink;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
