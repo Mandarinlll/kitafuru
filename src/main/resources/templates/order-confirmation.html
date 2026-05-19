@@ -7,227 +7,222 @@
 
 	<title>注文確認ページ</title>
 
-	<link rel="stylesheet"
-		  th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
 
-	<link rel="stylesheet"
-		  th:href="@{/css/order-confirmation.css}">
+	<link rel="stylesheet" th:href="@{/css/order-confirmation.css}">
 </head>
 
 <body>
 
-<div th:replace="layout/_header :: header"></div>
+	<div th:replace="layout/_header :: header"></div>
 
-<div class="order-page">
+	<div class="order-page">
 
-	<div class="progress-area">
+		<div class="progress-area">
 
-		<div class="progress-text">
+			<div class="progress-text">
 
-			<span>①カート</span>
-			<span class="active">②注文確認</span>
-			<span>③注文完了</span>
+				<span>①カート</span>
+				<span class="active">②注文確認</span>
+				<span>③注文完了</span>
+
+			</div>
 
 		</div>
 
+
+		<main class="order-layout">
+
+			<!-- 左側 -->
+			<section class="left-column">
+
+				<!-- 配送先 -->
+				<div class="card">
+
+					<div class="card-title">
+						配送先情報
+					</div>
+
+					<div class="card-body">
+
+						<p>
+							氏名：
+							<span th:text="${user.name}"></span>
+						</p>
+
+						<p>
+							住所：
+							<span th:text="${user.address}"></span>
+						</p>
+
+						<a th:href="@{/shipping}" class="edit-btn">
+
+							変更する
+
+						</a>
+
+					</div>
+
+				</div>
+
+
+				<!-- 支払い方法 -->
+				<div class="card">
+
+					<div class="card-title">
+						支払い方法
+					</div>
+
+					<div class="card-body">
+
+						<label class="radio-row">
+
+							<input type="radio" name="paymentMethod" checked>
+
+							クレジットカード ○○○○1234
+
+						</label>
+
+						<label class="radio-row">
+
+							<input type="radio" name="paymentMethod">
+
+							PayPay
+
+						</label>
+
+					</div>
+
+				</div>
+
+
+				<!-- ギフト設定 -->
+				<div class="card">
+
+					<div class="card-title">
+						ギフト設定
+					</div>
+
+					<div class="card-body">
+
+						<div class="gift-option">
+
+							<label class="radio-row">
+
+								<input type="checkbox" name="giftWrap">
+
+								ギフト包装あり
+
+							</label>
+
+							<p class="gift-note">
+								※ギフト包装は無料です
+							</p>
+
+						</div>
+
+
+						<label class="radio-row">
+
+							<input type="checkbox" name="separateDelivery">
+
+							配送先を分けずに配送
+
+						</label>
+
+					</div>
+
+				</div>
+
+			</section>
+
+
+			<!-- 右側 -->
+			<aside class="summary-card">
+
+				<div class="summary-title">
+					注文内容
+				</div>
+
+				<div th:each="item : ${displayItems}">
+
+					<p>
+
+						<span th:text="${item.name}">
+						</span>
+
+						¥<span th:text="${item.price}">
+						</span>
+
+						×
+
+						<span th:text="${item.quantity}">
+						</span>
+
+						<br>
+
+						小計：
+
+						¥<span th:text="${item.subtotal}">
+						</span>
+
+					</p>
+
+					<hr>
+
+				</div>
+
+
+				<div class="price-table">
+
+					<div class="summary-row">
+
+						<span>商品合計</span>
+
+						<span th:text="'¥' + ${subtotal}">
+						</span>
+
+					</div>
+
+
+					<div class="summary-row">
+
+						<span>送料</span>
+
+						<span th:text="'¥' + ${shipping}">
+						</span>
+
+					</div>
+
+					<div class="summary-row total">
+
+						<span>合計</span>
+
+						<span th:text="'¥' + ${total}">
+						</span>
+
+					</div>
+
+				</div>
+
+
+				<form th:action="@{/order/complete}" method="post">
+
+					<button type="submit" class="submit-btn">
+
+						注文を確定する
+
+					</button>
+
+				</form>
+
+			</aside>
+
+		</main>
+
 	</div>
 
-
-	<main class="order-layout">
-
-		<!-- 左 -->
-		<section class="left-column">
-
-			<div class="card">
-
-				<div class="card-title">
-					配送先情報
-				</div>
-
-				<div class="card-body">
-
-					<p>
-						氏名：
-						<span th:text="${user.name}"></span>
-					</p>
-
-					<p>
-						住所：
-						<span th:text="${user.address}"></span>
-					</p>
-
-					<a th:href="@{/shipping}"
-					   class="edit-btn">
-
-						変更する
-
-					</a>
-
-				</div>
-
-			</div>
-
-
-			<div class="card">
-
-				<div class="card-title">
-					支払い方法
-				</div>
-
-				<div class="card-body">
-
-					<label class="radio-row">
-
-						<input
-							type="radio"
-							name="paymentMethod"
-							checked>
-
-						クレジットカード ○○○○1234
-
-					</label>
-
-					<label class="radio-row">
-
-						<input
-							type="radio"
-							name="paymentMethod">
-
-						PayPay
-
-					</label>
-
-				</div>
-
-			</div>
-
-
-			<div class="card">
-
-				<div class="card-title">
-					ギフト設定
-				</div>
-
-				<div class="card-body">
-
-					<p>□ ギフト包装あり</p>
-					<p>□ 配送先を分けずに配送</p>
-
-				</div>
-
-			</div>
-
-		</section>
-
-
-		<!-- 右 -->
-		<aside class="summary-card">
-
-			<div class="summary-title">
-				注文内容
-			</div>
-
-
-			<div th:each="item : ${displayItems}">
-
-				<p>
-
-					<span th:text="${item.name}">
-					</span>
-
-					¥<span
-						th:text="${item.price}">
-					</span>
-
-					×
-
-					<span
-						th:text="${item.quantity}">
-					</span>
-
-					<br>
-
-					小計：
-
-					¥<span
-						th:text="${item.subtotal}">
-					</span>
-
-				</p>
-
-				<hr>
-
-			</div>
-
-
-			<div class="price-table">
-
-				<div class="summary-row">
-
-					<span>商品合計</span>
-
-					<span
-					th:text="'¥' + ${subtotal}">
-					</span>
-
-				</div>
-
-
-				<div class="summary-row">
-
-					<span>送料</span>
-
-					<span
-					th:text="'¥' + ${shipping}">
-					</span>
-
-				</div>
-
-
-				<div class="summary-row">
-
-					<span>ギフト包装</span>
-
-					<span
-					th:text="'¥' + ${gift}">
-					</span>
-
-				</div>
-
-
-				<div class="summary-row total">
-
-					<span>合計</span>
-
-					<span
-					th:text="'¥' + ${total}">
-					</span>
-
-				</div>
-
-			</div>
-
-
-			<form th:action="@{/order/complete}"
-				  method="post">
-
-				<button
-					type="submit"
-					class="submit-btn">
-
-					注文を確定する
-
-				</button>
-
-			</form>
-
-		</aside>
-
-	</main>
-
-</div>
-
-<div th:replace="layout/_footer :: footer"></div>
+	<div th:replace="layout/_footer :: footer"></div>
 
 </body>
 
