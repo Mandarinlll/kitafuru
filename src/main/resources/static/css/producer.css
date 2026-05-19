@@ -179,6 +179,12 @@ textarea {
 	color: var(--gold);
 }
 
+.side-nav-sub-item {
+	min-height: 44px;
+	padding-left: 46px;
+	font-size: 16px;
+}
+
 .logout-link {
 	position: absolute;
 	left: 18px;
