@@ -463,14 +463,16 @@ textarea {
 }
 
 .tab-row {
-	display: grid;
-	grid-template-columns: repeat(4, minmax(120px, 1fr));
+	display: flex;
+	flex-wrap: wrap;
 	gap: 8px;
 	margin-bottom: 16px;
 }
 
 .tab {
+	min-width: 160px;
 	min-height: 38px;
+	padding: 0 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
