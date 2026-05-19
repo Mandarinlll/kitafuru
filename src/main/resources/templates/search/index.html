@@ -30,23 +30,31 @@
 
 		<!-- タイトル -->
 		<section class="search-header">
+
 			<h1>商品を探す</h1>
+
 			<p>
 				キーワード、カテゴリー、地域から北海道の名産品を検索できます
 			</p>
+
 		</section>
 
 		<!-- 検索フォーム -->
 		<section class="search-box-section">
 
-			<form th:action="@{/search/result}" method="get" class="search-form">
+			<form
+				th:action="@{/search/result}"
+				method="get"
+				class="search-form">
 
-				<!-- キーワード検索 -->
+				<!-- キーワード -->
 				<div class="search-input-area">
 
 					<div class="search-input-wrapper">
 
-						<span class="search-icon">🔍</span>
+						<span class="search-icon">
+							🔍
+						</span>
 
 						<input
 							type="text"
@@ -55,12 +63,20 @@
 
 					</div>
 
-					<button type="submit" class="search-button">
+					<button
+						type="submit"
+						class="search-button">
+
 						検索する
+
 					</button>
 
-					<button type="reset" class="clear-button">
+					<button
+						type="reset"
+						class="clear-button">
+
 						クリア
+
 					</button>
 
 				</div>
@@ -78,87 +94,169 @@
 						<div class="category-grid">
 
 							<label class="category-card">
-								<input type="checkbox" name="category" value="seafood">
+
+								<input
+									type="checkbox"
+									name="category"
+									value="1">
 
 								<div class="card-content">
-									<div class="jp">海産物</div>
-									<div class="en">SEAFOOD</div>
-								</div>
-							</label>
 
-							<label class="category-card">
+									<div class="jp">
+										海産物
+									</div>
 
-								<input type="checkbox" name="category" value="dairy">
+									<div class="en">
+										SEAFOOD
+									</div>
 
-								<div class="card-content">
-									<div class="jp">乳製品</div>
-									<div class="en">DAIRY</div>
-								</div>
-
-							</label>
-
-							<label class="category-card">
-
-								<input type="checkbox" name="category" value="sweets">
-
-								<div class="card-content">
-									<div class="jp">スイーツ</div>
-									<div class="en">SWEETS</div>
 								</div>
 
 							</label>
 
 							<label class="category-card">
 
-								<input type="checkbox" name="category" value="crops">
+								<input
+									type="checkbox"
+									name="category"
+									value="2">
 
 								<div class="card-content">
-									<div class="jp">農作物</div>
-									<div class="en">CROPS</div>
+
+									<div class="jp">
+										乳製品
+									</div>
+
+									<div class="en">
+										DAIRY
+									</div>
+
 								</div>
 
 							</label>
 
 							<label class="category-card">
 
-								<input type="checkbox" name="category" value="sake">
+								<input
+									type="checkbox"
+									name="category"
+									value="3">
 
 								<div class="card-content">
-									<div class="jp">お酒</div>
-									<div class="en">SAKE</div>
+
+									<div class="jp">
+										スイーツ
+									</div>
+
+									<div class="en">
+										SWEETS
+									</div>
+
 								</div>
 
 							</label>
 
 							<label class="category-card">
 
-								<input type="checkbox" name="category" value="processed">
+								<input
+									type="checkbox"
+									name="category"
+									value="4">
 
 								<div class="card-content">
-									<div class="jp">加工品</div>
-									<div class="en">PROCESSED</div>
+
+									<div class="jp">
+										農作物
+									</div>
+
+									<div class="en">
+										CROPS
+									</div>
+
 								</div>
 
 							</label>
 
 							<label class="category-card">
 
-								<input type="checkbox" name="category" value="seasoning">
+								<input
+									type="checkbox"
+									name="category"
+									value="5">
 
 								<div class="card-content">
-									<div class="jp">調味料</div>
-									<div class="en">SEASONING</div>
+
+									<div class="jp">
+										お酒
+									</div>
+
+									<div class="en">
+										SAKE
+									</div>
+
 								</div>
 
 							</label>
 
 							<label class="category-card">
 
-								<input type="checkbox" name="category" value="gift">
+								<input
+									type="checkbox"
+									name="category"
+									value="6">
 
 								<div class="card-content">
-									<div class="jp">ギフト</div>
-									<div class="en">GIFT</div>
+
+									<div class="jp">
+										加工品
+									</div>
+
+									<div class="en">
+										PROCESSED
+									</div>
+
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input
+									type="checkbox"
+									name="category"
+									value="7">
+
+								<div class="card-content">
+
+									<div class="jp">
+										調味料
+									</div>
+
+									<div class="en">
+										SEASONING
+									</div>
+
+								</div>
+
+							</label>
+
+							<label class="category-card">
+
+								<input
+									type="checkbox"
+									name="category"
+									value="8">
+
+								<div class="card-content">
+
+									<div class="jp">
+										ギフト
+									</div>
+
+									<div class="en">
+										GIFT
+									</div>
+
 								</div>
 
 							</label>
@@ -256,32 +354,48 @@
 
 				</section>
 
+				<!-- 選択中条件 -->
+				<section class="selected-section">
+
+					<div class="selected-left">
+
+						<span class="selected-label">
+							選択中の条件：
+						</span>
+
+						<!-- カテゴリ -->
+						<div
+							th:if="${categories != null}"
+							th:each="category : ${categories}"
+							class="selected-tag"
+							th:text="${category}">
+						</div>
+
+						<!-- 地域 -->
+						<div
+							th:if="${regions != null}"
+							th:each="region : ${regions}"
+							class="selected-tag"
+							th:text="${region}">
+						</div>
+
+					</div>
+
+					<div class="selected-right">
+
+						<button
+							type="submit"
+							class="result-button">
+
+							結果を見る →
+
+						</button>
+
+					</div>
+
+				</section>
+
 			</form>
-
-		</section>
-
-		<!-- 選択条件 -->
-		<section class="selected-section">
-
-			<div class="selected-left">
-
-				<span class="selected-label">
-					検索キーワード：
-				</span>
-
-				<div class="selected-tag">
-					キーワード検索
-				</div>
-
-			</div>
-
-			<div class="selected-right">
-
-				<div class="result-count">
-					商品を検索できます
-				</div>
-
-			</div>
 
 		</section>
 
@@ -290,6 +404,114 @@
 	<!-- 共通フッター -->
 	<footer th:replace="~{layout/_footer :: footer}"></footer>
 
+	<script>
+
+		document.addEventListener("DOMContentLoaded", () => {
+
+			// 選択条件表示エリア
+			const selectedLeft = document.querySelector(".selected-left");
+
+			// 更新処理
+			const updateSelectedTags = () => {
+
+				// ラベルだけ残して初期化
+				selectedLeft.innerHTML = `
+					<span class="selected-label">
+						選択中の条件：
+					</span>
+				`;
+
+				// =========================
+				// キーワード
+				// =========================
+
+				const keywordInput = document.querySelector(
+					'input[name="keyword"]'
+				);
+
+				if (keywordInput.value.trim() !== "") {
+
+					selectedLeft.innerHTML += `
+						<div class="selected-tag">
+							${keywordInput.value}
+						</div>
+					`;
+				}
+
+				// =========================
+				// カテゴリ
+				// =========================
+
+				const checkedCategories = document.querySelectorAll(
+					'input[name="category"]:checked'
+				);
+
+				checkedCategories.forEach(category => {
+
+					const categoryName = category
+						.closest(".category-card")
+						.querySelector(".jp")
+						.textContent;
+
+					selectedLeft.innerHTML += `
+						<div class="selected-tag">
+							${categoryName}
+						</div>
+					`;
+				});
+
+				// =========================
+				// 地域
+				// =========================
+
+				const checkedRegions = document.querySelectorAll(
+					'input[name="region"]:checked'
+				);
+
+				checkedRegions.forEach(region => {
+
+					const regionName = region
+						.parentElement
+						.textContent
+						.trim();
+
+					selectedLeft.innerHTML += `
+						<div class="selected-tag">
+							${regionName}
+						</div>
+					`;
+				});
+
+			};
+
+			// =========================
+			// イベント登録
+			// =========================
+
+			const allInputs = document.querySelectorAll(
+				'input'
+			);
+
+			allInputs.forEach(input => {
+
+				input.addEventListener(
+					"change",
+					updateSelectedTags
+				);
+
+				input.addEventListener(
+					"keyup",
+					updateSelectedTags
+				);
+
+			});
+
+			// 初期表示
+			updateSelectedTags();
+
+		});
+
+	</script>
 </body>
 
 </html>

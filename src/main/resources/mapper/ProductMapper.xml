@@ -172,5 +172,63 @@
 		OFFSET 3
 	</select>
 
+	<!-- 商品検索 -->
+<select id="searchProducts"
+	resultType="com.example.demo.entity.Product">
+
+	SELECT
+		*
+	FROM
+		products
+	WHERE
+		1 = 1
+
+	<!-- キーワード検索 -->
+	<if test="keyword != null and keyword != ''">
+
+		AND name LIKE CONCAT('%', #{keyword}, '%')
+
+	</if>
+
+	<!-- カテゴリ検索 -->
+	<if test="categories != null and categories.size() > 0">
+
+		AND category_id IN
+
+		<foreach
+			collection="categories"
+			item="category"
+			open="("
+			separator=","
+			close=")">
+
+			#{category}
+
+		</foreach>
+
+	</if>
+
+	<!-- 地域検索 -->
+	<if test="regions != null and regions.size() > 0">
+
+		AND origin_area IN
+
+		<foreach
+			collection="regions"
+			item="region"
+			open="("
+			separator=","
+			close=")">
+
+			#{region}
+
+		</foreach>
+
+	</if>
+
+	ORDER BY id DESC
+
+</select>
+
 
 </mapper>
