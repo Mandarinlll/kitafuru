@@ -11,7 +11,7 @@ import com.example.demo.entity.User;
 @Controller
 public class MypageController {
 
-	@GetMapping("/mypage")
+	@GetMapping("/mypage-order")
 	public String showMyPage(HttpSession session, Model model) {
 
 		User loginUser = (User) session.getAttribute("loginUser");
@@ -22,7 +22,7 @@ public class MypageController {
 
 		model.addAttribute("user", loginUser);
 
-		return "mypage";
+		return "mypage-order";
 	}
 
 	@GetMapping("/logout")
