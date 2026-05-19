@@ -1,6 +1,6 @@
 .products-page {
-  background: #f2efe7;
-  padding: 12px;
+	background: #f2efe7;
+	padding: 12px;
 }
 
 /* =========================
@@ -8,28 +8,9 @@
 ========================= */
 
 .products-container {
-  border: 1px solid #d2c7b5;
-  background: #f7f5ef;
-  padding-bottom: 10px;
-}
-
-/* =========================
-   上部バー
-========================= */
-
-.products-topbar {
-  height: 24px;
-  background: #17384f;
-  color: #f3b84c;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 0 12px;
-
-  font-size: 0.7rem;
-  font-weight: bold;
+	border: 1px solid #d2c7b5;
+	background: #f7f5ef;
+	padding-bottom: 10px;
 }
 
 /* =========================
@@ -37,9 +18,9 @@
 ========================= */
 
 .breadcrumb {
-  margin: 10px 12px 0;
-  color: #978b78;
-  font-size: 0.7rem;
+	margin: 10px 12px 0;
+	color: #978b78;
+	font-size: 0.7rem;
 }
 
 /* =========================
@@ -47,30 +28,24 @@
 ========================= */
 
 .result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 
-  margin: 4px 12px 14px;
+	margin: 4px 12px 14px;
 }
 
 .result-header h1 {
-  margin: 0;
-  color: #17384f;
-  font-size: 2rem;
-  line-height: 1.2;
-}
-
-/* 「北海道チーズ」の部分 */
-
-.result-header h1 span {
-  font-size: 2.1rem;
+	margin: 0;
+	color: #17384f;
+	font-size: 2rem;
+	line-height: 1.2;
 }
 
 .result-count {
-  margin-top: 8px;
-  color: #8c816d;
-  font-size: 0.8rem;
+	margin-top: 8px;
+	color: #8c816d;
+	font-size: 0.8rem;
 }
 
 /* =========================
@@ -78,27 +53,27 @@
 ========================= */
 
 .sort-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 
-  margin-top: 6px;
+	margin-top: 6px;
 }
 
 .sort-box label {
-  color: #8a7d68;
-  font-size: 0.8rem;
+	color: #8a7d68;
+	font-size: 0.8rem;
 }
 
 .sort-box select {
-  width: 140px;
-  height: 28px;
+	width: 140px;
+	height: 28px;
 
-  border: 1px solid #c6baa5;
-  background: #fff;
+	border: 1px solid #c6baa5;
+	background: #fff;
 
-  font-size: 0.75rem;
-  padding: 0 8px;
+	font-size: 0.75rem;
+	padding: 0 8px;
 }
 
 /* =========================
@@ -106,11 +81,11 @@
 ========================= */
 
 .products-layout {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 12px;
+	display: grid;
+	grid-template-columns: 180px 1fr;
+	gap: 12px;
 
-  padding: 0 10px;
+	padding: 0 10px;
 }
 
 /* =========================
@@ -118,55 +93,55 @@
 ========================= */
 
 .filter-sidebar {
-  border: 1px solid #d3c8b6;
-  background: #f5f1e8;
+	border: 1px solid #d3c8b6;
+	background: #f5f1e8;
 
-  padding: 14px;
+	padding: 14px;
 }
 
 .filter-sidebar h2 {
-  margin: 0 0 14px;
+	margin: 0 0 14px;
 
-  color: #17384f;
-  font-size: 1rem;
+	color: #17384f;
+	font-size: 1rem;
 }
 
 .filter-group {
-  margin-bottom: 22px;
+	margin-bottom: 22px;
 }
 
 .filter-title {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 
-  color: #7e715d;
-  font-size: 0.8rem;
-  font-weight: bold;
+	color: #7e715d;
+	font-size: 0.8rem;
+	font-weight: bold;
 }
 
 .filter-group label {
-  display: block;
+	display: block;
 
-  margin-bottom: 8px;
+	margin-bottom: 8px;
 
-  color: #50483d;
-  font-size: 0.75rem;
+	color: #50483d;
+	font-size: 0.75rem;
 }
 
 /* ボタン */
 
 .filter-button {
-  width: 100%;
-  height: 32px;
+	width: 100%;
+	height: 32px;
 
-  border: none;
+	border: none;
 
-  background: #17384f;
-  color: #f3b84c;
+	background: #17384f;
+	color: #f3b84c;
 
-  font-size: 0.8rem;
-  font-weight: bold;
+	font-size: 0.8rem;
+	font-weight: bold;
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 /* =========================
@@ -174,9 +149,9 @@
 ========================= */
 
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 12px;
 }
 
 /* =========================
@@ -184,29 +159,19 @@
 ========================= */
 
 .product-card {
-  min-height: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
-  border: 1px solid #d2c7b5;
-  background: #fff;
+	border: 1px solid #d2c7b5;
+	background: #fff;
+
+	transition: 0.2s;
 }
 
-/* 選択中カード */
-
-.product-card.active {
-  border: 1px solid #7b96b1;
-}
-
-/* 空カード */
-
-.product-card.empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #f3f0e8;
-  color: #c4b79f;
-
-  font-size: 0.7rem;
+.product-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* =========================
@@ -214,16 +179,21 @@
 ========================= */
 
 .product-image {
-  height: 110px;
+	height: 180px;
+	background: #eadab6;
 
-  background: #eadab6;
-  color: #c5b08a;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	overflow: hidden;
+}
 
-  font-size: 0.7rem;
+.product-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 /* =========================
@@ -231,31 +201,47 @@
 ========================= */
 
 .product-body {
-  padding: 10px;
+	padding: 12px;
+}
+
+.producer-name {
+	margin: 0 0 6px;
+
+	color: #8c816d;
+	font-size: 0.72rem;
+	font-weight: bold;
+	letter-spacing: 0.03em;
 }
 
 .product-name {
-  margin: 0 0 4px;
+	margin: 0 0 6px;
 
-  color: #17384f;
-  font-size: 0.9rem;
-  font-weight: bold;
+	color: #17384f;
+	font-size: 1rem;
+	font-weight: bold;
+	line-height: 1.4;
 }
 
 .product-description {
-  margin: 0 0 8px;
+	margin: 0 0 10px;
 
-  color: #8d816d;
-  font-size: 0.7rem;
-  line-height: 1.5;
+	color: #8d816d;
+	font-size: 0.75rem;
+	line-height: 1.6;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+
+	overflow: hidden;
 }
 
 .product-price {
-  margin: 0 0 8px;
+	margin: 0 0 10px;
 
-  color: #c2472a;
-  font-size: 1.4rem;
-  font-weight: bold;
+	color: #c2472a;
+	font-size: 1.5rem;
+	font-weight: bold;
 }
 
 /* =========================
@@ -263,37 +249,50 @@
 ========================= */
 
 .product-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.product-footer a {
-  color: #17384f;
-  font-size: 0.7rem;
-  text-decoration: none;
-  font-weight: bold;
+.product-footer span {
+	color: #17384f;
+	font-size: 0.72rem;
+	font-weight: bold;
 }
 
 .product-footer button {
-  border: none;
-  background: none;
+	border: none;
+	background: none;
 
-  color: #b89c97;
+	color: #b89c97;
 
-  font-size: 1rem;
-  cursor: pointer;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
+/* =========================
+   生産者リンク
+========================= */
+
 .product-producer-link {
-  padding: 0 10px 10px;
+	padding: 0 12px 12px;
 }
 
 .product-producer-link a {
-  color: #17384f;
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-decoration: none;
+	display: inline-block;
+
+	color: #17384f;
+	font-size: 0.72rem;
+	font-weight: bold;
+	text-decoration: none;
+
+	border-bottom: 1px solid transparent;
+
+	transition: 0.2s;
+}
+
+.product-producer-link a:hover {
+	border-bottom: 1px solid #17384f;
 }
 
 /* =========================
@@ -302,28 +301,29 @@
 
 @media (max-width: 900px) {
 
-  .products-layout {
-    grid-template-columns: 1fr;
-  }
+	.products-layout {
+		grid-template-columns: 1fr;
+	}
 
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	.products-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 @media (max-width: 600px) {
 
-  .result-header {
-    flex-direction: column;
-    gap: 10px;
-  }
+	.result-header {
+		flex-direction: column;
+		gap: 10px;
+	}
 
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
+	.products-grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 /* 商品カードリンク */
+
 .product-link {
 	text-decoration: none;
 	color: inherit;
