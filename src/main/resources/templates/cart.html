@@ -165,9 +165,14 @@
 		  </strong>
         </div>
 
-        <button class="checkout-btn">
-          注文確認へ進む →
-        </button>
+		<form th:action="@{/order-confirmation}" method="get">
+
+		    <button type="submit"
+		            class="checkout-btn">
+		        注文確認へ進む →
+		    </button>
+
+		</form>
 
         <p class="summary-note">
           ※送料は一律800円です<br>

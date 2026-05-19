@@ -26,7 +26,6 @@ public class ProductService {
 	 */
 	public List<Product> getAllProducts() {
 
-		// Mapperから商品取得
 		return productMapper.findAll();
 	}
 
@@ -35,19 +34,34 @@ public class ProductService {
 	 */
 	public Product getProductById(int id) {
 
-		// 商品1件取得
 		return productMapper.findDetailById(id);
 	}
 
-	public List<Product> getProductsByProducerId(int producerId, int limit) {
-		return productMapper.findByProducerId(producerId, limit);
+	/*
+	 * 商品ID取得
+	 * （注文確認画面用）
+	 */
+	public Product findById(int id) {
+
+		return getProductById(id);
+	}
+
+	public List<Product> getProductsByProducerId(
+			int producerId,
+			int limit) {
+
+		return productMapper.findByProducerId(
+				producerId,
+				limit);
 	}
 
 	public List<Product> findTopGiftProducts() {
+
 		return productMapper.findTopGiftProducts();
 	}
 
 	public List<Product> findOtherGiftProducts() {
+
 		return productMapper.findOtherGiftProducts();
 	}
 }
