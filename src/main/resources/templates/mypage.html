@@ -10,12 +10,14 @@
 </head>
 
 <body>
-	<div th:replace="~{common/header :: header}"></div>
+	<div th:replace="~{layout/_header :: header}"></div>
 
 	<main class="mypage">
 		<section class="mypage-hero">
 			<p class="page-label">MY PAGE</p>
-			<h1>こんにちは、山田 太郎 さん</h1>
+			<h1>
+				こんにちは、<span th:text="${user.name}">山田 太郎</span> さん
+			</h1>
 		</section>
 
 		<div class="mypage-layout">
@@ -29,7 +31,7 @@
 					<a href="#">登録情報変更</a>
 					<a href="#">お届け先管理</a>
 					<a href="#">支払い情報</a>
-					<a href="#">ログアウト</a>
+					<a th:href="@{/logout}">ログアウト</a>
 				</nav>
 			</aside>
 
@@ -85,6 +87,6 @@
 		</div>
 	</main>
 
-	<div th:replace="~{common/footer :: footer}"></div>
+	<div th:replace="~{layout/_footer :: footer}"></div>
 </body>
 </html>
