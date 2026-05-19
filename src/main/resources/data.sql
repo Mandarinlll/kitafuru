@@ -3,25 +3,25 @@
 -- This file is encoded in UTF-8.
 
 -- users
-INSERT INTO users (id, name, age, address, email, password, image, create_at) VALUES
-(1, '佐藤 花子', 34, '東京都渋谷区', 'hanako@example.com', 'password_hash_001', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
-(2, '鈴木 太郎', 42, '大阪府大阪市', 'taro@example.com', 'password_hash_002', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
-(3, '高橋 美咲', 29, '神奈川県横浜市', 'misaki@example.com', 'password_hash_003', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
-(4, '田中 健太', 31, '北海道札幌市', 'kenta@example.com', 'password_hash_004', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
-(5, '伊藤 玲奈', 27, '愛知県名古屋市', 'reina@example.com', 'password_hash_005', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
+INSERT INTO users (id, name, address, email, password, image, create_at) VALUES
+(1, '佐藤 花子', '東京都渋谷区', 'hanako@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user1.jpg', CURRENT_TIMESTAMP),
+(2, '鈴木 太郎', '大阪府大阪市', 'taro@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user2.jpg', CURRENT_TIMESTAMP),
+(3, '高橋 美咲', '神奈川県横浜市', 'misaki@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user3.jpg', CURRENT_TIMESTAMP),
+(4, '田中 健太', '北海道札幌市', 'kenta@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
+(5, '伊藤 玲奈', '愛知県名古屋市', 'reina@example.com', '$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
 
 -- producers
 INSERT INTO producers (id, name, body, area, image, email, phone, sns_link, create_at) VALUES
-(1, '北ふる海産工房', '海産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
-(2, '北ふる農園連合', '農産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
-(3, '北ふる畜産工房', '畜産品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
-(4, '北ふるミルク工房', '乳製品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
-(5, '北ふる菓子工房', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
-(6, '北ふる主食工房', '麺類・主食を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
-(7, '北ふる惣菜工房', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
-(8, '北ふる発酵工房', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
-(9, '北ふる飲料工房', '飲料を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
-(10, '北ふるギフト工房', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
+(1, '函館潮風海産', '海産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
+(2, '富良野大地ファーム', '農産物を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
+(3, '十勝ビーフ工房', '畜産品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
+(4, '美瑛乳製品工房', '乳製品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
+(5, '小樽スイーツ工房', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
+(6, '旭川麺工房', '麺類・主食を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
+(7, '札幌ごちそうキッチン', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
+(8, '北見発酵研究所', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
+(9, 'ニセコ酒造', '飲料を中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
+(10, '知床ギフト工房', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '北海道', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
 
 -- category
 INSERT INTO category (id, name, description) VALUES
