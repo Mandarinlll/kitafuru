@@ -10,6 +10,12 @@ INSERT INTO users (id, name, address, email, password, image, create_at) VALUES
 (4, '小出 叶望 ', '北海道札幌市', 'kanaminTV@example.com', 'password', '/images/users/user4.jpg', CURRENT_TIMESTAMP),
 (5, '吐師 昊冴', '沖縄県那覇市', 'itsumoarigato@example.com', 'password', '/images/users/user5.jpg', CURRENT_TIMESTAMP);
 
+SELECT setval(
+    pg_get_serial_sequence('users', 'id'),
+    COALESCE((SELECT MAX(id) FROM users), 1),
+    true
+);
+
 -- producers
 INSERT INTO producers (id, name, body, area, image, email, phone, sns_link, create_at) VALUES
 (1, '子安漁港', '海産物を中心に扱う北ふる登録生産者です。', '小樽', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),

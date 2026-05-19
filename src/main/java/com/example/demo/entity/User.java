@@ -10,9 +10,6 @@ public class User {
 	// ユーザー名
 	private String name;
 
-	// 年齢
-	private int age;
-
 	// 住所
 	private String address;
 
@@ -44,14 +41,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getAddress() {

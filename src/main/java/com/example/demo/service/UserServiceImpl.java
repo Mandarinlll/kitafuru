@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 
 		user.setName(form.getName());
+		user.setAddress(form.getAddress());
 		user.setEmail(form.getEmail());
 
 		// パスワードをハッシュ化して保存
