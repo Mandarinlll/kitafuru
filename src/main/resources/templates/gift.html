@@ -9,8 +9,8 @@
 </head>
 
 <body>
-
 	<header th:replace="layout/_header :: header"></header>
+	<div th:replace="layout/_sidebar :: sidebar"></div>
 
 	<main class="container">
 
@@ -49,7 +49,7 @@
 
 				<button type="button" class="slider-btn prev-btn">＜</button>
 
-				<div class="product-list">
+				<div class="product-list" id="giftProductList">
 
 					<a class="product-card" th:each="product : ${otherGiftProducts}"
 						th:href="@{/products/{id}(id=${product.id})}">
@@ -71,59 +71,27 @@
 	<header th:replace="layout/_footer :: footer"></header>
 
 	<script>
-		const cards = document.querySelectorAll('.product-list .product-card');
+		const productList = document.querySelector('#giftProductList');
 		const prevBtn = document.querySelector('.prev-btn');
 		const nextBtn = document.querySelector('.next-btn');
 
-		let startIndex = 0;
-		let displayCount = 4;
-
-		function updateDisplayCount() {
-			displayCount = window.innerWidth <= 600 ? 1 : 4;
-		}
-
-		function showCards() {
-			updateDisplayCount();
-
-			cards.forEach(card => {
-				card.classList.remove('show');
-			});
-
-			for (let i = startIndex; i < startIndex + displayCount && i < cards.length; i++) {
-				cards[i].classList.add('show');
-			}
+		function getScrollAmount() {
+			return productList.clientWidth;
 		}
 
 		nextBtn.addEventListener('click', () => {
-			updateDisplayCount();
-
-			if (startIndex + displayCount < cards.length) {
-				startIndex += displayCount;
-			} else {
-				startIndex = 0;
-			}
-
-			showCards();
+			productList.scrollBy({
+				left: getScrollAmount(),
+				behavior: 'smooth'
+			});
 		});
 
 		prevBtn.addEventListener('click', () => {
-			updateDisplayCount();
-
-			if (startIndex - displayCount >= 0) {
-				startIndex -= displayCount;
-			} else {
-				startIndex = Math.max(cards.length - displayCount, 0);
-			}
-
-			showCards();
+			productList.scrollBy({
+				left: -getScrollAmount(),
+				behavior: 'smooth'
+			});
 		});
-
-		window.addEventListener('resize', () => {
-			startIndex = 0;
-			showCards();
-		});
-
-		showCards();
 	</script>
 </body>
 

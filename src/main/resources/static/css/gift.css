@@ -128,14 +128,28 @@ body {
 	margin-bottom: 12px;
 }
 
+/* スライダー */
+.gift-slider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
 .product-list {
 	display: flex;
-	gap: 10px;
+	gap: 16px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	padding: 10px 0;
+
+	/* 縦スクロール防止 */
+	overflow-y: hidden;
 }
 
 .product-card {
-	flex: 1;
-	height: 260px;
+	flex: 0 0 calc((100% - 48px) / 4);
+
 	background-color: #365a70;
 	border: 1px solid #77715f;
 
@@ -147,14 +161,18 @@ body {
 	padding: 15px;
 	gap: 10px;
 
+	min-height: 260px;
+
 	font-size: 11px;
 	font-weight: bold;
 
 	text-decoration: none;
 	color: white;
+
+	scroll-snap-align: start;
 }
 
-/* リンクの下線を消す */
+/* リンク */
 a {
 	text-decoration: none;
 	color: inherit;
@@ -166,7 +184,7 @@ a {
 	color: inherit;
 }
 
-/* 画像サイズ調整 */
+/* 画像 */
 .question-card img,
 .product-card img {
 	width: 100%;
@@ -174,95 +192,32 @@ a {
 	object-fit: cover;
 }
 
-/* タブレット */
-@media screen and (max-width: 900px) {
-
-	.question-area {
-		flex-wrap: wrap;
-	}
-
-	.question-card {
-		flex: 0 0 calc(50% - 10px);
-	}
-
-	.product-list {
-		flex-wrap: wrap;
-	}
-
-	.product-card {
-		flex: 0 0 calc(50% - 10px);
-		height: auto;
-		min-height: 260px;
-	}
+/* スクロールバー */
+.product-list::-webkit-scrollbar {
+	height: 8px;
 }
 
-.gift-slider {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+.product-list::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 10px;
 }
 
-.product-list {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 10px;
-	flex: 1;
-}
-
-.product-card {
-	display: none;
-	height: 260px;
-	background-color: #365a70;
-	border: 1px solid #77715f;
-	flex-direction: column;
-	padding: 15px;
-	gap: 10px;
-	font-size: 11px;
-	font-weight: bold;
-	text-decoration: none;
-	color: white;
-}
-
-.product-card.show {
-	display: flex;
-}
-
+/* ボタン */
 .slider-btn {
-	width: 36px;
-	height: 36px;
 	border: none;
-	border-radius: 50%;
-	background-color: orange;
+	background: #143d56;
 	color: white;
-	font-size: 18px;
-	font-weight: bold;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 	cursor: pointer;
+	flex-shrink: 0;
 }
 
-.slider-btn:hover {
-	background-color: #d97706;
-}
-
-.product-card img {
-	width: 100%;
-	height: 140px;
-	object-fit: cover;
-}
-
-/* スマホでは1つずつ */
-@media screen and (max-width: 600px) {
-	.product-list {
-		grid-template-columns: 1fr;
-	}
-
-	.product-card {
-		height: auto;
-		min-height: 240px;
-	}
-}
-
-/* スマホ */
-@media screen and (max-width: 600px) {
+/* =========================
+   タブレット
+========================= */
+@media screen and (max-width: 900px) {
 
 	.container {
 		padding: 14px 10px;
@@ -278,6 +233,36 @@ a {
 	}
 
 	.question-area {
+		flex-wrap: wrap;
+	}
+
+	.question-card {
+		flex: 0 0 calc(50% - 10px);
+	}
+
+	/* 横スクロール維持 */
+	.product-list {
+		flex-wrap: nowrap;
+	}
+
+	/* 2枚表示 */
+	.product-card {
+		flex: 0 0 calc((100% - 16px) / 2);
+		min-height: 240px;
+	}
+
+	.question-card img,
+	.product-card img {
+		height: 170px;
+	}
+}
+
+/* =========================
+   スマホ
+========================= */
+@media screen and (max-width: 600px) {
+
+	.question-area {
 		flex-direction: column;
 	}
 
@@ -290,24 +275,15 @@ a {
 		padding: 16px 14px;
 	}
 
-	.product-list {
-		flex-direction: column;
-	}
-
+	/* スマホでは1枚表示 */
 	.product-card {
-		width: 100%;
-		flex: none;
-		height: auto;
-		min-height: 240px;
-	}
-
-	.question-card img,
-	.product-card img {
-		height: 170px;
+		flex: 0 0 100%;
 	}
 }
 
-/* かなり狭い画面 */
+/* =========================
+   極小画面
+========================= */
 @media screen and (max-width: 400px) {
 
 	.title-box h1 {
