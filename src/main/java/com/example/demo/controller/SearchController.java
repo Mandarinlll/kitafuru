@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SearchController {
+
+	/*
+	 * 検索ページ表示
+	 */
 	@GetMapping("/search")
-	public String search() {
-		return "search/index.html";
+	public String showSearchPage() {
+
+		return "search/index";
 	}
 }

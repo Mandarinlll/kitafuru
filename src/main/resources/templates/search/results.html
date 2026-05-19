@@ -16,204 +16,84 @@
 
 <body>
 
-	<!-- 共通ヘッダー -->
 	<div th:replace="~{layout/_header :: header}"></div>
 
-	<main class="search-page">
+	<main class="search-result-page">
 
-		<section class="search-container">
+		<section class="search-header">
 
-			<!-- パンくず -->
-			<p class="breadcrumb">
-				ホーム \ 商品を探す
+			<h1>検索結果</h1>
+
+			<p class="result-count">
+				<span th:text="${count}">0</span>件の商品が見つかりました
 			</p>
 
-			<!-- タイトル -->
-			<div class="result-header">
+		</section>
 
-				<div>
+		<section class="products-grid">
 
-					<h1>
-						検索結果：
-						<span>「北海道チーズ」</span>
-					</h1>
+			<div
+				th:if="${count == 0}"
+				class="no-result">
 
-					<p class="result-count">
-						全48件中 1-12件を表示
-					</p>
-
-				</div>
-
-				<!-- 並び替え -->
-				<div class="sort-box">
-
-					<label for="sort">並び替え：</label>
-
-					<select id="sort">
-						<option>おすすめ順 ▼</option>
-						<option>人気順</option>
-						<option>新着順</option>
-						<option>価格が安い順</option>
-						<option>価格が高い順</option>
-					</select>
-
-				</div>
+				商品が見つかりませんでした
 
 			</div>
 
-			<!-- メインレイアウト -->
-			<div class="search-layout">
+			<a
+				th:each="product : ${productList}"
+				th:href="@{/products/{id}(id=${product.id})}"
+				class="product-link">
 
-				<!-- サイドバー -->
-				<aside class="filter-sidebar">
+				<article class="product-card active">
 
-					<h2>絞り込み</h2>
+					<div class="product-image">
 
-					<div class="filter-group">
-
-						<p class="filter-title">
-							カテゴリ
-						</p>
-
-						<label>
-							<input type="checkbox">
-							北海道日刊 乳製品
-						</label>
-
-						<label>
-							<input type="checkbox">
-							スイーツ \ 洋菓子
-						</label>
+						<img
+							th:src="@{/images/{img}(img=${product.image})}"
+							alt="商品画像">
 
 					</div>
 
-					<div class="filter-group">
+					<div class="product-body">
 
-						<p class="filter-title">
-							地域
+						<p
+							class="product-name"
+							th:text="${product.name}">
 						</p>
 
-						<label>
-							<input type="checkbox">
-							十勝 \ 帯広
-						</label>
+						<p
+							class="product-description"
+							th:text="${product.body}">
+						</p>
 
-						<label>
-							<input type="checkbox">
-							富良野 \ 函館
-						</label>
+						<p
+							class="product-price"
+							th:text="'¥' + ${#numbers.formatInteger(product.price, 3, 'COMMA')}">
+						</p>
+
+						<div class="product-footer">
+
+							<span>
+								+ 詳細を見る
+							</span>
+
+							<button type="button">
+								♡
+							</button>
+
+						</div>
 
 					</div>
 
-					<div class="filter-group">
+				</article>
 
-						<p class="filter-title">
-							用途
-						</p>
-
-						<label>
-							<input type="checkbox">
-							北海道土産 \ ギフト
-						</label>
-
-						<label>
-							<input type="checkbox">
-							家族向け \ 自分向け
-						</label>
-
-					</div>
-
-					<div class="filter-group">
-
-						<p class="filter-title">
-							価格帯
-						</p>
-
-						<label>
-							<input type="checkbox">
-							〜3,000円
-						</label>
-
-						<label>
-							<input type="checkbox">
-							3,000〜5,000円
-						</label>
-
-						<label>
-							<input type="checkbox">
-							15,000円以上
-						</label>
-
-					</div>
-
-					<button class="filter-button">
-						絞り込む
-					</button>
-
-				</aside>
-
-				<!-- 商品一覧 -->
-				<section class="products-grid">
-
-					<!-- 商品カード -->
-					<a href="#" class="product-link">
-
-						<article class="product-card active">
-
-							<div class="product-image">
-								[商品画像]
-							</div>
-
-							<div class="product-body">
-
-								<p class="product-name">
-									十勝チーズセット
-								</p>
-
-								<p class="product-description">
-									美味しいチーズ詰め合わせ
-								</p>
-
-								<p class="product-price">
-									¥3,980
-								</p>
-
-								<div class="product-footer">
-
-									<span>
-										+ 詳細を見る
-									</span>
-
-									<button type="button">
-										♡
-									</button>
-
-								</div>
-
-							</div>
-
-						</article>
-
-					</a>
-
-					<!-- 空カード -->
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-					<div class="product-card empty">[商品カード]</div>
-
-				</section>
-
-			</div>
+			</a>
 
 		</section>
 
 	</main>
 
-	<!-- 共通フッター -->
 	<div th:replace="~{layout/_footer :: footer}"></div>
 
 </body>

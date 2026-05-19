@@ -55,4 +55,20 @@ public interface ProductMapper {
 	List<Product> findTopGiftProducts();
 
 	List<Product> findOtherGiftProducts();
+
+	/*
+	 * 商品検索
+	 * 商品名を部分一致検索
+	 */
+	@Select("""
+			SELECT
+			    *
+			FROM
+			    products
+			WHERE
+			    name LIKE CONCAT('%', #{keyword}, '%')
+			ORDER BY
+			    id DESC
+			""")
+	List<Product> searchByKeyword(@Param("keyword") String keyword);
 }

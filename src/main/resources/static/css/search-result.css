@@ -1,3 +1,8 @@
+body {
+	margin: 0;
+	background: #f7f5ef;
+}
+
 .search-page {
 	background: #f2efe7;
 	padding: 12px;
@@ -11,6 +16,13 @@
 	border: 1px solid #d2c7b5;
 	background: #f7f5ef;
 	padding: 10px;
+}
+
+.search-result-page {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 24px 40px;
+	background: #f7f5ef;
 }
 
 /* =========================
@@ -160,7 +172,7 @@
 .products-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 10px;
+	gap: 24px;
 }
 
 /* =========================
