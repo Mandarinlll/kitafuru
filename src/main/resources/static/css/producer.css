@@ -469,6 +469,11 @@ textarea {
 	margin-bottom: 16px;
 }
 
+.profile-tab-row {
+	grid-template-columns: minmax(150px, 220px);
+	justify-content: start;
+}
+
 .tab {
 	min-height: 38px;
 	display: flex;
