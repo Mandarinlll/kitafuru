@@ -6,26 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>注文管理</title>
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
-	<link rel="stylesheet" th:href="@{/css/producer.css}">
+	<link rel="stylesheet" th:href="@{/css/producer/orders.css}">
 </head>
 
 <body>
+	<div th:replace="~{layout/_psidebar :: psidebar}"></div>
 	<div class="producer-shell">
-		<aside class="producer-sidebar">
-			<div class="producer-card">
-				<p class="sidebar-label">PRODUCER DB</p>
-				<p class="producer-name">十勝○○工房</p>
-				<p class="producer-id">生産者ID：PR-00821</p>
-			</div>
-			<nav class="side-nav" aria-label="生産者メニュー">
-				<a class="side-nav-item" th:href="@{/producer-dashboard}"><span>▥</span>ダッシュボード</a>
-				<a class="side-nav-item" th:href="@{/producer/products}"><span>□</span>商品管理</a>
-				<a class="side-nav-item active" th:href="@{/producer/orders}"><span>▤</span>注文管理</a>
-				<a class="side-nav-item" th:href="@{/producer/user-management}"><span>●</span>ユーザー管理</a>
-				<a class="side-nav-item side-nav-sub-item" th:href="@{/producer-page}">店舗詳細</a>
-			</nav>
-			<a class="logout-link" th:href="@{/user-logout}">→ ログアウト</a>
-		</aside>
 
 		<main class="producer-main">
 			<div class="page-title-row">
