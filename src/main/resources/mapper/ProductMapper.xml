@@ -167,22 +167,27 @@
 	</select>
 
 	<!-- 商品検索 -->
-<select id="searchProducts"
-	resultType="com.example.demo.entity.Product">
+	<select id="searchProducts"
+		resultType="com.example.demo.entity.Product">
 
-	SELECT
-		*
-	FROM
-		products
-	WHERE
-		1 = 1
+		SELECT
+			p.*
+		FROM
+			products p
+
+		JOIN producers pr
+			ON p.producer_id = pr.id
+
+		WHERE
+			1 = 1
 
 	<!-- キーワード検索 -->
 	<if test="keyword != null and keyword != ''">
 
 		AND (
-			name LIKE CONCAT('%', #{keyword}, '%')
-			OR origin_area LIKE CONCAT('%', #{keyword}, '%')
+			p.name LIKE CONCAT('%', #{keyword}, '%')
+			OR p.origin_area LIKE CONCAT('%', #{keyword}, '%')
+			OR pr.name LIKE CONCAT('%', #{keyword}, '%')
 		)
 
 	</if>
