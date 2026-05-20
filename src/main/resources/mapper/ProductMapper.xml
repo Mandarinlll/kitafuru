@@ -180,7 +180,10 @@
 	<!-- キーワード検索 -->
 	<if test="keyword != null and keyword != ''">
 
-		AND name LIKE CONCAT('%', #{keyword}, '%')
+		AND (
+			name LIKE CONCAT('%', #{keyword}, '%')
+			OR origin_area LIKE CONCAT('%', #{keyword}, '%')
+		)
 
 	</if>
 
