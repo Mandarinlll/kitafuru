@@ -39,6 +39,7 @@ public class Product {
 
 	// 更新日時
 	private Timestamp updateAt;
+	private String categoryName;
 
 	// ===== Getter / Setter =====
 
@@ -136,5 +137,13 @@ public class Product {
 
 	public void setUpdateAt(Timestamp updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }
