@@ -17,10 +17,10 @@
 			<h1 class="producer-name" th:if="${loginProducer != null}">
 				<span th:text="${loginProducer.name}"></span>
 			</h1>
-			
+
 			<div class="sidebar-name">
 
-				<a th:href="@{/producer/dashboard}" class="sidebar-link">
+				<a th:href="@{/producer-dashboard}" class="sidebar-link">
 					ダッシュボード
 				</a>
 
@@ -31,14 +31,19 @@
 				<a th:href="@{/producer/orders}" class="sidebar-link">
 					注文管理
 				</a>
-				<a th:href="@{/producer/user-managemeagement}"class="sidebar-link" >
+				<a th:href="@{/producer/user-management}" class="sidebar-link">
 					ユーザー管理
 				</a>
-				<a th:href="@{/produproducer/detail}" class="sidebar-link">
+				<a th:href="@{/producer-page}" class="sidebar-link">
 					店舗詳細
+				</a>
+				
+				<a th:href="@{/logout}" class="sidebar-link logout-link">
+					ログアウト
 				</a>
 
 			</div>
+
 
 		</div>
 
