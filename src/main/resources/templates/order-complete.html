@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>注文完了</title>
 
     <!-- 共通CSS -->
-	<link rel="stylesheet"
-	      th:href="@{/css/styles.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}">
 
     <!-- 注文完了ページ専用 -->
-
-	<link rel="stylesheet"
-	      th:href="@{/css/order-complete.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/order-complete.css}">
 </head>
 
 <body>
@@ -28,12 +30,10 @@
         <span class="active">③注文完了</span>
     </div>
 
-
     <!-- チェックアイコン -->
     <div class="check-circle">
         ✓
     </div>
-
 
     <!-- 完了メッセージ -->
     <h1>ご注文ありがとうございました</h1>
@@ -43,7 +43,6 @@
         商品の発送準備が整い次第、改めて発送通知メールでお知らせいたします。
     </p>
 
-
     <!-- 下段カード -->
     <div class="info-area">
 
@@ -52,22 +51,44 @@
 
             <small>ORDER NUMBER / 注文番号</small>
 
-            <h2>#HKD-2026-051972</h2>
+            <!-- 注文番号 -->
+            <h2 th:text="'#' + ${orderNumber}">
+                #HKD-20260520-1234
+            </h2>
 
             <hr>
 
+            <!-- お届け予定日 -->
             <div class="order-detail">
+
                 <span>お届け予定日</span>
-                <span>2026年5月25日(月) ～ 5月27日(水)</span>
+
+                <span th:text="${#temporals.format(deliveryDate,'yyyy年M月d日(E)')}">
+                    2026年5月23日(土)
+                </span>
+
             </div>
 
+            <!-- 支払金額 -->
             <div class="order-detail">
+
                 <span>お支払い金額</span>
-                <span>¥7,800（クレジットカード）</span>
+
+                <span>
+
+                    <span th:text="'¥' + ${#numbers.formatInteger(totalPrice,0,'COMMA')}">
+                        ¥7,800
+                    </span>
+
+                    （<span th:text="${paymentMethod}">
+                        クレジットカード
+                    </span>）
+
+                </span>
+
             </div>
 
         </div>
-
 
         <!-- 配送先＋ボタン -->
         <div>
@@ -77,35 +98,52 @@
                 <small>SHIP TO / お届け先</small>
 
                 <p>
-                    山田太郎様<br>
-                    〒060-0001 北海道札幌市中央区○○
+
+                    <span th:text="${user.name}">
+                        山田太郎
+                    </span>
+                    様
+
+                    <br>
+
+                    <span th:text="${user.address}">
+                        〒060-0001 北海道札幌市中央区○○
+                    </span>
+
                 </p>
 
             </div>
 
+            <form th:action="@{/mypage-order}"
+                  method="get"
+                  class="mypage-btn-form">
 
-			<form th:action="@{/mypage-order}"
-			      method="get"
-			      class="mypage-btn-form">
+                <button type="submit"
+                        class="checkout-btn">
 
-			    <button type="submit"
-			            class="checkout-btn">
-			        注文詳細を見る（マイページ）
-			    </button>
+                    注文詳細を見る（マイページ）
 
-			</form>
+                </button>
 
-			<div class="bottom-buttons">
+            </form>
 
-			    <a th:href="@{/products}" class="sub-btn">
-			        ショッピングを続ける
-			    </a>
+            <div class="bottom-buttons">
 
-			    <a th:href="@{/home}" class="sub-btn">
-			        トップページへ戻る
-			    </a>
+                <a th:href="@{/products}"
+                   class="sub-btn">
 
-			</div>
+                    ショッピングを続ける
+
+                </a>
+
+                <a th:href="@{/home}"
+                   class="sub-btn">
+
+                    トップページへ戻る
+
+                </a>
+
+            </div>
 
         </div>
 
