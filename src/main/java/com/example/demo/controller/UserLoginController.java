@@ -65,7 +65,7 @@ public class UserLoginController {
 
 		redirectAttributes.addFlashAttribute(
 				"successMessage",
-				"おかえりなさい。" + user.getName() + "様!");
+				"おかえりなさい。" + user.getName() + "さん!");
 
 		// ホームへ
 		return "redirect:/home";

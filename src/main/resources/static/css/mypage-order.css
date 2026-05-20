@@ -1,137 +1,135 @@
 .mypage {
-	background: #fff;
-	padding: 24px;
-}
-
-/* 上のあいさつ */
-.mypage-hero {
-	background: #f8f0e3;
-	border-left: 5px solid var(--gold);
-	padding: 18px 28px;
-	margin-bottom: 20px;
-}
-
-.page-label {
-	margin: 0 0 6px;
-	font-size: 0.75rem;
-	font-weight: 700;
-	color: var(--muted);
-}
-
-.mypage-hero h1 {
+	background: #f7f3eb;
+	padding: 0;
 	margin: 0;
-	font-size: 1.4rem;
-	color: var(--navy);
+	min-height: calc(100vh - 72px);
 }
 
 /* 全体レイアウト */
 .mypage-layout {
 	display: grid;
-	grid-template-columns: 220px 1fr;
-	gap: 24px;
+	grid-template-columns: 210px 1fr;
+	gap: 0;
+	align-items: stretch;
+	background: #f7f3eb;
 }
 
+/* 左メニュー */
+.mypage-layout > div:first-child {
+	width: 210px;
+	margin: 0;
+	padding: 0;
+	background: #ebe4d7;
+}
 
-
-/* 右コンテンツ */
+/* 右側全体 */
 .mypage-content {
+	background: #f7f3eb;
+	padding: 28px 36px 48px;
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
 }
 
-.mypage-section h2,
-.recommend-section h2 {
-	margin: 0 0 10px;
+/* 上のあいさつ */
+.mypage-hero {
+	background: transparent;
+	border: none;
+
+	padding: 0 0 8px;
+	margin: 0;
+
+	text-align: left;
+}
+.page-label {
+	display: none;
+}
+
+.mypage-hero h1 {
+	margin: 0;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: #12384f;
+}
+
+/* 見出し */
+.mypage-section h2 {
+	margin: 0 0 18px;
+	font-size: 1.7rem;
+	font-weight: 700;
+	color: #12384f;
+}
+
+.mypage-section h2::after {
+	content: " 2件";
 	font-size: 1rem;
-	color: var(--navy);
+	color: #c05b35;
+	margin-left: 6px;
 }
 
 /* 最近の注文 */
 .order-list {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 22px;
+	grid-template-columns: 1fr;
+	gap: 18px;
 }
 
+/* 注文カード */
 .order-card {
-	border: 1px solid #e4b44e;
-	background: #fbf5eb;
-
-	padding: 22px 24px;
-	min-height: 150px;
-
+	border: 1px solid #c9b58b;
+	background: #fffdf7;
+	padding: 26px 30px;
+	min-height: 180px;
 	display: flex;
-	gap: 22px;
+	gap: 30px;
 	align-items: center;
 }
 
 /* 商品画像 */
 .order-img {
-	width: 110px;
-	height: 110px;
-
-	background: #e5c98f;
+	width: 150px;
+	height: 150px;
+	background: #ead6a5;
 	flex-shrink: 0;
-
 	object-fit: cover;
 }
 
 /* 商品情報 */
+.order-info {
+	flex: 1;
+}
+
 .order-info h3 {
-	margin: 0 0 12px;
-
-	font-size: 1.45rem;
+	margin: 0 0 16px;
+	font-size: 1.55rem;
 	font-weight: 700;
-
-	color: var(--navy);
+	color: #12384f;
 }
 
 .order-info p {
-	margin: 0 0 14px;
-
+	margin: 0 0 18px;
 	font-size: 1rem;
 	line-height: 1.6;
-
-	color: var(--muted);
+	color: #222;
 }
 
 .order-info a {
 	font-size: 1rem;
 	font-weight: 700;
-
-	color: #a85a25;
+	color: #c05b35;
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
-
-
-/* AIおすすめ */
+/* AIおすすめを非表示 */
 .recommend-section {
-	background: #f5f1fb;
-	border-left: 5px solid #7b61c9;
-	padding: 16px 18px 20px;
+	display: none;
 }
 
-.recommend-section h2 {
-	color: #5b3ca3;
-}
-
-.recommend-section p {
-	margin: 0 0 14px;
-	font-size: 0.8rem;
-	color: var(--muted);
-}
-
-.recommend-grid {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 14px;
-}
-
-.recommend-card {
-	height: 70px;
-	border: 1px solid var(--line);
-	background: #fff;
+/* header下の余白を消す */
+header,
+.site-header {
+	margin-bottom: 0 !important;
 }
 
 /* レスポンシブ */
@@ -140,23 +138,35 @@
 		grid-template-columns: 1fr;
 	}
 
-	.order-list,
-	.recommend-grid {
-		grid-template-columns: repeat(2, 1fr);
+	.mypage-layout > div:first-child {
+		width: 100%;
+	}
+
+	.mypage-content {
+		padding: 24px 20px 40px;
+	}
+
+	.mypage-hero {
+		text-align: left;
+	}
+
+	.order-card {
+		padding: 20px;
 	}
 }
 
 @media (max-width: 600px) {
-	.mypage {
-		padding: 16px;
-	}
-
-	.order-list,
-	.recommend-grid {
-		grid-template-columns: 1fr;
-	}
-
 	.order-card {
+		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.order-img {
+		width: 100%;
+		height: 220px;
+	}
+
+	.mypage-section h2 {
+		font-size: 1.4rem;
 	}
 }

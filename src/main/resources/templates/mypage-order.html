@@ -14,17 +14,19 @@
 	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
 
 	<main class="mypage">
-		<section class="mypage-hero">
-			<p class="page-label">MY PAGE</p>
-			<h1>
-				こんにちは、<span th:text="${user.name}">山田 太郎</span> さん
-			</h1>
-		</section>
-
 		<div class="mypage-layout">
+
 			<div th:replace="~{layout/_menu :: menu('order')}"></div>
 
 			<section class="mypage-content">
+
+				<section class="mypage-hero">
+					<p class="page-label">MY PAGE</p>
+					<h1>
+						こんにちは、<span th:text="${user.name}">山田 太郎</span> さん
+					</h1>
+				</section>
+
 				<section class="mypage-section">
 					<h2>最近の注文</h2>
 
@@ -39,32 +41,17 @@
 
 								<p>
 									注文日：
-									<span th:text="${#dates.format(order.orderAt, 'yyyy/MM/dd')}">
-									　/　
-									<span th:text="${'¥' + #numbers.formatInteger(order.totalPrice, 0, 'COMMA')}">¥7,800</span>
-									　/　発送完了
+									<span th:text="${#dates.format(order.orderAt, 'yyyy/MM/dd')}">2026/05/20</span>
 								</p>
 
 								<a th:href="@{/products/{id}(id=${order.productId})}">
 									→ 詳細
-									</a>	
+								</a>
 							</div>
 						</article>
 					</div>
 				</section>
 
-				<section class="recommend-section">
-					<h2>AI　/　あなたへのおすすめ</h2>
-					<p>最近のご注文と閲覧傾向から</p>
-
-					<div class="recommend-grid">
-						<a href="#" class="recommend-card"></a>
-						<a href="#" class="recommend-card"></a>
-						<a href="#" class="recommend-card"></a>
-						<a href="#" class="recommend-card"></a>
-						<a href="#" class="recommend-card"></a>
-					</div>
-				</section>
 			</section>
 		</div>
 	</main>
