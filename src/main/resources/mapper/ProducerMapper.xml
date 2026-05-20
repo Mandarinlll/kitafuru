@@ -16,5 +16,11 @@
 		FROM producers
 		WHERE id = #{id}
 </select>
+	<select id="findByEmail"
+		resultType="com.example.demo.entity.Producer">SELECT *
+		FROM producers
+		WHERE email = #{email}
+</select>
+
 
 </mapper>

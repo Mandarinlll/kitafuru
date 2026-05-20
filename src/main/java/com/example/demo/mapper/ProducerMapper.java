@@ -20,4 +20,6 @@ public interface ProducerMapper {
 
 	Producer findById(Integer id);
 
+	Producer findByEmail(String email);
+
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>生産者ログイン</title>
+	<link rel="stylesheet" th:href="@{/css/producer/login.css}">
+</head>
+
+<body>
+
+	<h1>生産者ログイン</h1>
+
+	<p th:if="${loginError}" th:text="${loginError}" style="color:red;"></p>
+
+	<form th:action="@{/producer/login}" th:object="${form}" method="post">
+
+		<div>
+			<label>メールアドレス</label>
+			<input type="email" th:field="*{email}">
+			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		</div>
+
+		<div>
+			<label>パスワード</label>
+			<input type="password" th:field="*{password}">
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+		</div>
+
+		<button type="submit">ログイン</button>
+
+	</form>
+
+</body>
+
+</html>

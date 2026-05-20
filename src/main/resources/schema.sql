@@ -42,6 +42,7 @@ CREATE TABLE producers (
     area VARCHAR(50) NOT NULL,
     image VARCHAR(255),
     email VARCHAR(255) UNIQUE,
+    password VARCHAR(255) NOT NULL,
     phone VARCHAR(20),
     sns_link VARCHAR(255),
     create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
