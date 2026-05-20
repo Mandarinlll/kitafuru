@@ -1,0 +1,25 @@
+<aside class="mypage-menu" th:fragment="menu(activeMenu)">
+	<h2>MENU</h2>
+
+	<nav>
+		<a th:href="@{/mypage/order}"
+		   th:classappend="${activeMenu == 'order'} ? 'active'">
+			注文履歴
+		</a>
+
+		<a th:href="@{/mypage/favorite}"
+		   th:classappend="${activeMenu == 'favorite'} ? 'active'">
+			お気に入り商品
+		</a>
+
+		<a th:href="@{/mypage/profile}"
+		   th:classappend="${activeMenu == 'profile'} ? 'active'">
+			登録情報変更
+		</a>
+
+		<a th:href="@{/mypage/payment}"
+		   th:classappend="${activeMenu == 'payment'} ? 'active'">
+			支払い情報
+		</a>
+	</nav>
+</aside>

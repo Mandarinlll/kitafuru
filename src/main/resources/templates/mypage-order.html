@@ -22,16 +22,7 @@
 		</section>
 
 		<div class="mypage-layout">
-			<aside class="mypage-menu">
-				<h2>MENU</h2>
-
-				<nav>
-					<a class="active" href="#">注文履歴</a>
-					<a href="#">お気に入り商品</a>
-					<a href="#">登録情報変更</a>
-					<a href="#">支払い情報</a>
-				</nav>
-			</aside>
+			<div th:replace="~{layout/_menu :: menu('order')}"></div>
 
 			<section class="mypage-content">
 				<section class="mypage-section">
