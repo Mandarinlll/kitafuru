@@ -34,48 +34,55 @@
 /* 左メニュー */
 .mypage-menu {
 	background: #ebe4d7;
-	border: 1px solid #cdbfa5;	
+	border: 1px solid #cdbfa5;
 	min-height: 360px;
 }
 
+/* MENU */
 .mypage-menu h2 {
-		margin: 0;
-		padding: 16px 22px 28px;
-		font-size: 0.8rem;
-		color: var(--muted);
-		border-bottom: 1px solid var(--line);
-	}
+	margin: 0;
+	padding: 16px 22px 12px;
+	font-size: 0.8rem;
+	color: #333;
+	border-bottom: 1px solid #cdbfa5; /* menu下の棒 */
+}
 
+/* メニュー全体 */
 .mypage-menu nav {
 	display: flex;
 	flex-direction: column;
+	padding-top: 8px;
 }
 
-
-.mypage-menu a {
+/* 通常リンク */
+.mypage-menu nav a {
 	display: block;
 	width: 100%;
-	padding: 16px 22px;
+	box-sizing: border-box;
+	padding: 14px 22px;
 	font-size: 0.95rem;
 	color: var(--text);
+	text-decoration: none;
 	transition: 0.2s;
 }
 
-.mypage-menu a::before {
+/* アイコン */
+.mypage-menu nav a::before {
 	margin-right: 6px;
 }
 
-.mypage-menu a:nth-child(1)::before { content: "▦"; }
-/*.mypage-menu a:nth-child(2)::before { content: "♡"; }*/
-.mypage-menu a:nth-child(2)::before { content: "◎"; }
-.mypage-menu a:nth-child(3)::before { content: "▣"; }
+.mypage-menu nav a:nth-child(1)::before { content: "▦"; }
+.mypage-menu nav a:nth-child(2)::before { content: "◎"; }
+.mypage-menu nav a:nth-child(3)::before { content: "▣"; }
 
-.mypage-menu a:hover,
-.mypage-menu a.active {
-	background: var(--navy);
-		color: var(--gold);
-		font-weight: 700;
-	}
+/* 今見ているページ・hover */
+.mypage-menu nav a.active,
+.mypage-menu nav a:hover {
+		
+background-color: #123047 !important;
+color: #c9a24a !important;
+font-weight: 700;
+}
 
 /* 右コンテンツ */
 .mypage-content {
