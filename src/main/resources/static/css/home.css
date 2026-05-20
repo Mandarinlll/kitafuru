@@ -45,17 +45,43 @@ body {
 }
 
 .main-buttons a {
-	text-decoration: none;
-	background-color: #e9b44c;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	min-width: 180px;
+	height: 58px;
+
+	padding: 0 24px;
+
+	font-size: 17px;
+	font-weight: 700;
+
+	background-color: #e0a93a;
 	color: white;
-	padding: 10px 18px;
-	font-size: 14px;
-	border-radius: 4px;
-	transition: 0.2s;
+
+	border-radius: 12px;
+	border: 2px solid #c88d1f;
+	
+	text-decoration: none !important;
+
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+	transition: all 0.2s ease;
+}
+
+
+/* ボタンの下に余白 */
+.main-buttons {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 25px;
 }
 
 .main-buttons a:hover {
 	background-color: #d89c2f;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
 /* =========================
@@ -204,16 +230,6 @@ body {
 	gap: 20px;
 }
 
-.side-content::before {
-	content: "地域から探す";
-	display: block;
-	background: #f2f5f3;
-	border: 1px solid #d8e2dc;
-	padding: 20px;
-	font-size: 20px;
-	font-weight: bold;
-	color: #2a7c6f;
-}
 
 .side-content::after {
 	content: "生産者ストーリー";
