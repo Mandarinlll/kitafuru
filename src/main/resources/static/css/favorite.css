@@ -17,10 +17,8 @@ body {
 	min-height: calc(100vh - 72px);
 }
 
-.favorite-page>div {
-	width: 210px;
-	flex-shrink: 0;
-}
+
+
 
 .favorite-container {
 	flex: 1;
@@ -59,6 +57,13 @@ body {
 
 .header-buttons form {
 	margin: 0;
+}
+
+.favorite-page .mypage-menu {
+	width: 210px;
+	min-width: 210px;
+	flex: 0 0 210px;
+	background: #ebe4d7;
 }
 
 button {
@@ -286,9 +291,7 @@ button {
 		display: block;
 	}
 
-	.favorite-page>div {
-		width: 100%;
-	}
+	
 
 	.favorite-grid {
 		grid-template-columns: 1fr;
