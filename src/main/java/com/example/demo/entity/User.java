@@ -24,6 +24,9 @@ public class User {
 
 	// 作成日時
 	private Timestamp createAt;
+	
+	// 支払い方法
+	private String defaultPayment;
 
 	// ===== Getter / Setter =====
 
@@ -81,5 +84,13 @@ public class User {
 
 	public void setCreateAt(Timestamp createAt) {
 		this.createAt = createAt;
+	}
+	
+	public String getDefaultPayment() {
+		return defaultPayment;
+	}
+
+	public void setDefaultPayment(String defaultPayment) {
+		this.defaultPayment = defaultPayment;
 	}
 }

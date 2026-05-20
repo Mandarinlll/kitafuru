@@ -14,8 +14,44 @@
 
 	<!-- ユーザ登録 -->
 	<insert id="insert">
-		INSERT INTO users (name, address, email, password)
-		VALUES (#{name}, #{address}, #{email}, #{password})
+		INSERT INTO users (
+			name,
+			address,
+			email,
+			password,
+			default_payment
+		)
+		VALUES (
+			#{name},
+			#{address},
+			#{email},
+			#{password},
+			'CARD'
+		)
 	</insert>
+
+	<!-- 基本情報更新 -->
+	<update id="updateBasic">
+		UPDATE users
+		SET
+			name = #{name},
+			email = #{email},
+			password = #{password}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 住所更新 -->
+	<update id="updateAddress">
+		UPDATE users
+		SET address = #{address}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 支払い方法更新 -->
+	<update id="updateDefaultPayment">
+		UPDATE users
+		SET default_payment = #{defaultPayment}
+		WHERE id = #{id}
+	</update>
 
 </mapper>
