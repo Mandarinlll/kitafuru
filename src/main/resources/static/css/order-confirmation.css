@@ -221,27 +221,37 @@ body {
   color: var(--accent);
 }
 
-/* 注文ボタン */
-.submit-btn {
+
+/* 注文確定ボタン */
+
+.confirm-btn {
+
   width: 100%;
   height: 64px;
 
   border: none;
 
-  background: var(--accent);
+  background: #c96939;
+
   color: white;
 
-  font-size: 18px;
+  font-size: 18px; /* ←30から18に変更 */
   font-weight: bold;
 
   cursor: pointer;
 
   margin-bottom: 20px;
+
+  transition: 0.3s;
 }
 
-.submit-btn:hover {
-  opacity: .9;
+.confirm-btn:hover {
+
+  background: #b65a2d;
 }
+
+
+/* 注意文 */
 
 .notice {
   text-align: center;
@@ -250,17 +260,4 @@ body {
   line-height: 1.8;
 
   color: var(--muted);
-}
-
-/* スマホ */
-@media (max-width:1000px){
-
-.order-layout{
-grid-template-columns:1fr;
-}
-
-.summary-card{
-order:-1;
-}
-
 }

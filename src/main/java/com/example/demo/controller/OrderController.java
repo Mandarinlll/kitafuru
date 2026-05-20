@@ -11,7 +11,12 @@ public class OrderController {
 	public String confirmOrder() {
 
 		return "order-confirmation";
-
 	}
 
+	// 注文完了画面表示
+	@GetMapping("/order-complete")
+	public String orderComplete() {
+
+		return "order-complete";
+	}
 }

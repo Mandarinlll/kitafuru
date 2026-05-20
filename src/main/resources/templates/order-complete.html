@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文完了</title>
+
+    <!-- 共通CSS -->
+	<link rel="stylesheet"
+	      th:href="@{/css/styles.css}">
+
+    <!-- 注文完了ページ専用 -->
+
+	<link rel="stylesheet"
+	      th:href="@{/css/order-complete.css}">
+</head>
+
+<body>
+
+<div class="complete-container">
+
+    <!-- 進捗バー -->
+    <div class="step-bar">
+        <span>①カート</span>
+        <span>ー</span>
+        <span>②注文確認</span>
+        <span>ー</span>
+        <span class="active">③注文完了</span>
+    </div>
+
+
+    <!-- チェックアイコン -->
+    <div class="check-circle">
+        ✓
+    </div>
+
+
+    <!-- 完了メッセージ -->
+    <h1>ご注文ありがとうございました</h1>
+
+    <p class="complete-text">
+        ご注文完了メールをお送りしました。<br>
+        商品の発送準備が整い次第、改めて発送通知メールでお知らせいたします。
+    </p>
+
+
+    <!-- 下段カード -->
+    <div class="info-area">
+
+        <!-- 注文情報 -->
+        <div class="order-box">
+
+            <small>ORDER NUMBER / 注文番号</small>
+
+            <h2>#HKD-2026-051972</h2>
+
+            <hr>
+
+            <div class="order-detail">
+                <span>お届け予定日</span>
+                <span>2026年5月25日(月) ～ 5月27日(水)</span>
+            </div>
+
+            <div class="order-detail">
+                <span>お支払い金額</span>
+                <span>¥7,800（クレジットカード）</span>
+            </div>
+
+        </div>
+
+
+        <!-- 配送先＋ボタン -->
+        <div>
+
+            <div class="address-box">
+
+                <small>SHIP TO / お届け先</small>
+
+                <p>
+                    山田太郎様<br>
+                    〒060-0001 北海道札幌市中央区○○
+                </p>
+
+            </div>
+
+
+            <button class="mypage-btn">
+                注文詳細を見る（マイページ）
+            </button>
+
+
+            <div class="bottom-buttons">
+
+                <button class="sub-btn">
+                    ショッピングを続ける
+                </button>
+
+                <button class="sub-btn">
+                    トップページへ戻る
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
