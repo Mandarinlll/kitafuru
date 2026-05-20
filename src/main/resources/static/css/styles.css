@@ -287,3 +287,71 @@
 .main.shift {
 	margin-left: 220px;
 }
+
+/* =========================
+   MyPage Menu
+========================= */
+
+.mypage-menu {
+	background: #ebe4d7;
+	border: 1px solid #cdbfa5;
+	min-height: 360px;
+}
+
+/* MENUタイトル */
+.mypage-menu h2 {
+	margin: 0;
+	padding: 16px 22px 12px;
+	font-size: 0.8rem;
+	color: #333;
+	border-bottom: 1px solid #cdbfa5;
+}
+
+/* メニュー全体 */
+.mypage-menu nav {
+	display: flex;
+	flex-direction: column;
+	padding-top: 8px;
+}
+
+/* 通常リンク */
+.mypage-menu nav a {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 14px 22px;
+	font-size: 0.95rem;
+	color: var(--text);
+	text-decoration: none;
+	transition: 0.2s;
+}
+
+/* アイコン */
+.mypage-menu nav a::before {
+	margin-right: 6px;
+}
+
+.mypage-menu nav a:nth-child(1)::before {
+	content: "▦";
+}
+
+.mypage-menu nav a:nth-child(2)::before {
+	content: "◎";
+}
+
+.mypage-menu nav a:nth-child(3)::before {
+	content: "▣";
+}
+
+/* active */
+.mypage-menu nav a.active {
+	background-color: #123047;
+	color: #c9a24a;
+	font-weight: 700;
+}
+
+/* hover */
+.mypage-menu nav a:hover {
+	background-color: #123047;
+	color: #fff;
+}
