@@ -1,0 +1,422 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: #f7f3eb;
+	color: #12384f;
+}
+
+/* 全体 */
+.producer-shell {
+	min-height: calc(100vh - 80px);
+	padding: 24px;
+}
+
+.producer-main {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* タイトル */
+.page-title-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 22px;
+}
+
+.page-title-row h1 {
+	margin: 0;
+	font-size: 30px;
+	color: #12384f;
+}
+
+.page-title-row time {
+	font-size: 15px;
+	font-weight: bold;
+	color: #c05b35;
+	background: #fff;
+	padding: 8px 14px;
+	border-radius: 999px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* 保存メッセージ */
+.save-message {
+	margin: 0 0 16px;
+	padding: 12px 16px;
+	background: #e9f7ee;
+	color: #2f8f57;
+	font-weight: bold;
+	border-radius: 12px;
+	border-left: 6px solid #4f9d69;
+}
+
+/* 絞り込み */
+.filter-bar {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	flex-wrap: wrap;
+	background: #fff;
+	padding: 18px;
+	border-radius: 18px;
+	margin-bottom: 22px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.filter-bar label {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #607080;
+}
+
+.filter-search {
+	flex: 1 1 320px;
+}
+
+.filter-bar input,
+.filter-bar select,
+.bulk-actions select {
+	height: 42px;
+	border: 1px solid #d8d1c6;
+	border-radius: 10px;
+	padding: 0 12px;
+	font-size: 14px;
+	background: #fff;
+	color: #12384f;
+	outline: none;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus,
+.bulk-actions select:focus {
+	border-color: #c05b35;
+	box-shadow: 0 0 0 3px rgba(192, 91, 53, 0.15);
+}
+
+/* ボタン */
+.primary-button,
+.secondary-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 42px;
+	padding: 0 16px;
+	border-radius: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.primary-button {
+	background: #c05b35;
+	color: #fff;
+}
+
+.secondary-button {
+	background: #143d56;
+	color: #fff;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+	opacity: 0.88;
+}
+
+.compact-button {
+	min-width: 130px;
+}
+
+/* パネル */
+.admin-panel {
+	background: #fff;
+	border-radius: 20px;
+	padding: 24px;
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.section-title-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+	margin-bottom: 18px;
+}
+
+.section-title-row h2 {
+	margin: 0 0 6px;
+	font-size: 22px;
+	color: #12384f;
+}
+
+.section-title-row p {
+	margin: 0;
+	font-size: 14px;
+	color: #6f7c86;
+}
+
+.table-count {
+	font-weight: bold;
+	color: #c05b35 !important;
+	background: #f7f3eb;
+	padding: 8px 14px;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+/* テーブル */
+.table-wrap {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.admin-table {
+	width: 100%;
+	min-width: 1100px;
+	border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+	padding: 14px 16px;
+	border-bottom: 1px solid #e5e0d6;
+	text-align: left;
+	font-size: 14px;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.admin-table th {
+	background: #143d56;
+	color: #fff;
+	font-weight: bold;
+}
+
+.admin-table th:first-child {
+	border-top-left-radius: 10px;
+}
+
+.admin-table th:last-child {
+	border-top-right-radius: 10px;
+}
+
+.admin-table tbody tr:hover {
+	background: #f8f4ec;
+}
+
+.admin-table strong {
+	display: block;
+	font-size: 14px;
+	color: #12384f;
+	margin-bottom: 4px;
+}
+
+.admin-table small {
+	display: block;
+	font-size: 12px;
+	color: #7a8792;
+}
+
+.amount {
+	font-weight: bold;
+	color: #c05b35;
+}
+
+/* チェックボックス */
+.admin-table input[type="checkbox"] {
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	accent-color: #c05b35;
+}
+
+/* ステータス */
+.status-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 76px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: bold;
+	background: #e9f7ee;
+	color: #2f8f57;
+}
+
+.status-badge.new,
+.status-badge.pending {
+	background: #eaf2ff;
+	color: #2f6fb0;
+}
+
+.status-badge.preparing,
+.status-badge.warning {
+	background: #fff3cd;
+	color: #a46a00;
+}
+
+.status-badge.shipped,
+.status-badge.done,
+.status-badge.completed {
+	background: #e9f7ee;
+	color: #2f8f57;
+}
+
+.status-badge.cancel,
+.status-badge.cancelled,
+.status-badge.danger {
+	background: #fdecea;
+	color: #c0392b;
+}
+
+.empty-cell {
+	text-align: center !important;
+	color: #7a8792;
+	padding: 28px !important;
+}
+
+/* 一括操作 */
+.bulk-actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin-top: 18px;
+	padding-top: 18px;
+	border-top: 1px solid #e5e0d6;
+}
+
+.bulk-actions label {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #607080;
+}
+
+.bulk-actions select {
+	min-width: 180px;
+}
+
+/* タブレット */
+@media (max-width: 1024px) {
+	.producer-shell {
+		margin-left: 0;
+		padding: 80px 18px 24px;
+	}
+
+	.filter-bar {
+		align-items: stretch;
+	}
+
+	.filter-bar label {
+		flex: 1 1 220px;
+	}
+
+	.compact-button {
+		flex: 1 1 140px;
+	}
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+	.producer-shell {
+		padding: 76px 12px 20px;
+	}
+
+	.page-title-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		margin-bottom: 18px;
+	}
+
+	.page-title-row h1 {
+		font-size: 24px;
+	}
+
+	.page-title-row time {
+		font-size: 13px;
+		padding: 7px 12px;
+	}
+
+	.filter-bar {
+		padding: 14px;
+		border-radius: 16px;
+		gap: 10px;
+	}
+
+	.filter-bar label,
+	.filter-search {
+		width: 100%;
+		flex: 1 1 100%;
+	}
+
+	.filter-bar input,
+	.filter-bar select,
+	.primary-button,
+	.secondary-button {
+		width: 100%;
+	}
+
+	.admin-panel {
+		padding: 16px;
+		border-radius: 16px;
+	}
+
+	.section-title-row {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.section-title-row h2 {
+		font-size: 19px;
+	}
+
+	.section-title-row p {
+		font-size: 13px;
+		line-height: 1.6;
+	}
+
+	.table-count {
+		font-size: 13px;
+	}
+
+	.admin-table th,
+	.admin-table td {
+		padding: 12px 14px;
+		font-size: 13px;
+	}
+
+	.bulk-actions {
+		align-items: stretch;
+	}
+
+	.bulk-actions label,
+	.bulk-actions select,
+	.bulk-actions button {
+		width: 100%;
+	}
+
+	.status-badge {
+		min-width: 68px;
+		font-size: 11px;
+	}
+}

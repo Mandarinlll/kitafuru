@@ -521,3 +521,10 @@
 	background-color: #123047;
 	color: #fff;
 }
+
+.logout-link {
+	margin-top: 28px;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	padding-top: 18px;
+	color: #ffcfb8;
+}
