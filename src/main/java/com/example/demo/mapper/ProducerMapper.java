@@ -3,19 +3,12 @@ package com.example.demo.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.entity.Producer;
 
 @Mapper
 public interface ProducerMapper {
 
-	@Select("""
-			SELECT
-			    *
-			FROM
-			    producers
-			""")
 	List<Producer> findAll();
 
 	Producer findById(Integer id);
