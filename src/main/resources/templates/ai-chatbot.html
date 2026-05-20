@@ -19,6 +19,12 @@
 
 				<div id="chat-box" class="chat-box"></div>
 
+				<div id="loading" class="typing-indicator" style="display:none;">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+
 				<div class="input-area">
 					<input type="text" id="message" placeholder="メッセージを入力">
 
@@ -34,7 +40,6 @@
 	</div>
 
 	<script>
-
 		async function sendMessage() {
 
 			const messageInput = document.getElementById("message");
@@ -45,8 +50,8 @@
 			}
 
 			const chatBox = document.getElementById("chat-box");
+			const loading = document.getElementById("loading");
 
-			// ユーザー表示
 			chatBox.innerHTML += `
 				<div class="message user">
 					${message}
@@ -55,7 +60,9 @@
 
 			messageInput.value = "";
 
-			// API呼び出し
+			// ローディング表示
+			loading.style.display = "flex";
+
 			const response = await fetch("/api/ai/chat", {
 				method: "POST",
 				headers: {
@@ -68,22 +75,22 @@
 
 			const data = await response.json();
 
+			// ローディング非表示
+			loading.style.display = "none";
+
 			const aiMessage = data.answerHtml
 				.replace(/<br\s*\/?>/gi, "")
 				.replace(/\n/g, "")
 				.replace(/\t/g, "")
 				.trim();
 
-			// 改行変換
 			const formattedMessage = aiMessage.replace(/\n/g, "<br>");
 
-			// AIメッセージ用div
 			const aiDiv = document.createElement("div");
 			aiDiv.className = "message ai";
 
 			chatBox.appendChild(aiDiv);
 
-			// 1文字ずつ表示
 			let index = 0;
 
 			const interval = setInterval(() => {
@@ -103,8 +110,6 @@
 
 			chatBox.scrollTop = chatBox.scrollHeight;
 		}
-
-
 	</script>
 
 </body>
