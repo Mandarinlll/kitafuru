@@ -231,16 +231,29 @@ body {
 }
 
 
-.side-content::after {
-	content: "生産者ストーリー";
+.story-link {
 	display: block;
+
 	background: #fff7ec;
 	border: 1px solid #f4d6a0;
+
 	padding: 20px;
+
 	font-size: 20px;
 	font-weight: bold;
 	color: #d97706;
+
+	text-decoration: none;
+	border-radius: 10px;
+
+	transition: 0.2s;
 }
+
+.story-link:hover {
+	background: #ffe8bf;
+	transform: translateY(-2px);
+}
+
 
 /* =========================
    フラッシュメッセージ
