@@ -9,8 +9,8 @@
 </head>
 
 <body>
-
 	<header th:replace="layout/_header :: header"></header>
+	<div th:replace="layout/_sidebar :: sidebar"></div>
 
 	<main class="container">
 
@@ -45,18 +45,22 @@
 				その他のギフトとして選ばれている商品
 			</div>
 
-			<div class="product-list">
+			<div class="gift-slider">
 
-				<a class="product-card" th:each="product : ${otherGiftProducts}"
-					th:href="@{/products/{id}(id=${product.id})}">
-					<!-- otherGiftProducts を1件ずつ取り出し、商品詳細ページへのリンクを設定 -->
-					<img th:src="@{${product.image}}">
-					<!-- 商品画像を表示 -->
-					<h3 th:text="${product.name}"></h3>
-					<!-- 商品名を表示 -->
-					<p th:text="'¥' + ${product.price}"></p>
-					<!-- 商品価格を表示 -->
-				</a>
+				<button type="button" class="slider-btn prev-btn">＜</button>
+
+				<div class="product-list" id="giftProductList">
+
+					<a class="product-card" th:each="product : ${otherGiftProducts}"
+						th:href="@{/products/{id}(id=${product.id})}">
+						<img th:src="@{${product.image}}">
+						<h3 th:text="${product.name}"></h3>
+						<p th:text="'¥' + ${product.price}"></p>
+					</a>
+
+				</div>
+
+				<button type="button" class="slider-btn next-btn">＞</button>
 
 			</div>
 
@@ -66,6 +70,29 @@
 
 	<header th:replace="layout/_footer :: footer"></header>
 
+	<script>
+		const productList = document.querySelector('#giftProductList');
+		const prevBtn = document.querySelector('.prev-btn');
+		const nextBtn = document.querySelector('.next-btn');
+
+		function getScrollAmount() {
+			return productList.clientWidth;
+		}
+
+		nextBtn.addEventListener('click', () => {
+			productList.scrollBy({
+				left: getScrollAmount(),
+				behavior: 'smooth'
+			});
+		});
+
+		prevBtn.addEventListener('click', () => {
+			productList.scrollBy({
+				left: -getScrollAmount(),
+				behavior: 'smooth'
+			});
+		});
+	</script>
 </body>
 
 </html>

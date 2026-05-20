@@ -210,16 +210,25 @@ body {
 ========================= */
 
 .product-image {
-	height: 110px;
+	width: 100%;
+	aspect-ratio: 1 / 1;
 
 	background: #eadab6;
-	color: #c5b08a;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	font-size: 0.7rem;
+}
+
+/* 商品画像本体 */
+
+.product-image img {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+	display: block;
 }
 
 /* =========================

@@ -1,137 +1,173 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>カートページ</title>
-  <link rel="stylesheet" th:href="@{/css/cart.css}">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>カートページ</title>
+	<link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">LOGO</div>
-    <nav class="header-nav">Header navigation</nav>
-  </header>
+	<!-- Header -->
+	<header class="header">
+		<button class="back-button" th:onclick="|location.href='@{/home}'|">
+			戻る
+		</button>
+	</header>
 
-  <!-- Main -->
-  <main class="cart-page">
+	<!-- Main -->
+	<main class="cart-page">
 
-    <div class="page-heading">
-      <h1>カート</h1>
-	  <p th:text="${#lists.size(cartItems)} + '点の商品が入っています'"></p>
-    </div>
+		<div class="page-heading">
+			<h1>カート</h1>
+			<p th:text="${#lists.size(cartItems)} + '点の商品が入っています'"></p>
+		</div>
 
-    <div class="cart-layout">
+		<div class="cart-layout">
 
-      <!-- Cart Items -->
-      <section class="cart-section">
+			<!-- Cart Items -->
+			<section class="cart-section">
 
-        <div class="cart-table-header">
-          <div>商品</div>
-          <div>価格</div>
-          <div>数量</div>
-          <div>小計</div>
-          <div>削除</div>
-        </div>
+				<div class="cart-table-header">
+					<div>商品</div>
+					<div>価格</div>
+					<div>数量</div>
+					<div>小計</div>
+					<div>削除</div>
+				</div>
 
-        
-		<!-- Item -->
-		
-		<!-- カートが空のとき -->
-		<p th:if="${#lists.isEmpty(cartItems)}">
-		    カートは空です
-		</p>
-		
-		<div th:each="item : ${cartItems}">
 
-		    <article class="cart-item">
+				<!-- Item -->
 
-		        <div class="item-info">
+				<!-- カートが空のとき -->
+				<p th:if="${#lists.isEmpty(cartItems)}">
+					カートは空です
+				</p>
 
-		            <div class="item-image"></div>
+				<div th:each="item : ${cartItems}">
 
-		            <div class="item-detail">
+					<article class="cart-item">
 
-		                <h2 th:text="${item.product.name}">
-		                    商品名
-		                </h2>
+						<div class="item-info">
 
-		                <p>
-		                    数量 :
-		                    <span th:text="${item.quantity}">
-		                    </span>
-		                </p>
+							<div class="item-image"></div>
 
-		            </div>
+							<div class="item-detail">
 
-		        </div>
+								<h2 th:text="${item.product.name}">
+									商品名
+								</h2>
 
-		        <!-- 価格 -->
-		        <div class="item-price">
+								<p>
+									数量 :
+									<span th:text="${item.quantity}">
+									</span>
+								</p>
 
-		            ¥<span th:text="${item.product.price}">
-		            </span>
+							</div>
 
-		        </div>
+						</div>
 
-		        <!-- 数量 -->
-		        <div class="item-qty">
-					<!-- マイナス -->
-					  <form th:action="@{/cart/decrease}"
-					        method="post">
+						<!-- 価格 -->
+						<div class="item-price">
 
-					      <input type="hidden"
-					             name="productId"
-					             th:value="${item.product.id}">
+							¥<span th:text="${item.product.price}">
+							</span>
 
-					      <button type="submit">-</button>
+						</div>
 
-					  </form>
+						<!-- 数量 -->
+						<div class="item-qty">
+							<!-- マイナス -->
+							<form th:action="@{/cart/decrease}" method="post">
 
-					  <span th:text="${item.quantity}"></span>
+								<input type="hidden" name="productId" th:value="${item.product.id}">
 
-					  <!-- プラス -->
-					  <form th:action="@{/cart/increase}"
-					        method="post">
+								<button type="submit">-</button>
 
-					      <input type="hidden"
-					             name="productId"
-					             th:value="${item.product.id}">
+							</form>
 
-					      <button type="submit">+</button>
+							<span th:text="${item.quantity}"></span>
 
-					  </form>
-		        </div>
+							<!-- プラス -->
+							<form th:action="@{/cart/increase}" method="post">
 
-		        <!-- 小計 -->
-		        <div class="item-subtotal">
+								<input type="hidden" name="productId" th:value="${item.product.id}">
 
-		            ¥<span th:text="${item.subtotal}">
-		            </span>
+								<button type="submit">+</button>
 
-		        </div>
+							</form>
+						</div>
 
-		        <!-- 削除 -->
-		        <div class="item-remove">
+						<!-- 小計 -->
+						<div class="item-subtotal">
 
-		            <form th:action="@{/cart/remove}" method="post">
+							¥<span th:text="${item.subtotal}">
+							</span>
 
-		                <input
-		                    type="hidden"
-		                    name="productId"
-		                    th:value="${item.product.id}">
+						</div>
 
-		                <button type="submit">
-		                    削除
-		                </button>
+						<!-- 削除 -->
+						<div class="item-remove">
 
-		            </form>
+							<form th:action="@{/cart/remove}" method="post">
 
-		        </div>
-		       
+								<input type="hidden" name="productId" th:value="${item.product.id}">
 
-		    </article>
+								<button type="submit">
+									削除
+								</button>
+
+							</form>
+
+						</div>
+
+
+					</article>
+
+				</div>
+
+			</section>
+
+			<!-- Summary -->
+			<aside class="summary-box">
+
+				<h3>ORDER SUMMARY</h3>
+
+				<div class="summary-row">
+					<span>商品合計</span>
+					<strong>
+						¥<span th:text="${total}">
+						</span>
+					</strong>
+				</div>
+
+				<div class="summary-row">
+					<span>送料</span>
+					<strong>
+						¥<span th:text="${shipping}"></span>
+					</strong>
+				</div>
+
+				<div class="summary-total">
+					<span>合計</span>
+					<strong>
+						¥<span th:text="${grandTotal}">
+						</span>
+					</strong>
+				</div>
+
+				<button class="checkout-btn">
+					注文確認へ進む →
+				</button>
+
+				<p class="summary-note">
+					※送料は一律800円です<br>
+				</p>
+
+			</aside>
 
 		</div>
 
@@ -182,7 +218,6 @@
 
     </div>
 
-  </main>
-
 </body>
+
 </html>

@@ -18,6 +18,7 @@
 
 	<!-- 共通ヘッダー -->
 	<div th:replace="~{layout/_header :: header}"></div>
+	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
 
 	<main class="search-result-page">
 
@@ -28,9 +29,7 @@
 
 				検索結果
 
-				<span
-					th:if="${keyword != null and keyword != ''}"
-					th:text="'：「' + ${keyword} + '」'">
+				<span th:if="${keyword != null and keyword != ''}" th:text="'：「' + ${keyword} + '」'">
 				</span>
 
 			</h1>
@@ -57,17 +56,11 @@
 				</span>
 
 				<!-- キーワード -->
-				<div
-					th:if="${keyword != null and keyword != ''}"
-					class="selected-tag"
-					th:text="${keyword}">
+				<div th:if="${keyword != null and keyword != ''}" class="selected-tag" th:text="${keyword}">
 				</div>
 
 				<!-- カテゴリ -->
-				<div
-					th:if="${categories != null}"
-					th:each="category : ${categories}"
-					class="selected-tag">
+				<div th:if="${categories != null}" th:each="category : ${categories}" class="selected-tag">
 
 					<span th:switch="${category}">
 
@@ -108,11 +101,7 @@
 				</div>
 
 				<!-- 地域 -->
-				<div
-					th:if="${regions != null}"
-					th:each="region : ${regions}"
-					class="selected-tag"
-					th:text="${region}">
+				<div th:if="${regions != null}" th:each="region : ${regions}" class="selected-tag" th:text="${region}">
 				</div>
 
 			</div>
@@ -123,47 +112,34 @@
 		<section class="products-grid">
 
 			<!-- 商品なし -->
-			<div
-				th:if="${count == 0}"
-				class="no-result">
+			<div th:if="${count == 0}" class="no-result">
 
 				商品が見つかりませんでした
 
 			</div>
 
 			<!-- 商品カード -->
-			<a
-				th:each="product : ${productList}"
-				th:href="@{/products/{id}(id=${product.id})}"
-				class="product-link">
+			<a th:each="product : ${productList}" th:href="@{/products/{id}(id=${product.id})}" class="product-link">
 
 				<article class="product-card active">
 
 					<!-- 商品画像 -->
 					<div class="product-image">
 
-						<img
-							th:src="@{/images/{img}(img=${product.image})}"
-							alt="商品画像">
+						<img th:src="@{${product.image}}" th:alt="${product.name}">
 
 					</div>
 
 					<!-- 商品情報 -->
 					<div class="product-body">
 
-						<p
-							class="product-name"
-							th:text="${product.name}">
+						<p class="product-name" th:text="${product.name}">
 						</p>
 
-						<p
-							class="product-description"
-							th:text="${product.body}">
+						<p class="product-description" th:text="${product.body}">
 						</p>
 
-						<p
-							class="product-price"
-							th:text="'¥' + ${#numbers.formatInteger(product.price, 3, 'COMMA')}">
+						<p class="product-price" th:text="'¥' + ${#numbers.formatInteger(product.price, 3, 'COMMA')}">
 						</p>
 
 						<div class="product-footer">
@@ -190,8 +166,8 @@
 
 	<!-- 共通フッター -->
 	<div th:replace="~{layout/_footer :: footer}"></div>
-	
-	
+
+
 
 </body>
 

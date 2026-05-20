@@ -6,11 +6,12 @@
 	<title>ECサイト 北ふる | マイページ</title>
 
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
-	<link rel="stylesheet" th:href="@{/css/mypage.css}">
+	<link rel="stylesheet" th:href="@{/css/mypage-order.css}">
 </head>
 
 <body>
 	<div th:replace="~{layout/_header :: header}"></div>
+	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
 
 	<main class="mypage">
 		<section class="mypage-hero">
@@ -21,19 +22,7 @@
 		</section>
 
 		<div class="mypage-layout">
-			<aside class="mypage-menu">
-				<h2>MENU</h2>
-
-				<nav>
-					<a class="active" href="#">注文履歴</a>
-					<a href="#">お気に入り商品</a>
-					<a href="#">最近見た商品</a>
-					<a href="#">登録情報変更</a>
-					<a href="#">お届け先管理</a>
-					<a href="#">支払い情報</a>
-					<a th:href="@{/logout}">ログアウト</a>
-				</nav>
-			</aside>
+			<div th:replace="~{layout/_menu :: menu('order')}"></div>
 
 			<section class="mypage-content">
 				<section class="mypage-section">
@@ -60,16 +49,7 @@
 					</div>
 				</section>
 
-				<section class="mypage-section">
-					<h2>お気に入り店舗</h2>
-
-					<div class="shop-grid">
-						<a href="#" class="shop-card">[店舗カード]</a>
-						<a href="#" class="shop-card">[店舗カード]</a>
-						<a href="#" class="shop-card">[店舗カード]</a>
-						<a href="#" class="shop-card">[店舗カード]</a>
-					</div>
-				</section>
+				
 
 				<section class="recommend-section">
 					<h2>AI　/　あなたへのおすすめ</h2>

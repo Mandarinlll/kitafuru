@@ -30,16 +30,19 @@
 		JOIN producers pr ON p.producer_id = pr.id
 		JOIN product_seasons ps ON p.id = ps.product_id
 		JOIN seasons s ON ps.season_id = s.id
-		WHERE (
-		s.start_month &lt;= s.end_month
-		AND #{month} BETWEEN s.start_month AND s.end_month
-		)
-		OR (
-		s.start_month &gt; s.end_month
+		WHERE s.name &lt;&gt; '通年'
 		AND (
-		#{month} &gt;= s.start_month
-		OR #{month} &lt;= s.end_month
-		)
+			(
+				s.start_month &lt;= s.end_month
+				AND #{month} BETWEEN s.start_month AND s.end_month
+			)
+			OR (
+				s.start_month &gt; s.end_month
+				AND (
+					#{month} &gt;= s.start_month
+					OR #{month} &lt;= s.end_month
+				)
+			)
 		)
 		ORDER BY p.recommendation_score DESC
 	</select>
@@ -86,6 +89,7 @@
 		*
 		FROM products
 		ORDER BY recommendation_score DESC
+		LIMIT 4
 	</select>
 	<!-- AI用価格条件付き商品取得 -->
 	<select id="searchForAiWithMaxPrice"
@@ -94,7 +98,7 @@
 		FROM products
 		WHERE price &lt;= #{maxPrice}
 		ORDER BY recommendation_score DESC
-		LIMIT 10
+		LIMIT 4
 	</select>
 	<!-- ID一覧から商品取得 -->
 	<select id="findByIds" resultType="com.example.demo.entity.Product"> SELECT
@@ -163,20 +167,28 @@
 	</select>
 
 	<!-- 商品検索 -->
-<select id="searchProducts"
-	resultType="com.example.demo.entity.Product">
+	<select id="searchProducts"
+		resultType="com.example.demo.entity.Product">
 
-	SELECT
-		*
-	FROM
-		products
-	WHERE
-		1 = 1
+		SELECT
+			p.*
+		FROM
+			products p
+
+		JOIN producers pr
+			ON p.producer_id = pr.id
+
+		WHERE
+			1 = 1
 
 	<!-- キーワード検索 -->
 	<if test="keyword != null and keyword != ''">
 
-		AND name LIKE CONCAT('%', #{keyword}, '%')
+		AND (
+			p.name LIKE CONCAT('%', #{keyword}, '%')
+			OR p.origin_area LIKE CONCAT('%', #{keyword}, '%')
+			OR pr.name LIKE CONCAT('%', #{keyword}, '%')
+		)
 
 	</if>
 

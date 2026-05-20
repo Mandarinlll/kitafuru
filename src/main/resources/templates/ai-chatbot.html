@@ -4,177 +4,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>AI店員チャットボット</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/ai-chatbot.css}">
 
-	<style>
-		body {
-			margin: 0;
-			font-family: sans-serif;
-			background-color: #f4efe5;
-		}
-
-		.container {
-			display: flex;
-			height: 100vh;
-		}
-
-		.sidebar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 220px;
-			height: 100%;
-			background-color: #143d56;
-			color: white;
-			padding: 20px;
-			box-sizing: border-box;
-			transform: translateX(-100%);
-			transition: transform 0.3s ease;
-			z-index: 999;
-		}
-
-		.sidebar.show {
-			transform: translateX(0);
-		}
-
-		.sidebar-title {
-			color: orange;
-			font-size: 18px;
-			font-weight: bold;
-			margin-bottom: 15px;
-		}
-
-		.sidebar-name {
-			font-size: 22px;
-			font-weight: bold;
-		}
-
-		.menu-button {
-			position: fixed;
-			top: 10px;
-			left: 10px;
-			z-index: 1000;
-			background-color: #143d56;
-			color: white;
-			border: none;
-			padding: 10px 14px;
-			font-size: 20px;
-			cursor: pointer;
-			border-radius: 6px;
-			transition: left 0.3s ease;
-		}
-
-		.menu-button.move {
-			left: 230px;
-		}
-
-		.main {
-			flex: 1;
-			padding: 14px 10px;
-			box-sizing: border-box;
-			transition: margin-left 0.3s ease;
-			margin-left: 0;
-		}
-
-		.main.shift {
-			margin-left: 220px;
-		}
-
-		.chat-wrapper {
-			height: 100%;
-			border: 1px solid #d8cfc0;
-			padding: 15px;
-			box-sizing: border-box;
-			display: flex;
-			flex-direction: column;
-		}
-
-		.chat-box {
-			flex: 1;
-			padding: 15px;
-			overflow-y: auto;
-			box-sizing: border-box;
-			margin-bottom: 12px;
-		}
-
-		.message {
-			max-width: 70%;
-			padding: 9px 13px;
-			margin-bottom: 10px;
-			border-radius: 16px;
-			font-size: 14px;
-			line-height: 1.5;
-			word-wrap: break-word;
-			clear: both;
-		}
-
-		.user {
-			background-color: #d9fdd3;
-			margin-left: auto;
-			border-bottom-right-radius: 4px;
-		}
-
-		.ai {
-			background-color: white;
-			margin-right: auto;
-			border-bottom-left-radius: 4px;
-		}
-
-		.input-area {
-			display: flex;
-			gap: 8px;
-		}
-
-		#message {
-			flex: 1;
-			height: 45px;
-			border: none;
-			padding: 4px 8px;
-			box-sizing: border-box;
-		}
-
-		.send-button {
-			width: 80px;
-			background-color: #00466b;
-			color: white;
-			border: none;
-			font-weight: bold;
-			cursor: pointer;
-		}
-
-		.send-button:hover {
-			background-color: #00608f;
-		}
-
-		@media screen and (max-width: 768px) {
-
-			.main {
-				width: 100%;
-			}
-
-			.ai {
-				white-space: normal;
-				line-height: 1.5;
-			}
-		}
-	</style>
 </head>
 
 <body>
-
-	<button class="menu-button" id="menu-button" onclick="toggleSidebar()">☰</button>
-
+	<div th:replace="layout/_sidebar :: sidebar"></div>
 	<div class="container">
-
-		<div class="sidebar" id="sidebar">
-			<div class="sidebar-title">AI店員</div>
-			<div class="sidebar-name">きたろー（仮）</div>
-		</div>
 
 		<div class="main">
 
 			<div class="chat-wrapper">
 
 				<div id="chat-box" class="chat-box"></div>
+
+				<div id="loading" class="typing-indicator" style="display:none;">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 
 				<div class="input-area">
 					<input type="text" id="message" placeholder="メッセージを入力">
@@ -191,7 +40,6 @@
 	</div>
 
 	<script>
-
 		async function sendMessage() {
 
 			const messageInput = document.getElementById("message");
@@ -202,8 +50,8 @@
 			}
 
 			const chatBox = document.getElementById("chat-box");
+			const loading = document.getElementById("loading");
 
-			// ユーザー表示
 			chatBox.innerHTML += `
 				<div class="message user">
 					${message}
@@ -212,7 +60,9 @@
 
 			messageInput.value = "";
 
-			// API呼び出し
+			// ローディング表示
+			loading.style.display = "flex";
+
 			const response = await fetch("/api/ai/chat", {
 				method: "POST",
 				headers: {
@@ -225,22 +75,22 @@
 
 			const data = await response.json();
 
+			// ローディング非表示
+			loading.style.display = "none";
+
 			const aiMessage = data.answerHtml
 				.replace(/<br\s*\/?>/gi, "")
 				.replace(/\n/g, "")
 				.replace(/\t/g, "")
 				.trim();
 
-			// 改行変換
 			const formattedMessage = aiMessage.replace(/\n/g, "<br>");
 
-			// AIメッセージ用div
 			const aiDiv = document.createElement("div");
 			aiDiv.className = "message ai";
 
 			chatBox.appendChild(aiDiv);
 
-			// 1文字ずつ表示
 			let index = 0;
 
 			const interval = setInterval(() => {
@@ -260,23 +110,6 @@
 
 			chatBox.scrollTop = chatBox.scrollHeight;
 		}
-
-		function toggleSidebar() {
-
-			const sidebar =
-				document.getElementById("sidebar");
-
-			const menuButton =
-				document.getElementById("menu-button");
-			const main =
-				document.querySelector(".main");
-
-			sidebar.classList.toggle("show");
-
-			menuButton.classList.toggle("move");
-			main.classList.toggle("shift");
-		}
-
 	</script>
 
 </body>

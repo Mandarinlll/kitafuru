@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<div th:fragment="sidebar">
+
+		<button class="menu-button" id="menu-button" onclick="toggleSidebar()">
+			☰
+		</button>
+
+		<div class="sidebar" id="sidebar">
+
+			<div class="sidebar-title">
+				サイドメニュー
+			</div>
+
+			<div class="sidebar-name">
+
+				<a th:href="@{/mypage-order}" class="sidebar-link">
+					マイページ
+				</a>
+
+				<a th:href="@{/ai-recommend}" class="sidebar-link">
+					みんなの購入商品
+				</a>
+
+				<a th:href="@{/ai-chatbot}" class="sidebar-link">
+					AIチャット
+				</a>
+				
+				<a th:href="@{/home}" class="sidebar-link">
+					ホームに戻る
+				</a>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			function toggleSidebar() {
+
+				const sidebar =
+					document.getElementById("sidebar");
+
+				const menuButton =
+					document.getElementById("menu-button");
+
+				const main =
+					document.querySelector(".main");
+
+				sidebar.classList.toggle("show");
+
+				menuButton.classList.toggle("move");
+
+				if (main) {
+					main.classList.toggle("shift");
+				}
+			}
+
+		</script>
+
+	</div>
+
+</body>
+
+</html>

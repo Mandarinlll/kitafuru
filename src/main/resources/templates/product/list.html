@@ -18,6 +18,7 @@
 
 	<!-- 共通ヘッダー -->
 	<div th:replace="~{layout/_header :: header}"></div>
+	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
 
 	<main class="products-page">
 
@@ -107,6 +108,11 @@
 
 							<div class="product-body">
 
+								<!-- 生産者 -->
+								<p class="producer-name"
+									th:text="${producerMap[product.producerId]}">
+								</p>
+
 								<!-- 商品名 -->
 								<p class="product-name"
 									th:text="${product.name}">
@@ -139,7 +145,11 @@
 						</a>
 
 						<div class="product-producer-link">
-							<a th:href="@{/producer-page(id=${product.producerId})}">生産者ページを見る</a>
+
+							<a th:href="@{/producer-page(id=${product.producerId})}">
+								生産者ページを見る
+							</a>
+
 						</div>
 
 					</article>
