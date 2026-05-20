@@ -43,18 +43,27 @@
 					</p>
 				</div>
 
-				<!-- 並び替え -->
-				<div class="sort-box">
+				<div class="header-actions">
 
-					<label for="sort">並び替え：</label>
+					<!-- 検索ボタン -->
+					<a th:href="@{/search}" class="search-page-button">
+						🔍 商品を検索する
+					</a>
 
-					<select id="sort">
-						<option>おすすめ順 ▼</option>
-						<option>人気順</option>
-						<option>新着順</option>
-						<option>価格が安い順</option>
-						<option>価格が高い順</option>
-					</select>
+					<!-- 並び替え -->
+					<div class="sort-box">
+
+						<label for="sort">並び替え：</label>
+
+						<select id="sort">
+							<option>おすすめ順 ▼</option>
+							<option>人気順</option>
+							<option>新着順</option>
+							<option>価格が安い順</option>
+							<option>価格が高い順</option>
+						</select>
+
+					</div>
 
 				</div>
 
@@ -62,33 +71,6 @@
 
 			<!-- メイン -->
 			<div class="products-layout">
-
-				<!-- サイドバー -->
-				<aside class="filter-sidebar">
-
-					<h2>絞り込み</h2>
-
-					<div class="filter-group">
-						<p class="filter-title">カテゴリ</p>
-
-						<label><input type="checkbox"> 乳製品</label>
-						<label><input type="checkbox"> スイーツ</label>
-						<label><input type="checkbox"> 海産物</label>
-					</div>
-
-					<div class="filter-group">
-						<p class="filter-title">地域</p>
-
-						<label><input type="checkbox"> 十勝</label>
-						<label><input type="checkbox"> 富良野</label>
-						<label><input type="checkbox"> 函館</label>
-					</div>
-
-					<button class="filter-button">
-						絞り込む
-					</button>
-
-				</aside>
 
 				<!-- 商品一覧 -->
 				<section class="products-grid">
