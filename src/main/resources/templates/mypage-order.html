@@ -29,27 +29,29 @@
 					<h2>最近の注文</h2>
 
 					<div class="order-list">
-						<article class="order-card">
-							<div class="order-img"></div>
-							<div class="order-info">
-								<h3>十勝産チーズセット はな1</h3>
-								<p>注文日：2025/05/11　/　¥7,800　/　発送完了</p>
-								<a href="#">→ 詳細　/　もう一度買う</a>
-							</div>
-						</article>
+						<article class="order-card" th:each="order : ${recentOrders}">
+							<img class="order-img"
+								 th:src="@{${order.productImage}}"
+								 alt="商品画像">
 
-						<article class="order-card">
-							<div class="order-img"></div>
 							<div class="order-info">
-								<h3>函館海メロン</h3>
-								<p>注文日：2025/04/12　/　¥4,500　/　発送完了</p>
-								<a href="#">→ 詳細　/　もう一度買う</a>
+								<h3 th:text="${order.productName}">商品名</h3>
+
+								<p>
+									注文日：
+									<span th:text="${#dates.format(order.orderAt, 'yyyy/MM/dd')}">
+									　/　
+									<span th:text="${'¥' + #numbers.formatInteger(order.totalPrice, 0, 'COMMA')}">¥7,800</span>
+									　/　発送完了
+								</p>
+
+								<a th:href="@{/products/{id}(id=${order.productId})}">
+									→ 詳細
+									</a>	
 							</div>
 						</article>
 					</div>
 				</section>
-
-				
 
 				<section class="recommend-section">
 					<h2>AI　/　あなたへのおすすめ</h2>
