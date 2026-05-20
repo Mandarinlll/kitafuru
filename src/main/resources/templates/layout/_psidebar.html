@@ -3,7 +3,7 @@
 
 <body>
 
-	<div th:fragment="sidebar">
+	<div th:fragment="psidebar">
 
 		<button class="menu-button" id="menu-button" onclick="toggleSidebar()">
 			☰
@@ -14,29 +14,36 @@
 			<div class="sidebar-title">
 				サイドメニュー
 			</div>
+			<h1 class="producer-name" th:if="${loginProducer != null}">
+				<span th:text="${loginProducer.name}"></span>
+			</h1>
 
 			<div class="sidebar-name">
 
-				<a th:href="@{/mypage-order}" class="sidebar-link">
-					マイページ
+				<a th:href="@{/producer-dashboard}" class="sidebar-link">
+					ダッシュボード
 				</a>
 
-				<a th:href="@{/ai-recommend}" class="sidebar-link">
-					みんなの購入商品
+				<a th:href="@{/producer/products}" class="sidebar-link">
+					商品管理
 				</a>
 
-				<a th:href="@{/ai-chatbot}" class="sidebar-link">
-					AIチャット
+				<a th:href="@{/producer/orders}" class="sidebar-link">
+					注文管理
 				</a>
-
-				<a th:href="@{/home}" class="sidebar-link">
-					ホームに戻る
+				<a th:href="@{/producer/user-management}" class="sidebar-link">
+					ユーザー管理
 				</a>
+				<a th:href="@{/producer-page}" class="sidebar-link">
+					店舗詳細
+				</a>
+				
 				<a th:href="@{/logout}" class="sidebar-link logout-link">
 					ログアウト
 				</a>
 
 			</div>
+
 
 		</div>
 
