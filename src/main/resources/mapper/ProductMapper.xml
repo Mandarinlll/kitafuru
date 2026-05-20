@@ -89,6 +89,7 @@
 		*
 		FROM products
 		ORDER BY recommendation_score DESC
+		LIMIT 4
 	</select>
 	<!-- AI用価格条件付き商品取得 -->
 	<select id="searchForAiWithMaxPrice"
@@ -97,7 +98,7 @@
 		FROM products
 		WHERE price &lt;= #{maxPrice}
 		ORDER BY recommendation_score DESC
-		LIMIT 10
+		LIMIT 4
 	</select>
 	<!-- ID一覧から商品取得 -->
 	<select id="findByIds" resultType="com.example.demo.entity.Product"> SELECT

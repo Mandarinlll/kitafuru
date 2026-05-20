@@ -55,18 +55,23 @@ body {
 	line-height: 1.5;
 	word-wrap: break-word;
 	clear: both;
+	display: inline-block;
 }
 
 .user {
 	background-color: #d9fdd3;
 	margin-left: auto;
 	border-bottom-right-radius: 4px;
+	display: block;
+	width: fit-content;
 }
 
 .ai {
 	background-color: white;
 	margin-right: auto;
 	border-bottom-left-radius: 4px;
+	display: block;
+	width: fit-content;
 }
 
 .input-area {
