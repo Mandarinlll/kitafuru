@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>注文管理</title>
-<link rel="stylesheet" th:href="@{/css/producer.css}">
-</head>
-<body>
-	<header class="producer-header">
-		<a class="logo-box" th:href="@{/home}">LOGO</a>
-		<label class="site-search">
-			<span class="search-mark">検索</span>
-			<input type="search" placeholder="商品名・産地・生産者を検索">
-		</label>
-		<div class="header-actions">
-			<a class="header-action" th:href="@{/favorite-products}">♡</a>
-			<a class="header-action" th:href="@{/cart}">カート</a>
-			<a class="header-login" th:href="@{/user-login}">ログイン / マイページ</a>
-		</div>
-	</header>
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>注文管理</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/producer.css}">
+</head>
+
+<body>
 	<div class="producer-shell">
 		<aside class="producer-sidebar">
 			<div class="producer-card">
@@ -88,9 +78,12 @@
 							</thead>
 							<tbody>
 								<tr th:each="order : ${orders}">
-									<td><input type="checkbox" name="orderIds" th:value="${order.id}" class="order-checkbox"></td>
+									<td><input type="checkbox" name="orderIds" th:value="${order.id}"
+											class="order-checkbox"></td>
 									<td><strong th:text="${order.orderNumber}">#HKD-000001</strong></td>
-									<td th:text="${order.orderAt != null ? #temporals.format(order.orderAt, 'yyyy/MM/dd HH:mm') : '-'}">2025/05/12 09:24</td>
+									<td
+										th:text="${order.orderAt != null ? #temporals.format(order.orderAt, 'yyyy/MM/dd HH:mm') : '-'}">
+										2025/05/12 09:24</td>
 									<td>
 										<strong th:text="${order.customerName}">佐藤 花子</strong>
 										<small th:text="${order.customerEmail}">hanako@example.com</small>
@@ -99,8 +92,10 @@
 										<span th:text="${order.productSummary}">十勝産チーズセット × 1</span>
 										<small th:text="${order.totalQuantity + '点'}">1点</small>
 									</td>
-									<td class="amount" th:text="|¥${#numbers.formatInteger(order.totalPrice, 0, 'COMMA')}|">¥3,980</td>
-									<td><span class="status-badge" th:classappend="${order.statusClass}" th:text="${order.statusLabel}">新規受注</span></td>
+									<td class="amount"
+										th:text="|¥${#numbers.formatInteger(order.totalPrice, 0, 'COMMA')}|">¥3,980</td>
+									<td><span class="status-badge" th:classappend="${order.statusClass}"
+											th:text="${order.statusLabel}">新規受注</span></td>
 									<td th:text="${order.paymentMethodLabel}">クレジットカード</td>
 									<td th:text="${order.shippingAddress}">東京都渋谷区</td>
 								</tr>
@@ -115,7 +110,8 @@
 						<label>
 							<span>一括操作</span>
 							<select name="status">
-								<option th:each="option : ${statusOptions}" th:value="${option.value}" th:text="${option.label}">準備中</option>
+								<option th:each="option : ${statusOptions}" th:value="${option.value}"
+									th:text="${option.label}">準備中</option>
 							</select>
 						</label>
 						<button class="primary-button compact-button" type="submit">選択した注文を更新</button>
@@ -125,19 +121,8 @@
 		</main>
 	</div>
 
-	<footer class="producer-footer">
-		<nav aria-label="フッターメニュー">
-			<a href="#">ご利用ガイド</a>
-			<a href="#">配送・送料</a>
-			<a href="#">よくある質問</a>
-			<a href="#">お問い合わせ</a>
-			<a href="#">生産者の方へ</a>
-			<a href="#">会社情報</a>
-			<a href="#">利用規約</a>
-			<a href="#">プライバシーポリシー</a>
-		</nav>
-		<span>© Kita no Furusato EC</span>
-	</footer>
+	<footer th:replace="layout/_footer :: footer"></footer>
+
 
 	<script>
 		const selectAllOrders = document.getElementById("selectAllOrders");
@@ -151,4 +136,5 @@
 		}
 	</script>
 </body>
+
 </html>

@@ -17,4 +17,7 @@ public interface ProducerMapper {
 			    producers
 			""")
 	List<Producer> findAll();
+
+	Producer findById(Integer id);
+
 }
