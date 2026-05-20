@@ -178,8 +178,14 @@
    商品画像
 ========================= */
 
+/* =========================
+   商品画像
+========================= */
+
 .product-image {
-	height: 180px;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+
 	background: #eadab6;
 
 	display: flex;
