@@ -96,10 +96,20 @@
 
 				<div class="check-area">
 					<label>
-						<input type="checkbox">
-						<a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意する
+						<input type="checkbox"
+						       th:field="*{agreedToTerms}">
+
+						<a href="#">利用規約</a>
+						および
+						<a href="#">プライバシーポリシー</a>
+						に同意する
 						<span>*</span>
 					</label>
+
+					<p class="field-error"
+					   th:if="${#fields.hasErrors('agreedToTerms')}"
+					   th:errors="*{agreedToTerms}">
+					</p>
 
 					<label>
 						<input type="checkbox">
