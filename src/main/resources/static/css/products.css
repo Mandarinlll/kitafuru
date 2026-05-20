@@ -77,72 +77,53 @@
 }
 
 /* =========================
-   レイアウト
+   ヘッダー右側
 ========================= */
 
-.products-layout {
-	display: grid;
-	grid-template-columns: 180px 1fr;
-	gap: 12px;
-
-	padding: 0 10px;
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: 14px;
 }
 
 /* =========================
-   サイドバー
+   検索ボタン
 ========================= */
 
-.filter-sidebar {
-	border: 1px solid #d3c8b6;
-	background: #f5f1e8;
+.search-page-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
-	padding: 14px;
-}
-
-.filter-sidebar h2 {
-	margin: 0 0 14px;
-
-	color: #17384f;
-	font-size: 1rem;
-}
-
-.filter-group {
-	margin-bottom: 22px;
-}
-
-.filter-title {
-	margin-bottom: 10px;
-
-	color: #7e715d;
-	font-size: 0.8rem;
-	font-weight: bold;
-}
-
-.filter-group label {
-	display: block;
-
-	margin-bottom: 8px;
-
-	color: #50483d;
-	font-size: 0.75rem;
-}
-
-/* ボタン */
-
-.filter-button {
-	width: 100%;
-	height: 32px;
-
-	border: none;
+	height: 34px;
+	padding: 0 18px;
 
 	background: #17384f;
 	color: #f3b84c;
 
 	font-size: 0.8rem;
 	font-weight: bold;
+	text-decoration: none;
 
-	cursor: pointer;
+	border-radius: 999px;
+
+	transition: 0.2s;
 }
+
+.search-page-button:hover {
+	opacity: 0.85;
+	transform: translateY(-1px);
+}
+
+/* =========================
+   レイアウト
+========================= */
+
+.products-layout {
+
+	padding: 0 10px;
+}
+
 
 /* =========================
    商品一覧
