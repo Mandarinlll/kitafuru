@@ -2,7 +2,6 @@
 	background: #f7f3eb;
 	padding: 0;
 	margin: 0;
-	min-height: calc(100vh - 72px);
 	box-sizing: border-box;
 }
 
@@ -14,6 +13,8 @@
 	background: #f7f3eb;
 	max-width: none;
 	margin: 0;
+
+	min-height: calc(100vh - 72px - 108px);
 }
 
 .mypage-layout > div:first-child {

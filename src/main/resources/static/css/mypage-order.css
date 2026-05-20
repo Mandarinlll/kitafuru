@@ -2,7 +2,6 @@
 	background: #f7f3eb;
 	padding: 0;
 	margin: 0;
-	min-height: calc(100vh - 72px);
 }
 
 /* 全体レイアウト */
@@ -12,6 +11,8 @@
 	gap: 0;
 	align-items: stretch;
 	background: #f7f3eb;
+	max-width: none;
+	margin: 0;
 }
 
 /* 左メニュー */

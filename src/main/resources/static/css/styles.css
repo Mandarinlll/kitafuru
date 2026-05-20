@@ -457,7 +457,8 @@
 .mypage-menu {
 	background: #ebe4d7;
 	border: 1px solid #cdbfa5;
-	min-height: 360px;
+	height: 100%;
+	min-height: 0;
 }
 
 /* MENUタイトル */
