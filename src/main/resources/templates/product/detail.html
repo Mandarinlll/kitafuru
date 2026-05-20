@@ -144,11 +144,13 @@
 						</form>
 
 						<!-- お気に入り -->
-						<button class="favorite-button">
+						<form th:action="@{/favorite-products/add}" method="post">
+							<input type="hidden" name="productId" th:value="${product.id}">
 
-							♡ このお店をお気に入り
-
-						</button>
+							<button type="submit" class="favorite-button">
+								♡ この商品をお気に入り
+							</button>
+						</form>
 
 						<!-- 商品説明 -->
 						<div class="description">

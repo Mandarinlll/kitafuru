@@ -1,0 +1,305 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Yu Gothic", sans-serif;
+	background: #ffffff;
+	color: #11384f;
+}
+
+.favorite-page {
+	display: flex;
+	width: 100%;
+	min-height: calc(100vh - 72px);
+}
+
+.favorite-page>div {
+	width: 210px;
+	flex-shrink: 0;
+}
+
+.favorite-container {
+	flex: 1;
+	padding: 16px 20px;
+	background: #f7f3eb;
+}
+
+.favorite-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 14px;
+	gap: 16px;
+}
+
+.favorite-header h1 {
+	margin: 0;
+	font-size: 28px;
+	color: #12384f;
+}
+
+.favorite-header h1 span {
+	font-size: 16px;
+	color: #c05b35;
+}
+
+.header-buttons {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	font-size: 14px;
+	font-weight: bold;
+	color: #12384f;
+}
+
+.header-buttons form {
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
+	background: white;
+	border: 1px solid #c9b58b;
+	color: #12384f;
+	height: 34px;
+	font-weight: bold;
+}
+
+.sort-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 130px;
+	height: 34px;
+	border: 1px solid #c9b58b;
+	background: #fffdf7;
+	color: #12384f;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.sort-btn:hover {
+	background: #f3ead8;
+}
+
+.delete-all-btn {
+	width: 120px;
+	border-color: #c05b35;
+	color: #c05b35;
+	border-radius: 4px;
+	transition: 0.2s ease;
+}
+
+.delete-all-btn:hover {
+	background: #c05b35;
+	color: #ffffff;
+}
+
+.cart-all-btn {
+	width: 140px;
+	background: #c05b35;
+	color: white;
+	border-color: #c05b35;
+	border-radius: 4px;
+	transition: 0.2s ease;
+}
+
+.cart-all-btn:hover {
+	background: #a94b2d;
+	transform: translateY(-1px);
+}
+
+.filter-area {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	border: 1px solid #d8c7aa;
+	background: #fffdf7;
+	padding: 12px;
+	margin-bottom: 18px;
+	border-radius: 8px;
+	font-size: 13px;
+}
+
+.filter-area span {
+	font-weight: bold;
+	color: #12384f;
+	margin-right: 4px;
+}
+
+.filter-area a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 78px;
+	height: 32px;
+	padding: 0 12px;
+	border: 1px solid #c9b58b;
+	border-radius: 999px;
+	background: #ffffff;
+	color: #12384f;
+	text-decoration: none;
+	font-weight: bold;
+	transition: 0.2s ease;
+}
+
+.filter-area a:hover {
+	background: #f3ead8;
+}
+
+.filter-area a.active {
+	background: #12384f;
+	color: #ffffff;
+	border-color: #12384f;
+}
+
+.filter-area label {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: #f7efe4;
+	color: #c05b35;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.filter-area input[type="checkbox"] {
+	accent-color: #c05b35;
+}
+
+.favorite-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 14px;
+}
+
+.favorite-card {
+	display: flex;
+	gap: 18px;
+	border: 1px solid #c9b58b;
+	background: #fffdf7;
+	padding: 18px;
+	min-height: 220px;
+	position: relative;
+}
+
+.image-box {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	background: #ead6a5;
+	flex-shrink: 0;
+}
+
+.product-info {
+	flex: 1;
+	position: relative;
+	padding-right: 6px;
+}
+
+.product-info h2 {
+	margin: 6px 0 18px;
+	font-size: 16px;
+	color: #12384f;
+}
+
+.product-info p {
+	margin: 0 0 8px;
+	font-size: 12px;
+}
+
+.price {
+	font-size: 18px !important;
+	font-weight: bold;
+	color: #c05b35;
+}
+
+.stock {
+	font-size: 11px !important;
+}
+
+.in-stock {
+	color: #24795a;
+}
+
+.out-stock {
+	color: #c05b35;
+}
+
+.heart {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	background: #c05b35;
+	color: white;
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	font-size: 18px;
+}
+
+.card-buttons {
+	display: flex;
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.card-buttons form {
+	flex: 1;
+}
+
+.cart-btn {
+	width: 100%;
+	background: #c05b35;
+	color: white;
+	border-color: #c05b35;
+}
+
+.delete-btn {
+	width: 100%;
+}
+
+.empty-card {
+	border: 1px solid #c9b58b;
+	background: #f7f3eb;
+	min-height: 220px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #c0ad90;
+	font-size: 13px;
+}
+
+@media (max-width: 900px) {
+	.favorite-page {
+		display: block;
+	}
+
+	.favorite-page>div {
+		width: 100%;
+	}
+
+	.favorite-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.favorite-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.filter-area label {
+		margin-left: 0;
+	}
+}
