@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title th:text="${pageTitle}">商品登録</title>
-<link rel="stylesheet" th:href="@{/css/producer.css}">
-</head>
-<body>
-	<header class="producer-header">
-		<a class="logo-box" th:href="@{/home}">LOGO</a>
-		<label class="site-search">
-			<span class="search-mark">検索</span>
-			<input type="search" placeholder="商品名・産地・生産者を検索">
-		</label>
-		<div class="header-actions">
-			<a class="header-action" th:href="@{/favorite-products}">♡</a>
-			<a class="header-action" th:href="@{/cart}">カート</a>
-			<a class="header-login" th:href="@{/user-login}">ログイン / マイページ</a>
-		</div>
-	</header>
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${pageTitle}">商品登録</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/producer.css}">
+</head>
+
+<body>
 	<div class="producer-shell">
 		<aside class="producer-sidebar">
 			<div class="producer-card">
@@ -92,25 +82,16 @@
 				</section>
 
 				<div class="form-actions">
-					<button class="primary-button" type="submit" th:text="${productForm.id == 0 ? '登録する' : '更新する'}">登録する</button>
+					<button class="primary-button" type="submit"
+						th:text="${productForm.id == 0 ? '登録する' : '更新する'}">登録する</button>
 					<a class="secondary-button" th:href="@{/producer/products}">一覧へ戻る</a>
 				</div>
 			</form>
 		</main>
 	</div>
 
-	<footer class="producer-footer">
-		<nav aria-label="フッターメニュー">
-			<a href="#">ご利用ガイド</a>
-			<a href="#">配送・送料</a>
-			<a href="#">よくある質問</a>
-			<a href="#">お問い合わせ</a>
-			<a href="#">生産者の方へ</a>
-			<a href="#">会社情報</a>
-			<a href="#">利用規約</a>
-			<a href="#">プライバシーポリシー</a>
-		</nav>
-		<span>© Kita no Furusato EC</span>
-	</footer>
+	<footer th:replace="layout/_footer :: footer"></footer>
+
 </body>
+
 </html>

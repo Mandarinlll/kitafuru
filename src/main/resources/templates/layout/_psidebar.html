@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<div th:fragment="psidebar">
+
+		<button class="menu-button" id="menu-button" onclick="toggleSidebar()">
+			☰
+		</button>
+
+		<div class="sidebar" id="sidebar">
+
+			<div class="sidebar-title">
+				サイドメニュー
+			</div>
+			<h1 class="producer-name" th:if="${loginProducer != null}">
+				<span th:text="${loginProducer.name}"></span>
+			</h1>
+			
+			<div class="sidebar-name">
+
+				<a th:href="@{/producer/dashboard}" class="sidebar-link">
+					ダッシュボード
+				</a>
+
+				<a th:href="@{/producer/products}" class="sidebar-link">
+					商品管理
+				</a>
+
+				<a th:href="@{/producer/orders}" class="sidebar-link">
+					注文管理
+				</a>
+				<a th:href="@{/producer/user-managemeagement}"class="sidebar-link" >
+					ユーザー管理
+				</a>
+				<a th:href="@{/produproducer/detail}" class="sidebar-link">
+					店舗詳細
+				</a>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			function toggleSidebar() {
+
+				const sidebar =
+					document.getElementById("sidebar");
+
+				const menuButton =
+					document.getElementById("menu-button");
+
+				const main =
+					document.querySelector(".main");
+
+				sidebar.classList.toggle("show");
+
+				menuButton.classList.toggle("move");
+
+				if (main) {
+					main.classList.toggle("shift");
+				}
+			}
+
+		</script>
+
+	</div>
+
+</body>
+
+</html>
