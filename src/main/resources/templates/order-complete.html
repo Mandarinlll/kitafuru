@@ -84,10 +84,13 @@
             </div>
 
 
-            <button class="mypage-btn">
-                注文詳細を見る（マイページ）
-            </button>
+			<form th:action="@{/mypage}" method="get">
 
+			    <button type="submit" class="mypage-btn">
+			        注文詳細を見る（マイページ）
+			    </button>
+
+			</form>
 
             <div class="bottom-buttons">
 
