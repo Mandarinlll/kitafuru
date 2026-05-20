@@ -1,13 +1,31 @@
 <header class="store-header" th:fragment="header">
+
 	<a class="logo-box" th:href="@{/home}">
 		<img th:src="@{/images/logoSquare.png}" alt="アプリのアイコン">
 	</a>
-	<label class="site-search">
-		<input type="search" placeholder="商品名・産地・生産者を検索" aria-label="商品名・産地・生産者を検索">
-	</label>
+
+	<!-- 検索フォーム -->
+	<form
+		th:action="@{/search/result}"
+		method="get"
+		class="header-search-form">
+
+		<label class="site-search">
+
+			<input
+				type="search"
+				name="keyword"
+				placeholder="商品名・産地・生産者を検索"
+				aria-label="商品名・産地・生産者を検索">
+
+		</label>
+
+	</form>
+
 	<div class="header-actions">
 		<a class="header-action" th:href="@{/favorite-products}">♡</a>
 		<a class="header-action" th:href="@{/cart}">🛒 カート</a>
 		<a class="header-action header-login" th:href="@{/login}">ログアウト</a>
 	</div>
+
 </header>
