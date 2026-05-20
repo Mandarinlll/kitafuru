@@ -11,6 +11,11 @@ public class Order {
 	private String status;
 	private Timestamp orderAt;
 
+	private String productName;
+	private String productImage;
+
+	private Integer productId;
+
 	public int getId() {
 		return id;
 	}
@@ -65,5 +70,29 @@ public class Order {
 
 	public void setOrderAt(Timestamp orderAt) {
 		this.orderAt = orderAt;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 }
