@@ -61,8 +61,8 @@
 
 .product-detail {
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 14px;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
 }
 
 /* =========================
@@ -70,7 +70,8 @@
 ========================= */
 
 .product-image {
-  height: 260px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
 
   background: #e7d5af;
 
@@ -86,6 +87,7 @@
   height: 100%;
 
   object-fit: cover;
+  display: block;
 }
 
 /* =========================
