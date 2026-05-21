@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.entity.CartItem;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ProductService;
 
+//注文確認画面のController
 @Controller
 public class OrderConfirmationController {
-
-	@Autowired
-	UserRepository userRepository;
 
 	@Autowired
 	ProductService productService;
@@ -32,8 +29,13 @@ public class OrderConfirmationController {
 			Model model,
 			HttpSession session) {
 
-		// ユーザー取得（仮）
-		User user = userRepository.findById(1);
+		// セッションからログインユーザー取得
+		User user = (User) session.getAttribute("loginUser");
+
+		// ログインチェック
+		if (user == null) {
+			return "redirect:/login";
+		}
 
 		// セッションからカート取得
 		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cart");
