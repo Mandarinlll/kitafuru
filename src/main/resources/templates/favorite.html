@@ -1,10 +1,138 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>お気に入り商品</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="UTF-8">
+	<title>お気に入り商品</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/favorite.css}">
+</head>
+
+<body>
+	<header th:replace="layout/_header :: header"></header>
+	<div th:replace="layout/_sidebar :: sidebar"></div>
+
+	<div class="favorite-page">
+		<div th:replace="~{layout/_menu :: menu('favorite')}"></div>
+
+		<main class="favorite-container">
+
+			<div class="favorite-header">
+				<h1>お気に入り商品
+					<span th:text="${favoriteProducts.size()} + '件'">0件</span>
+				</h1>
+
+				<div class="header-buttons">
+					<span>追加した日が：</span>
+
+					<a class="sort-btn"
+						th:href="@{/favorite-products(sort=${sort == 'new' ? 'old' : 'new'}, category=${category}, stockOnly=${stockOnly})}">
+						<span th:text="${sort == 'old' ? '古い順▲' : '新しい順▼'}">追加日▼</span>
+					</a>
+
+					<form th:action="@{/favorite-products/delete-all}" method="post">
+						<button class="delete-all-btn" type="submit">一括削除</button>
+					</form>
+
+					<form th:action="@{/favorite-products/cart-all}" method="post">
+						<button class="cart-all-btn" type="submit">☞ 一括カート</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="filter-area">
+				<span>絞り込み：</span>
+
+				<a th:href="@{/favorite-products(category='all', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == null or category == 'all'} ? 'active'">すべて</a>
+
+				<a th:href="@{/favorite-products(category='乳製品', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '乳製品'} ? 'active'">乳製品</a>
+
+				<a th:href="@{/favorite-products(category='海産物', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '海産物'} ? 'active'">海産物</a>
+
+				<a th:href="@{/favorite-products(category='スイーツ・菓子', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == 'スイーツ・菓子'} ? 'active'">スイーツ・菓子</a>
+
+				<a th:href="@{/favorite-products(category='農産物', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '農産物'} ? 'active'">農産物</a>
+
+				<a th:href="@{/favorite-products(category='畜産品', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '畜産品'} ? 'active'">畜産品</a>
+
+				<a th:href="@{/favorite-products(category='麺類・主食', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '麺類・主食'} ? 'active'">麺類・主食</a>
+
+				<a th:href="@{/favorite-products(category='加工食品・惣菜', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '加工食品・惣菜'} ? 'active'">加工食品・惣菜</a>
+
+				<a th:href="@{/favorite-products(category='調味料', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '調味料'} ? 'active'">調味料</a>
+
+				<a th:href="@{/favorite-products(category='飲料', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == '飲料'} ? 'active'">飲料</a>
+
+				<a th:href="@{/favorite-products(category='ギフトセット', sort=${sort}, stockOnly=${stockOnly})}"
+					th:classappend="${category == 'ギフトセット'} ? 'active'">ギフトセット</a>
+
+				<label>
+					<input type="checkbox" th:checked="${stockOnly}"
+						th:onchange="|location.href='@{/favorite-products(category=${category}, sort=${sort}, stockOnly=${!stockOnly})}'|">
+					在庫ありのみ
+				</label>
+			</div>
+
+			<p th:if="${favoriteProducts.isEmpty()}">
+				お気に入り商品はまだありません
+			</p>
+
+			<section class="favorite-grid" th:if="${!favoriteProducts.isEmpty()}">
+
+				<div class="favorite-card" th:each="product : ${favoriteProducts}">
+					<a th:href="@{/products/{id}(id=${product.id})}">
+						<img class="image-box" th:src="@{${product.image}}" alt="商品画像">
+					</a>
+
+					<div class="product-info">
+						<button class="heart">♥</button>
+
+						<h2 th:text="${product.name}">商品名</h2>
+						<p th:text="${product.originArea}">産地</p>
+
+						<p class="price">
+							¥<span th:text="${product.price}">0</span>
+						</p>
+
+						<p class="stock in-stock" th:if="${product.stock > 0}">
+							● 在庫あり
+						</p>
+
+						<p class="stock out-stock" th:if="${product.stock <= 0}">
+							▲ 在庫切れ
+						</p>
+
+						<div class="card-buttons">
+							<form th:if="${product.stock > 0}" th:action="@{/cart/add}" method="post">
+								<input type="hidden" name="productId" th:value="${product.id}">
+								<input type="hidden" name="quantity" value="1">
+								<button class="cart-btn" type="submit">カートに入れる</button>
+							</form>
+
+							<form th:action="@{/favorite-products/delete}" method="post">
+								<input type="hidden" name="productId" th:value="${product.id}">
+								<button class="delete-btn" type="submit">削除</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</main>
+	</div>
+
+	<header th:replace="layout/_footer :: footer"></header>
 </body>
+
 </html>

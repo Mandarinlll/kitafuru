@@ -14,6 +14,7 @@ body {
 
 .container {
 	flex: 1;
+	padding: 20px;
 }
 
 .recommend-box {
@@ -33,14 +34,24 @@ body {
 	display: flex;
 	gap: 12px;
 	margin-top: 15px;
+	flex-wrap: wrap;
 }
 
 .product-card {
 	width: 180px;
-	height: 120px;
+	min-height: 120px;
 	border: 1px solid #d8cfc4;
 	background-color: white;
 	padding: 10px;
+	text-decoration: none;
+	color: inherit;
+}
+
+.product-image {
+	width: 100%;
+	height: 80px;
+	object-fit: cover;
+	margin-bottom: 8px;
 }
 
 .product-name {
@@ -55,4 +66,38 @@ body {
 .message {
 	text-align: center;
 	margin-top: 20px;
+}
+
+/* タブレット */
+@media (max-width: 768px) {
+	.container {
+		padding: 16px;
+	}
+
+	.product-card {
+		width: calc(50% - 6px);
+	}
+}
+
+/* スマホ */
+@media (max-width: 480px) {
+	.container {
+		padding: 12px;
+	}
+
+	.recommend-title {
+		font-size: 18px;
+	}
+
+	.product-list {
+		flex-direction: column;
+	}
+
+	.product-card {
+		width: 100%;
+	}
+
+	.product-image {
+		height: 140px;
+	}
 }

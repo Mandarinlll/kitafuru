@@ -21,10 +21,33 @@ public class RegisterForm {
 	@Size(min = 6, message = "パスワードは6文字以上で入力してください")
 	private String password;
 
+	private boolean agreedToTerms;
+
+	/* =========================
+	   メール確認
+	========================= */
+
 	@AssertTrue(message = "メールアドレスが一致しません")
 	public boolean isEmailConfirmed() {
 		return email != null && email.equals(emailConfirm);
 	}
+
+	/* =========================
+	   利用規約チェック
+	========================= */
+
+	@AssertTrue(message = "利用規約への同意が必要です")
+	public boolean isAgreedToTerms() {
+		return agreedToTerms;
+	}
+
+	public void setAgreedToTerms(boolean agreedToTerms) {
+		this.agreedToTerms = agreedToTerms;
+	}
+
+	/* =========================
+	   Getter / Setter
+	========================= */
 
 	public String getName() {
 		return name;

@@ -1,3 +1,9 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 /* =========================
    Header
 ========================= */
@@ -7,7 +13,7 @@
 	padding: 12px 24px 12px 32px;
 	display: flex;
 	align-items: center;
-	gap: 32px;
+	gap: 24px;
 	background: #fff;
 	border-bottom: 1px solid #eee;
 	box-sizing: border-box;
@@ -29,39 +35,32 @@
 	display: block;
 }
 
-/* =========================
-   検索フォーム
-========================= */
-
+/* 検索フォーム */
 .header-search-form {
+	flex: 1;
+	min-width: 220px;
 	display: flex;
 	align-items: center;
-	margin-left: 12px;
+	margin-left: 0;
 }
 
 .site-search {
 	position: relative;
-	width: 620px;
-	max-width: 100%;
+	width: 100%;
+	max-width: 620px;
 }
 
 .site-search input {
 	width: 100%;
 	height: 52px;
-
 	padding: 0 22px 0 54px;
-
 	border: 2px solid #173d56;
 	border-radius: 0;
-
 	background: #fff;
 	color: #333;
-
 	font-size: 16px;
-
 	outline: none;
 	box-sizing: border-box;
-
 	transition: 0.2s;
 }
 
@@ -70,20 +69,14 @@
 	box-shadow: 0 0 0 4px rgba(194, 139, 57, 0.15);
 }
 
-/* 虫眼鏡アイコン */
 .site-search::before {
 	content: "🔍";
-
 	position: absolute;
 	left: 20px;
 	top: 50%;
-
 	transform: translateY(-50%);
-
 	font-size: 18px;
-
 	color: #8d7b65;
-
 	z-index: 1;
 }
 
@@ -92,15 +85,12 @@
 	font-weight: bold;
 }
 
-/* =========================
-   ヘッダーボタン
-========================= */
-
+/* ヘッダーボタン */
 .header-actions {
-	margin-left: auto;
 	display: flex;
 	align-items: center;
-	gap: 14px;
+	justify-content: flex-end;
+	gap: 8px;
 	flex-shrink: 0;
 }
 
@@ -108,25 +98,19 @@
 	min-width: 112px;
 	height: 48px;
 	padding: 0 18px;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	border: 1px solid #cdbf9f;
-
 	background: #f6f0e7;
 	color: #173d56;
-
 	font-size: 16px;
 	font-weight: bold;
-
 	box-sizing: border-box;
 	text-decoration: none;
-
 	border-radius: 0;
-
 	transition: 0.2s;
+	white-space: nowrap;
 }
 
 .header-action:hover {
@@ -138,6 +122,104 @@
 	background: #143d56;
 	border-color: #143d56;
 	color: #fff;
+}
+
+/* =========================
+   Header Responsive
+========================= */
+@media (max-width: 1000px) {
+	.store-header {
+		gap: 16px;
+		padding: 12px 16px;
+	}
+
+	.logo-box {
+		width: 76px;
+		height: 76px;
+	}
+
+	.header-action {
+		min-width: 96px;
+		height: 44px;
+		padding: 0 12px;
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 760px) {
+	.store-header {
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.logo-box {
+		width: 68px;
+		height: 68px;
+	}
+
+	.header-actions {
+		flex: 1;
+		justify-content: flex-end;
+	}
+
+	.header-search-form {
+		order: 3;
+		width: 100%;
+		flex-basis: 100%;
+	}
+
+	.site-search {
+		max-width: none;
+	}
+
+	.site-search input {
+		height: 46px;
+		font-size: 14px;
+		padding-left: 48px;
+	}
+
+	.site-search::before {
+		left: 18px;
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 480px) {
+	.store-header {
+		padding: 10px;
+	}
+
+	.logo-box {
+		width: 60px;
+		height: 60px;
+	}
+
+	.header-actions {
+		width: 100%;
+		flex-basis: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 6px;
+	}
+
+	.header-action {
+		min-width: 0;
+		width: 100%;
+		height: 42px;
+		padding: 0 6px;
+		font-size: 13px;
+	}
+
+	.site-search input {
+		height: 42px;
+		font-size: 13px;
+		padding: 0 10px 0 42px;
+	}
+
+	.site-search::before {
+		left: 14px;
+		font-size: 15px;
+	}
 }
 
 /* =========================
@@ -375,7 +457,8 @@
 .mypage-menu {
 	background: #ebe4d7;
 	border: 1px solid #cdbfa5;
-	min-height: 360px;
+	height: 100%;
+	min-height: 0;
 }
 
 /* MENUタイトル */
@@ -416,10 +499,14 @@
 }
 
 .mypage-menu nav a:nth-child(2)::before {
-	content: "◎";
+	content: "♡";
 }
 
 .mypage-menu nav a:nth-child(3)::before {
+	content: "◎";
+}
+
+.mypage-menu nav a:nth-child(4)::before {
 	content: "▣";
 }
 
@@ -434,4 +521,33 @@
 .mypage-menu nav a:hover {
 	background-color: #123047;
 	color: #fff;
+}
+
+.logout-link {
+	margin-top: 28px;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	padding-top: 18px;
+	color: #ffcfb8;
+}
+
+.logout-link {
+	margin-top: 28px;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	padding-top: 18px;
+}
+
+.logout-link button {
+	width: 100%;
+	background: none;
+	border: none;
+	color: #ffcfb8;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 14px;
+	cursor: pointer;
+	text-align: left;
+	border-radius: 0;
+	transition: background-color 0.2s ease;
+	font-family: inherit;
 }

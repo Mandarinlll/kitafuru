@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ProducerMapper">
+
+	<!-- 生産者一覧 -->
+	<select id="findAll"
+		resultType="com.example.demo.entity.Producer">
+
+		SELECT
+			id,
+			name,
+			body,
+			area,
+			image,
+			email,
+			phone,
+			sns_link AS snsLink,
+			create_at AS createAt
+		FROM producers
+		ORDER BY id
+
+	</select>
+
+	<!-- 生産者詳細 -->
+	<select id="findById"
+		resultType="com.example.demo.entity.Producer">
+
+		SELECT
+			id,
+			name,
+			body,
+			area,
+			image,
+			email,
+			phone,
+			sns_link AS snsLink,
+			create_at AS createAt
+		FROM producers
+		WHERE id = #{id}
+</select>
+	<select id="findByEmail"
+		resultType="com.example.demo.entity.Producer">SELECT *
+		FROM producers
+		WHERE email = #{email}
+</select>
+
+
+</mapper>

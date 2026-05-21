@@ -17,8 +17,6 @@ import com.example.demo.model.ProducerSalesReport;
 
 @Service
 public class ProducerDashboardService {
-	public static final int DEFAULT_PRODUCER_ID = 1;
-
 	private final JdbcTemplate jdbcTemplate;
 
 	public ProducerDashboardService(JdbcTemplate jdbcTemplate) {

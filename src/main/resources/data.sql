@@ -17,17 +17,17 @@ SELECT setval(
 );
 
 -- producers
-INSERT INTO producers (id, name, body, area, image, email, phone, sns_link, create_at) VALUES
-(1, '子安漁港', '海産物を中心に扱う北ふる登録生産者です。', '小樽', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
-(2, 'たなか農園', '農産物を中心に扱う北ふる登録生産者です。', '中札内', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
-(3, '真崎ビーフ工房', '畜産品を中心に扱う北ふる登録生産者です。', '十勝', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
-(4, 'イセヤ乳業', '乳製品を中心に扱う北ふる登録生産者です。', '美幌', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
-(5, 'パティスリーSuzuki', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '札幌', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
-(6, '麺屋むらかみ', '麺類・主食を中心に扱う北ふる登録生産者です。', '東雁来', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
-(7, 'キッチン久米', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '野幌', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
-(8, 'ナカハラ研究所', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北見', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
-(9, '荻沢酒造', '飲料を中心に扱う北ふる登録生産者です。', '千歳', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
-(10, 'ギフトショップホンマ', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '苗穂', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
+INSERT INTO producers (id, name, body, area, image, email,password, phone, sns_link, create_at) VALUES
+(1, '子安漁港', '海産物を中心に扱う北ふる登録生産者です。', '小樽', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
+(2, 'たなか農園', '農産物を中心に扱う北ふる登録生産者です。', '中札内', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
+(3, '真崎ビーフ工房', '畜産品を中心に扱う北ふる登録生産者です。', '十勝', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
+(4, 'イセヤ乳業', '乳製品を中心に扱う北ふる登録生産者です。', '美幌', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
+(5, 'パティスリーSuzuki', 'スイーツ・菓子を中心に扱う北ふる登録生産者です。', '札幌', '/images/producers/producer-05.jpg', 'producer05@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0105-00-0005', 'https://example.com/producers/05', CURRENT_TIMESTAMP),
+(6, '麺屋むらかみ', '麺類・主食を中心に扱う北ふる登録生産者です。', '東雁来', '/images/producers/producer-06.jpg', 'producer06@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0106-00-0006', 'https://example.com/producers/06', CURRENT_TIMESTAMP),
+(7, 'キッチン久米', '加工食品・惣菜を中心に扱う北ふる登録生産者です。', '野幌', '/images/producers/producer-07.jpg', 'producer07@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0107-00-0007', 'https://example.com/producers/07', CURRENT_TIMESTAMP),
+(8, 'ナカハラ研究所', '調味料・発酵食品を中心に扱う北ふる登録生産者です。', '北見', '/images/producers/producer-08.jpg', 'producer08@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0108-00-0008', 'https://example.com/producers/08', CURRENT_TIMESTAMP),
+(9, '荻沢酒造', '飲料を中心に扱う北ふる登録生産者です。', '千歳', '/images/producers/producer-09.jpg', 'producer09@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0109-00-0009', 'https://example.com/producers/09', CURRENT_TIMESTAMP),
+(10, 'ギフトショップホンマ', 'ギフト・詰め合わせを中心に扱う北ふる登録生産者です。', '苗穂', '/images/producers/producer-10.jpg', 'producer10@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0110-00-0010', 'https://example.com/producers/10', CURRENT_TIMESTAMP);
 
 -- category
 INSERT INTO category (id, name, description) VALUES
@@ -61,7 +61,7 @@ INSERT INTO gift_tags (id, name) VALUES
 
 -- products
 INSERT INTO products (id, producer_id, name, body, price, stock, origin_area, image, recommendation_score, create_at, update_at, category_id) VALUES
-(1, 1, '石狩湾産にしんの甘露煮', '札幌・石狩の風土を感じられる「石狩湾産にしんの甘露煮」。素材の旨みを逃さないよう丁寧に仕上げ、ご飯のお供や晩酌、特別な日の一品にも使いやすい商品です。作り手の丁寧さが伝わるよう、素材感と使いやすさの両方を意識しました。', 1580, 19, '札幌・石狩', 'images/products/0001.png', 99.1, TIMESTAMP '2026-05-18 09:03:00', TIMESTAMP '2026-05-18 12:05:00', 1),
+(1, 1, '石狩湾産にしんの甘露煮', '札幌・石狩の風土を感じられる「石狩湾産にしんの甘露煮」。素材の旨みを逃さないよう丁寧に仕上げ、ご飯のお供や晩酌、特別な日の一品にも使いやすい商品です。作り手の丁寧さが伝わるよう、素材感と使いやすさの両方を意識しました。', 1580, 19, '札幌・石狩', '/images/products/0001.png', 99.1, TIMESTAMP '2026-05-18 09:03:00', TIMESTAMP '2026-05-18 12:05:00', 1),
 (2, 1, '小樽前浜ほっけ一夜干し', '小樽・後志の風土を感じられる「小樽前浜ほっけ一夜干し」。素材の旨みを逃さないよう丁寧に仕上げ、ご飯のお供や晩酌、特別な日の一品にも使いやすい商品です。作り手の丁寧さが伝わるよう、素材感と使いやすさの両方を意識しました。', 1850, 26, '小樽・後志', '/images/products/0002.png', 98.8, TIMESTAMP '2026-05-18 09:06:00', TIMESTAMP '2026-05-18 12:10:00', 1),
 (3, 1, '函館産真いか塩辛セット', '函館・道南の風土を感じられる「函館産真いか塩辛セット」。素材の旨みを逃さないよう丁寧に仕上げ、ご飯のお供や晩酌、特別な日の一品にも使いやすい商品です。作り手の丁寧さが伝わるよう、素材感と使いやすさの両方を意識しました。', 2800, 33, '函館・道南', '/images/products/0003.png', 98.4, TIMESTAMP '2026-05-18 09:09:00', TIMESTAMP '2026-05-18 12:15:00', 1),
 (4, 1, '上川清流やまめ甘露煮', '旭川・上川の風土を感じられる「上川清流やまめ甘露煮」。素材の旨みを逃さないよう丁寧に仕上げ、ご飯のお供や晩酌、特別な日の一品にも使いやすい商品です。作り手の丁寧さが伝わるよう、素材感と使いやすさの両方を意識しました。', 3400, 40, '旭川・上川', '/images/products/0004.png', 98, TIMESTAMP '2026-05-18 09:12:00', TIMESTAMP '2026-05-18 12:20:00', 1),
@@ -799,3 +799,20 @@ INSERT INTO product_relations (id, product_id, related_product_id) VALUES
 (98, 98, 99),
 (99, 99, 100),
 (100, 100, 81);
+
+-- recommend test data
+-- user 1 が商品1を購入
+-- user 2 が商品1と商品2を購入
+-- → user 1 でログインすると商品2がおすすめ表示される
+
+INSERT INTO orders (id, user_id, price, payment_method, shipping_address, order_at) VALUES
+(21, 1, 1580, 'credit_card', '東京都渋谷区21-21-21', CURRENT_TIMESTAMP),
+(22, 2, 3430, 'credit_card', '北海道恵庭市22-22-22', CURRENT_TIMESTAMP);
+
+INSERT INTO order_items (id, order_id, product_id, quantity) VALUES
+(47, 21, 1, 1),
+(48, 22, 1, 1),
+(49, 22, 2, 1);
+
+SELECT setval('products_id_seq', (SELECT COALESCE(MAX(id), 1) FROM products));
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));

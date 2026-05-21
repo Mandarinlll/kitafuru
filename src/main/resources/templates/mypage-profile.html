@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ECサイト 北ふる | 登録情報変更</title>
+
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/mypage-profile.css}">
+</head>
+
+<body>
+	
+	<div class="toast-message" th:if="${successMessage}" id="toastMessage">
+		<span class="toast-icon">✓</span>
+		<span th:text="${successMessage}">登録情報変更を受け付けました。</span>
+	</div>
+
+	<script>
+		const toast = document.getElementById("toastMessage");
+
+		if (toast) {
+			setTimeout(() => {
+				toast.classList.add("hide");
+			}, 2500);
+		}
+	</script>
+
+	<div th:replace="~{layout/_header :: header}"></div>
+	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
+
+	<main class="main mypage-profile-page">
+		<div class="mypage-layout">
+
+			<div th:replace="~{layout/_menu :: menu('profile')}"></div>
+
+			<section class="profile-content">
+
+				<section class="profile-box">
+					<h2>基本情報</h2>
+
+					<form th:action="@{/mypage-profile/basic}" method="post">
+
+						<div class="info-grid">
+
+							<div class="info-item">
+								<label>お名前</label>
+
+								<div class="info-row">
+									<input
+										type="text"
+										name="name"
+										th:value="${user.name}"
+										required>
+								</div>
+							</div>
+
+							<div class="info-item">
+								<label>メールアドレス</label>
+
+								<div class="info-row">
+									<input
+										type="email"
+										name="email"
+										th:value="${user.email}"
+										required>
+								</div>
+							</div>
+
+							<div class="info-item">
+								<label>パスワード</label>
+
+								<div class="info-row">
+									<input
+										type="password"
+										name="password"
+										placeholder="変更する場合のみ入力">
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-actions">
+							<button type="submit">
+								基本情報を保存
+							</button>
+						</div>
+
+					</form>
+
+				</section>
+
+				<section class="profile-box">
+
+					<div class="box-header">
+						<h2>お届け先住所</h2>
+					</div>
+
+					<form th:action="@{/mypage-profile/address}" method="post">
+
+						<div class="address-edit-row">
+
+							<span class="badge">
+								住所
+							</span>
+
+							<input
+								type="text"
+								name="address"
+								th:value="${user.address}"
+								placeholder="例：〒060-0001 北海道札幌市中央区北1条西〇〇ノ"
+								required>
+
+							<div class="row-actions">
+								<button type="submit">
+									保存
+								</button>
+							</div>
+
+						</div>
+
+					</form>
+
+				</section>
+
+				<section class="profile-box">
+
+					<div class="box-header">
+						<h2>支払方法</h2>
+					</div>
+
+					<form th:action="@{/mypage-profile/payment}" method="post">
+
+						<input
+							type="hidden"
+							name="defaultPayment"
+							value="CARD">
+
+						<div class="address-row">
+
+							<button
+								type="submit"
+								class="badge-button"
+								th:classappend="${user.defaultPayment == null || user.defaultPayment == 'CARD'} ? '' : ' sub'"
+								th:text="${user.defaultPayment == null || user.defaultPayment == 'CARD'} ? '既定' : '選択'">
+
+								既定
+
+							</button>
+
+							<p>
+								クレジットカード（ VISA **** **** 1234 ／ 有効期限 12/27 ／
+								<span th:text="${user.name}">
+									山田 太郎
+								</span>
+								）
+							</p>
+
+						</div>
+
+					</form>
+
+					<form th:action="@{/mypage-profile/payment}" method="post">
+
+						<input
+							type="hidden"
+							name="defaultPayment"
+							value="PAYPAY">
+
+						<div class="address-row">
+
+							<button
+								type="submit"
+								class="badge-button"
+								th:classappend="${user.defaultPayment == 'PAYPAY'} ? '' : ' sub'"
+								th:text="${user.defaultPayment == 'PAYPAY'} ? '既定' : '選択'">
+
+								選択
+
+							</button>
+
+							<p>
+								PayPay
+							</p>
+
+						</div>
+
+					</form>
+
+				</section>
+
+			</section>
+
+		</div>
+	</main>
+
+	<div th:replace="~{layout/_footer :: footer}"></div>
+
+</body>
+</html>

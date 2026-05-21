@@ -16,7 +16,7 @@
 	</div>
 
 	<header th:replace="~{layout/_header :: header}"></header>
-	<div th:replace="layout/_sidebar :: sidebar"></div>
+	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
 
 	<section class="main-visual">
 
@@ -30,8 +30,8 @@
 		</p>
 
 		<div class="main-buttons">
-			<a href="#">商品を探す</a>
-			<a href="#">地域から探す</a>
+			<a th:href="@{/products}">商品一覧</a>
+			<a th:href="@{/search}">商品を探す</a>
 			<a th:href="@{/gift}">ギフト診断</a>
 		</div>
 
@@ -51,7 +51,6 @@
 
 					<a class="home-product-main" th:href="@{/products/{id}(id=${product.id})}">
 						<img th:src="${product.image}" alt="商品画像">
-						<p th:text="${product.image}"></p>
 					</a>
 
 					<div class="product-info">
@@ -86,8 +85,11 @@
 		</div>
 
 		<aside class="side-content">
-			地域から探す
-			生産者ストーリー
+
+			<a class="story-link" th:href="@{/producer-page}">
+				生産者ストーリー
+			</a>
+			
 		</aside>
 
 	</div>
