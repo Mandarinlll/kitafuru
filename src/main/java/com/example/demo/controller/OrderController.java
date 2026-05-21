@@ -51,6 +51,10 @@ public class OrderController {
 
 		// ログインユーザー取得
 		User user = (User) session.getAttribute("loginUser");
+		//ログインしていない場合は、ログインページにリダイレクト
+		if (user == null) {
+			return "redirect:/login";
+		}
 
 		// 注文番号生成
 		String date = LocalDate.now()
