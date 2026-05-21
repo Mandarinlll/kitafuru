@@ -2,6 +2,7 @@
 	background: #f7f3eb;
 	padding: 0;
 	margin: 0;
+	min-height: calc(100vh - 72px - 130px);
 }
 
 /* 全体レイアウト */
@@ -13,6 +14,7 @@
 	background: #f7f3eb;
 	max-width: none;
 	margin: 0;
+	min-height: calc(100vh - 72px - 130px);
 }
 
 /* 左メニュー */
@@ -30,18 +32,18 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+	box-sizing: border-box;
 }
 
 /* 上のあいさつ */
 .mypage-hero {
 	background: transparent;
 	border: none;
-
 	padding: 0 0 8px;
 	margin: 0;
-
 	text-align: left;
 }
+
 .page-label {
 	display: none;
 }
