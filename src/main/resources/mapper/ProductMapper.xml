@@ -1,94 +1,335 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.ProductMapper">
+
 	<!-- 商品一覧取得 -->
 	<select id="findAll"
-		resultType="com.example.demo.entity.Product"> SELECT id, producer_id, name, body, price,
-		stock, category_id, origin_area, image, recommendation_score, create_at, update_at FROM
-		products ORDER BY id </select>
-	<!--季節おすすめ-->
-	<select id="findAllSeason" resultType="map">SELECT DISTINCT p.*, pr.name AS producer_name FROM
-		products p JOIN producers pr ON p.producer_id = pr.id JOIN product_seasons ps ON p.id =
-		ps.product_id JOIN seasons s ON ps.season_id = s.id WHERE s.name &lt;&gt; '通年' AND ( (
-		s.start_month &lt;= s.end_month AND #{month} BETWEEN s.start_month AND s.end_month ) OR (
-		s.start_month &gt; s.end_month AND ( #{month} &gt;= s.start_month OR #{month} &lt;=
-		s.end_month ) ) ) ORDER BY p.recommendation_score DESC </select>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT
+			id,
+			producer_id AS producerId,
+			name,
+			body,
+			price,
+			stock,
+			category_id AS categoryId,
+			origin_area AS originArea,
+			image,
+			recommendation_score AS recommendationScore,
+			create_at AS createAt,
+			update_at AS updateAt
+		FROM products
+		ORDER BY id
+
+	</select>
+
+	<!-- 季節おすすめ -->
+	<select id="findAllSeason" resultType="map">
+
+		SELECT DISTINCT
+			p.*,
+			pr.name AS producer_name
+		FROM products p
+		JOIN producers pr
+			ON p.producer_id = pr.id
+		JOIN product_seasons ps
+			ON p.id = ps.product_id
+		JOIN seasons s
+			ON ps.season_id = s.id
+		WHERE s.name &lt;&gt; '通年'
+		AND (
+			(
+				s.start_month &lt;= s.end_month
+				AND #{month} BETWEEN s.start_month AND s.end_month
+			)
+			OR
+			(
+				s.start_month &gt; s.end_month
+				AND (
+					#{month} &gt;= s.start_month
+					OR #{month} &lt;= s.end_month
+				)
+			)
+		)
+		ORDER BY p.recommendation_score DESC
+
+	</select>
+
 	<!-- 関連おすすめ -->
 	<select id="findRecommendProducts"
-		resultType="com.example.demo.entity.Product"> SELECT DISTINCT p.* FROM products p WHERE p.id
-		IN ( SELECT oi3.product_id FROM orders my_order JOIN order_items my_item ON my_order.id =
-		my_item.order_id JOIN order_items other_same_item ON my_item.product_id =
-		other_same_item.product_id JOIN orders other_order ON other_same_item.order_id =
-		other_order.id JOIN order_items oi3 ON other_order.id = oi3.order_id WHERE my_order.user_id
-		= #{userId} AND other_order.user_id &lt;&gt; #{userId} AND oi3.product_id NOT IN ( SELECT
-		oi.product_id FROM orders o JOIN order_items oi ON o.id = oi.order_id WHERE o.user_id =
-		#{userId} ) GROUP BY oi3.product_id ORDER BY COUNT(*) DESC ) </select>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT DISTINCT
+			p.*
+		FROM products p
+		WHERE p.id IN (
+
+			SELECT oi3.product_id
+
+			FROM orders my_order
+
+			JOIN order_items my_item
+				ON my_order.id = my_item.order_id
+
+			JOIN order_items other_same_item
+				ON my_item.product_id = other_same_item.product_id
+
+			JOIN orders other_order
+				ON other_same_item.order_id = other_order.id
+
+			JOIN order_items oi3
+				ON other_order.id = oi3.order_id
+
+			WHERE my_order.user_id = #{userId}
+			AND other_order.user_id &lt;&gt; #{userId}
+
+			AND oi3.product_id NOT IN (
+				SELECT oi.product_id
+				FROM orders o
+				JOIN order_items oi
+					ON o.id = oi.order_id
+				WHERE o.user_id = #{userId}
+			)
+
+			GROUP BY oi3.product_id
+			ORDER BY COUNT(*) DESC
+
+		)
+
+	</select>
+
 	<!-- AI用おすすめ商品取得 -->
-	<select id="searchForAi" resultType="com.example.demo.entity.Product">SELECT * FROM products
-		ORDER BY recommendation_score DESC LIMIT 4 </select>
+	<select id="searchForAi"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT *
+		FROM products
+		ORDER BY recommendation_score DESC
+		LIMIT 4
+
+	</select>
+
 	<!-- AI用価格条件付き商品取得 -->
 	<select id="searchForAiWithMaxPrice"
-		resultType="com.example.demo.entity.Product"> SELECT * FROM products WHERE price &lt;=
-		#{maxPrice} ORDER BY recommendation_score DESC LIMIT 4 </select>
-	<!-- ID一覧から商品取得 -->
-	<select id="findByIds" resultType="com.example.demo.entity.Product"> SELECT * FROM products
-		WHERE id IN <foreach collection="list" item="id"
-			open="(" separator="," close=")"> #{id} </foreach>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT *
+		FROM products
+		WHERE price &lt;= #{maxPrice}
+		ORDER BY recommendation_score DESC
+		LIMIT 4
+
 	</select>
+
+	<!-- ID一覧から商品取得 -->
+	<select id="findByIds"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT *
+		FROM products
+		WHERE id IN
+
+		<foreach collection="list"
+			item="id"
+			open="("
+			separator=","
+			close=")">
+
+			#{id}
+
+		</foreach>
+
+	</select>
+
+	<!-- 商品詳細 -->
 	<select id="findById"
-		resultType="com.example.demo.entity.Product">SELECT p.id, p.producer_id AS producerId,
-		p.name, p.body, p.price, p.stock, p.origin_area AS originArea, p.image,
-		p.recommendation_score AS recommendationScore, p.create_at AS createAt, p.update_at AS
-		updateAt, p.category_id AS categoryId, c.name AS categoryName FROM products p INNER JOIN
-		category c ON p.category_id = c.id WHERE p.id = #{id} </select>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT
+			p.id,
+			p.producer_id AS producerId,
+			p.name,
+			p.body,
+			p.price,
+			p.stock,
+			p.origin_area AS originArea,
+			p.image,
+			p.recommendation_score AS recommendationScore,
+			p.create_at AS createAt,
+			p.update_at AS updateAt,
+			p.category_id AS categoryId,
+			c.name AS categoryName
+
+		FROM products p
+
+		INNER JOIN category c
+			ON p.category_id = c.id
+
+		WHERE p.id = #{id}
+
+	</select>
+
+	<!-- 生産者IDから商品取得（件数制限あり） -->
 	<select id="findByProducerId"
-		resultType="com.example.demo.entity.Product"> SELECT id, producer_id, name, body, price,
-		stock, category_id, origin_area, image, recommendation_score, create_at, update_at FROM
-		products WHERE producer_id = #{producerId} ORDER BY recommendation_score DESC, id LIMIT
-		#{limit} </select>
-	<!--ギフトとして選ばれている商品トップ３取得-->
+		resultType="com.example.demo.entity.Product">
+
+		SELECT
+			id,
+			producer_id AS producerId,
+			name,
+			body,
+			price,
+			stock,
+			category_id AS categoryId,
+			origin_area AS originArea,
+			image,
+			recommendation_score AS recommendationScore,
+			create_at AS createAt,
+			update_at AS updateAt
+		FROM products
+		WHERE producer_id = #{producerId}
+		ORDER BY recommendation_score DESC, id
+
+	</select>
+
+	<!-- 生産者IDから商品取得（全件取得） -->
+	<select id="findByProducerIdAll"
+		resultType="com.example.demo.entity.Product">
+
+		SELECT
+			id,
+			producer_id AS producerId,
+			name,
+			body,
+			price,
+			stock,
+			category_id AS categoryId,
+			origin_area AS originArea,
+			image,
+			recommendation_score AS recommendationScore,
+			create_at AS createAt,
+			update_at AS updateAt
+		FROM products
+		WHERE producer_id = #{producerId}
+		ORDER BY recommendation_score DESC, id
+
+	</select>
+
+	<!-- ギフトとして選ばれている商品トップ３取得 -->
 	<select id="findTopGiftProducts"
-		resultType="com.example.demo.entity.Product">SELECT p.* FROM products p JOIN order_items oi
-		ON p.id = oi.product_id JOIN orders o ON oi.order_id = o.id JOIN users u ON o.user_id = u.id
-		WHERE u.address &lt;&gt; o.shipping_address GROUP BY p.id ORDER BY SUM(p.price *
-		oi.quantity) DESC LIMIT 3 </select>
-	<!--ギフトとして選ばれている商品トップ３以下取得-->
+		resultType="com.example.demo.entity.Product">
+
+		SELECT p.*
+		FROM products p
+
+		JOIN order_items oi
+			ON p.id = oi.product_id
+
+		JOIN orders o
+			ON oi.order_id = o.id
+
+		JOIN users u
+			ON o.user_id = u.id
+
+		WHERE u.address &lt;&gt; o.shipping_address
+
+		GROUP BY p.id
+
+		ORDER BY SUM(p.price * oi.quantity) DESC
+
+		LIMIT 3
+
+	</select>
+
+	<!-- ギフトとして選ばれている商品トップ３以下取得 -->
 	<select id="findOtherGiftProducts"
-		resultType="com.example.demo.entity.Product">SELECT p.* FROM products p JOIN order_items oi
-		ON p.id = oi.product_id JOIN orders o ON oi.order_id = o.id JOIN users u ON o.user_id = u.id
-		WHERE u.address &lt;&gt; o.shipping_address GROUP BY p.id ORDER BY SUM(p.price *
-		oi.quantity) DESC OFFSET 3 </select>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT p.*
+		FROM products p
+
+		JOIN order_items oi
+			ON p.id = oi.product_id
+
+		JOIN orders o
+			ON oi.order_id = o.id
+
+		JOIN users u
+			ON o.user_id = u.id
+
+		WHERE u.address &lt;&gt; o.shipping_address
+
+		GROUP BY p.id
+
+		ORDER BY SUM(p.price * oi.quantity) DESC
+
+		OFFSET 3
+
+	</select>
 
 	<!-- 商品検索 -->
 	<select id="searchProducts"
-		resultType="com.example.demo.entity.Product"> SELECT p.* FROM products p JOIN producers pr
-		ON p.producer_id = pr.id WHERE 1 = 1 	<!-- キーワード検索 -->
-	<if test="keyword != null and keyword != ''"> AND (
-		p.name LIKE CONCAT('%', #{keyword}, '%') OR p.origin_area LIKE CONCAT('%', #{keyword}, '%')
-		OR pr.name LIKE CONCAT('%', #{keyword}, '%') ) </if>
+		resultType="com.example.demo.entity.Product">
+
+		SELECT p.*
+
+		FROM products p
+
+		JOIN producers pr
+			ON p.producer_id = pr.id
+
+		WHERE 1 = 1
+
+		<!-- キーワード検索 -->
+		<if test="keyword != null and keyword != ''">
+
+			AND (
+				p.name LIKE CONCAT('%', #{keyword}, '%')
+				OR p.origin_area LIKE CONCAT('%', #{keyword}, '%')
+				OR pr.name LIKE CONCAT('%', #{keyword}, '%')
+			)
+
+		</if>
 
 		<!-- カテゴリ検索 -->
-	<if
-			test="categories != null and categories.size() > 0"> AND category_id IN <foreach
-				collection="categories"
+		<if test="categories != null and categories.size() > 0">
+
+			AND category_id IN
+
+			<foreach collection="categories"
 				item="category"
 				open="("
 				separator=","
-				close=")"> #{category} </foreach>
+				close=")">
+
+				#{category}
+
+			</foreach>
 
 		</if>
 
 		<!-- 地域検索 -->
-	<if
-			test="regions != null and regions.size() > 0"> AND origin_area IN <foreach
-				collection="regions"
+		<if test="regions != null and regions.size() > 0">
+
+			AND origin_area IN
+
+			<foreach collection="regions"
 				item="region"
 				open="("
 				separator=","
-				close=")"> #{region} </foreach>
+				close=")">
 
-		</if> ORDER BY id DESC </select>
+				#{region}
 
+			</foreach>
+
+		</if>
+
+		ORDER BY id DESC
+
+	</select>
 
 </mapper>

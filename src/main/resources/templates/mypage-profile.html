@@ -11,6 +11,21 @@
 </head>
 
 <body>
+	
+	<div class="toast-message" th:if="${successMessage}" id="toastMessage">
+		<span class="toast-icon">✓</span>
+		<span th:text="${successMessage}">登録情報変更を受け付けました。</span>
+	</div>
+
+	<script>
+		const toast = document.getElementById("toastMessage");
+
+		if (toast) {
+			setTimeout(() => {
+				toast.classList.add("hide");
+			}, 2500);
+		}
+	</script>
 
 	<div th:replace="~{layout/_header :: header}"></div>
 	<div th:replace="~{layout/_sidebar :: sidebar}"></div>
