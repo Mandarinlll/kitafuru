@@ -18,7 +18,7 @@ SELECT setval(
 
 -- producers
 INSERT INTO producers (id, name, body, area, image, email,password, phone, sns_link, create_at) VALUES
-(1, '子安漁港', '海産物を中心に扱う北ふる登録生産者です。', '小樽', '/images/producers/producer-01.jpg', 'producer01@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0101-00-0001', 'https://example.com/producers/01', CURRENT_TIMESTAMP),
+(1, '子安漁港', '海産物を中心に扱う北ふる登録生産者です。', '小樽', '/images/producer/tatsuki.JPG', 'producer01@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0101-00-0001', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
 (2, 'たなか農園', '農産物を中心に扱う北ふる登録生産者です。', '中札内', '/images/producers/producer-02.jpg', 'producer02@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0102-00-0002', 'https://example.com/producers/02', CURRENT_TIMESTAMP),
 (3, '真崎ビーフ工房', '畜産品を中心に扱う北ふる登録生産者です。', '十勝', '/images/producers/producer-03.jpg', 'producer03@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0103-00-0003', 'https://example.com/producers/03', CURRENT_TIMESTAMP),
 (4, 'イセヤ乳業', '乳製品を中心に扱う北ふる登録生産者です。', '美幌', '/images/producers/producer-04.jpg', 'producer04@kitafuru.example.com','$2a$10$acP43PqLeMKbcdF5XDUaxefcIpxGUqrqabRrkWwINbFW9rs9dSn.q', '0104-00-0004', 'https://example.com/producers/04', CURRENT_TIMESTAMP),
