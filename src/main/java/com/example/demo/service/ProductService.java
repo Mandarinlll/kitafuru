@@ -40,7 +40,7 @@ public class ProductService {
 	}
 
 	public List<Product> getProductsByProducerId(int producerId, int limit) {
-		return productMapper.findByProducerId(producerId, limit);
+		return productMapper.findByProducerId(producerId);
 	}
 
 	public List<Product> findTopGiftProducts() {
