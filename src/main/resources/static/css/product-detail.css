@@ -373,6 +373,12 @@
   .product-detail {
     grid-template-columns: 1fr;
   }
+  
+  .product-image {
+     width: 100%;
+     max-width: 320px;
+     margin: 0 auto;
+   }
 
   .related-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -388,4 +394,11 @@
   .product-image {
     height: 220px;
   }
+  
+  .product-image {
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto;
+      height: auto;
+    }
 }
