@@ -39,7 +39,8 @@ public interface ProductMapper {
 	// ids に含まれる商品をまとめて検索
 	List<Product> findByIds(List<Integer> ids);
 
-	List<Product> findByProducerId(@Param("producerId") int producerId, @Param("limit") int limit);
+	// 生産者IDから商品一覧を取得
+	List<Product> findByProducerId(@Param("producerId") int producerId);
 
 	/*
 	 * 商品詳細取得
