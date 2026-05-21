@@ -84,15 +84,15 @@ public class ProducerProfileService {
 
 	private ProducerProfile createDefaultProfile() {
 		ProducerProfile profile = new ProducerProfile();
-		profile.setId(ProducerDashboardService.DEFAULT_PRODUCER_ID);
-		profile.setShopName("北ふる海産工房");
-		profile.setCompanyName("株式会社 北ふる");
-		profile.setRepresentativeName("田中 牧夫");
-		profile.setArea("北海道");
+		profile.setId(0);
+		profile.setShopName("テスト工房");
+		profile.setCompanyName("株式会社テスト");
+		profile.setRepresentativeName("テスト太郎");
+		profile.setArea("テスト県");
 		profile.setPostalAddress("〒080-0010 北海道帯広市西○条南○丁目○-○");
 		profile.setPhone("0155-XX-XXXX");
-		profile.setEmail("producer01@kitafuru.example.com");
-		profile.setBrandDescription("北海道の素材を活かし、地域の味を丁寧に届ける北ふる登録生産者です。");
+		profile.setEmail("test@kitafuru.example.com");
+		profile.setBrandDescription("");
 		profile.setSnsLink("https://example.com/producers/01");
 		profile.setImage("/images/producers/producer-01.jpg");
 		return profile;

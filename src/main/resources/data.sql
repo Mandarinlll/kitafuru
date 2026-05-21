@@ -813,3 +813,6 @@ INSERT INTO order_items (id, order_id, product_id, quantity) VALUES
 (47, 21, 1, 1),
 (48, 22, 1, 1),
 (49, 22, 2, 1);
+
+SELECT setval('products_id_seq', (SELECT COALESCE(MAX(id), 1) FROM products));
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));
