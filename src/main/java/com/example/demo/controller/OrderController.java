@@ -12,16 +12,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
 
+//注文完了画面のController
 @Controller
 public class OrderController {
 
-	// 注文確認画面表示
-	@GetMapping("/order/confirm")
-	public String confirmOrder(
-			HttpSession session) {
-
-		return "order-confirmation";
-	}
+	//	// 注文確認画面表示
+	//	@GetMapping("/order-confirmation")
+	//	public String confirmOrder(
+	//			HttpSession session,
+	//			Model model) {
+	//
+	//		// セッションからログインユーザー取得
+	//		User user = (User) session.getAttribute("loginUser");
+	//
+	//		// ログインしていない場合
+	//		if (user == null) {
+	//			return "redirect:/login";
+	//		}
+	//
+	//		// HTMLへ渡す
+	//		model.addAttribute(
+	//				"user",
+	//				user);
+	//
+	//		return "order-confirmation";
+	//	}
 
 	// 注文完了画面表示
 	@GetMapping("/order-complete")
