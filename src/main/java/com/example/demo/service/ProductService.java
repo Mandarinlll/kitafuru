@@ -51,8 +51,7 @@ public class ProductService {
 			int limit) {
 
 		return productMapper.findByProducerId(
-				producerId,
-				limit);
+				producerId);
 	}
 
 	public List<Product> findTopGiftProducts() {

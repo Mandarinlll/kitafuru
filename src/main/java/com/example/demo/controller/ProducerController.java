@@ -31,7 +31,7 @@ public class ProducerController {
 		Producer producer = producerMapper.findById(id);
 
 		// 取扱商品
-		List<Product> products = productMapper.findByProducerId(id, id);
+		List<Product> products = productMapper.findByProducerId(id);
 
 		model.addAttribute("producer", producer);
 		model.addAttribute("products", products);
