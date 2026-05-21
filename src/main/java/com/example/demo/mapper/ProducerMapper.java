@@ -14,4 +14,6 @@ public interface ProducerMapper {
 
 	// 生産者詳細（ID検索）
 	Producer findById(Integer id);
+
+	Producer findByEmail(String email);
 }

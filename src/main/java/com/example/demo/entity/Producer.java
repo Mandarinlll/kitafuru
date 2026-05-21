@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Producer {
 	private int id;
@@ -12,6 +12,7 @@ public class Producer {
 	private String phone;
 	private String sns_link;
 	private Timestamp create_at;
+	private String password;
 
 	public int getId() {
 		return id;
@@ -83,6 +84,14 @@ public class Producer {
 
 	public void setCreate_at(Timestamp create_at) {
 		this.create_at = create_at;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

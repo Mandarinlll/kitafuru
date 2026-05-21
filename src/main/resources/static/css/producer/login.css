@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	font-family: "Yu Gothic", sans-serif;
+	color: #2f3b2f;
+	background:
+		linear-gradient(rgba(255, 250, 240, 0.88), rgba(255, 250, 240, 0.88)),
+		linear-gradient(135deg, #e8dcc4 0%, #f7f3eb 45%, #dfead7 100%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 24px;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background:
+		radial-gradient(circle at 15% 20%, rgba(120, 150, 90, 0.18), transparent 28%),
+		radial-gradient(circle at 85% 80%, rgba(160, 110, 60, 0.16), transparent 30%);
+	pointer-events: none;
+}
+
+h1 {
+	margin: 0;
+	padding: 34px 26px;
+	width: 260px;
+	min-height: 430px;
+	background: linear-gradient(180deg, #406b3a, #7a5a35);
+	color: #fffaf0;
+	border-radius: 26px 0 0 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 27px;
+	letter-spacing: 0.08em;
+	line-height: 1.6;
+	box-shadow: 0 16px 36px rgba(64, 80, 50, 0.25);
+}
+
+h1::before {
+	content: "北のふるさと";
+	display: block;
+	position: absolute;
+	transform: translateY(-120px);
+	font-size: 14px;
+	letter-spacing: 0.18em;
+	opacity: 0.85;
+}
+
+form {
+	position: relative;
+	width: 100%;
+	max-width: 460px;
+	min-height: 430px;
+	background: rgba(255, 255, 255, 0.96);
+	padding: 46px 40px 34px;
+	border-radius: 0 26px 26px 0;
+	border: 1px solid #e0d6c8;
+	box-shadow: 0 16px 36px rgba(64, 80, 50, 0.18);
+}
+
+form::before {
+	content: "生産者専用ログイン";
+	display: block;
+	margin-bottom: 8px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #406b3a;
+}
+
+form::after {
+	content: "日々の注文確認・商品管理はこちらから";
+	display: block;
+	margin-top: 18px;
+	text-align: center;
+	font-size: 13px;
+	color: #7a6a55;
+}
+
+form div {
+	margin-bottom: 22px;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #4c5f3f;
+}
+
+input {
+	width: 100%;
+	height: 48px;
+	padding: 10px 14px;
+	border: 1px solid #d6c7ae;
+	border-radius: 12px;
+	background: #fffaf0;
+	color: #2f3b2f;
+	font-size: 16px;
+}
+
+input:focus {
+	outline: none;
+	border-color: #6f8f4e;
+	background: #ffffff;
+	box-shadow: 0 0 0 3px rgba(111, 143, 78, 0.18);
+}
+
+button {
+	width: 100%;
+	height: 52px;
+	border: none;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #406b3a, #6f8f4e);
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+	cursor: pointer;
+	margin-top: 8px;
+	box-shadow: 0 10px 20px rgba(64, 107, 58, 0.25);
+}
+
+button:hover {
+	background: linear-gradient(135deg, #355c30, #5f7f42);
+	transform: translateY(-1px);
+}
+
+p {
+	margin: 6px 0 0;
+	font-size: 13px;
+	color: #b00020;
+	font-weight: bold;
+}
+
+body>p {
+	position: fixed;
+	top: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff4f0;
+	border: 1px solid #e8b6a8;
+	padding: 10px 18px;
+	border-radius: 999px;
+	z-index: 10;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 720px) {
+
+	body {
+		flex-direction: column;
+		align-items: stretch;
+		padding: 28px 18px;
+	}
+
+	h1 {
+		width: 100%;
+		min-height: auto;
+		border-radius: 24px 24px 0 0;
+		padding: 24px 18px;
+		font-size: 24px;
+	}
+
+	h1::before {
+		position: static;
+		transform: none;
+		margin-right: 12px;
+	}
+
+	form {
+		max-width: none;
+		min-height: auto;
+		border-radius: 0 0 24px 24px;
+		padding: 32px 22px;
+	}
+
+	body>p {
+		position: static;
+		transform: none;
+		text-align: center;
+		margin-bottom: 16px;
+	}
+}

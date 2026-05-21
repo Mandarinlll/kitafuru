@@ -37,10 +37,10 @@
 				<a th:href="@{/producer-page}" class="sidebar-link">
 					店舗詳細
 				</a>
-				
-				<a th:href="@{/logout}" class="sidebar-link logout-link">
-					ログアウト
-				</a>
+
+				<form th:action="@{/producer/logout}" method="post" class="sidebar-link logout-link">
+					<button type="submit">ログアウト</button>
+				</form>
 
 			</div>
 
