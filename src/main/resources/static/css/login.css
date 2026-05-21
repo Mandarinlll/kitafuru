@@ -317,46 +317,48 @@ body {
 }
 
 /* =========================
-	   フラッシュメッセージ
-	========================= */
-	
-	.toast-message {
-		position: fixed;
-		top: 28px;
-		left: 50%;
-		transform: translateX(-50%);
+   フラッシュメッセージ
+========================= */
 
-		display: flex;
-		align-items: center;
-		gap: 14px;
+.toast-message {
+	position: fixed;
+	top: 28px;
+	left: 50%;
+	transform: translateX(-50%);
 
-		background: #6fba73;
-		color: white;
+	display: flex;
+	align-items: center;
+	gap: 14px;
 
-		padding: 14px 26px;
-		border-radius: 6px;
+	background: #6fba73;
+	color: white;
 
-		font-size: 18px;
-		font-weight: 800;
+	padding: 14px 26px;
+	border-radius: 6px;
 
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+	font-size: 18px;
+	font-weight: 800;
 
-		z-index: 9999;
+	font-family: sans-serif;
 
-		opacity: 1;
-		transition: opacity 0.8s ease, transform 0.8s ease;
-	}
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 
-	.toast-icon {
-		font-size: 26px;
-		font-weight: 900;
-	}
+	z-index: 9999;
 
-	.toast-message.hide {
-		opacity: 0;
-		transform: translateX(-50%) translateY(-20px);
-		pointer-events: none;
-	}
+	opacity: 1;
+	transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.toast-icon {
+	font-size: 26px;
+	font-weight: 900;
+}
+
+.toast-message.hide {
+	opacity: 0;
+	transform: translateX(-50%) translateY(-20px);
+	pointer-events: none;
+}
 
 /* =========================
    Responsive

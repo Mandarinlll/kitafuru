@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
@@ -45,7 +46,8 @@ public class MypageProfileController {
 			@RequestParam String name,
 			@RequestParam String email,
 			@RequestParam String password,
-			HttpSession session) {
+			HttpSession session,
+			RedirectAttributes redirectAttributes) {
 
 		User user = (User) session.getAttribute("loginUser");
 
@@ -65,13 +67,18 @@ public class MypageProfileController {
 
 		session.setAttribute("loginUser", user);
 
+		redirectAttributes.addFlashAttribute(
+				"successMessage",
+				"登録情報変更を受け付けました。");
+
 		return "redirect:/mypage-profile";
 	}
 
 	@PostMapping("/mypage-profile/address")
 	public String updateAddress(
 			@RequestParam String address,
-			HttpSession session) {
+			HttpSession session,
+			RedirectAttributes redirectAttributes) {
 
 		User user = (User) session.getAttribute("loginUser");
 
@@ -83,6 +90,10 @@ public class MypageProfileController {
 
 		user.setAddress(address);
 		session.setAttribute("loginUser", user);
+
+		redirectAttributes.addFlashAttribute(
+				"successMessage",
+				"登録情報変更を受け付けました。");
 
 		return "redirect:/mypage-profile";
 	}
