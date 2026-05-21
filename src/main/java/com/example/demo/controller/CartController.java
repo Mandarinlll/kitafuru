@@ -20,6 +20,7 @@ import com.example.demo.service.CartService;
 
 @Controller
 public class CartController {
+
 	// カート関連の処理を行うService
 	private final CartService cartService;
 
@@ -30,6 +31,7 @@ public class CartController {
 	public CartController(
 			CartService cartService,
 			ProductMapper productMapper) {
+
 		this.cartService = cartService;
 		this.productMapper = productMapper;
 	}
@@ -43,7 +45,7 @@ public class CartController {
 		// sessionからカート情報取得
 		List<CartItem> cart = cartService.getCart(session);
 
-		// HTML表示用のデータを格納するList
+		// HTML表示用データ
 		List<Map<String, Object>> cartView = new ArrayList<>();
 
 		// 商品合計金額
@@ -52,38 +54,43 @@ public class CartController {
 		// カートの商品を1件ずつ処理
 		for (CartItem item : cart) {
 
-			// product_idから商品情報取得
+			// 商品情報取得
 			Product product = productMapper.findById(
 					item.getProduct_id());
 
-			// 商品情報をまとめるMap
+			// 商品情報格納用
 			Map<String, Object> map = new HashMap<>();
 
-			// 商品情報を保存
-			map.put("product", product);
+			// 商品情報
+			map.put(
+					"product",
+					product);
 
-			// 数量を保存
-			map.put("quantity",
+			// 数量
+			map.put(
+					"quantity",
 					item.getQuantity());
 
-			// 小計計算
+			// 小計
 			int subtotal = product.getPrice()
 					* item.getQuantity();
 
-			// 小計を保存
-			map.put("subtotal", subtotal);
+			map.put(
+					"subtotal",
+					subtotal);
 
-			// 商品合計に追加
+			// 商品合計加算
 			total += subtotal;
 
-			// cartViewに追加
 			cartView.add(map);
 		}
-		// 画面へ商品一覧を渡す
+
+		// 商品一覧
 		model.addAttribute(
 				"cartItems",
 				cartView);
-		// 商品合計を渡す
+
+		// 商品合計
 		model.addAttribute(
 				"total",
 				total);
@@ -91,24 +98,33 @@ public class CartController {
 		// 送料
 		int shipping = 0;
 
-		// 商品が1つでもあれば送料800円
+		// 商品があれば送料800円
 		if (total > 0) {
 
 			shipping = 800;
 
 		}
 
-		// 送料を画面へ渡す
+		// 送料
 		model.addAttribute(
 				"shipping",
 				shipping);
 
+		// ★追加
+		// 総合計計算
+		int grandTotal = total + shipping;
+
 		// 合計金額を画面へ渡す
 		model.addAttribute(
 				"grandTotal",
-				total + shipping);
+				grandTotal);
 
-		// cart.html を表示
+		// ★追加
+		// セッションへ保存
+		session.setAttribute(
+				"totalPrice",
+				grandTotal);
+
 		return "cart";
 	}
 
@@ -119,7 +135,6 @@ public class CartController {
 			@RequestParam("quantity") int quantity,
 			HttpSession session) {
 
-		// sessionからカート取得
 		List<CartItem> cart = cartService.getCart(session);
 
 		// 同じ商品があるか確認
@@ -127,20 +142,22 @@ public class CartController {
 
 			if (cartItem.getProduct_id() == productId) {
 
-				// 数量加算
 				cartItem.setQuantity(
-						cartItem.getQuantity() + quantity);
+						cartItem.getQuantity()
+								+ quantity);
 
 				return "redirect:/cart";
 			}
 		}
 
-		// 新しい商品追加
+		// 新規追加
 		CartItem item = new CartItem();
 
-		item.setProduct_id(productId);
+		item.setProduct_id(
+				productId);
 
-		item.setQuantity(quantity);
+		item.setQuantity(
+				quantity);
 
 		cart.add(item);
 
@@ -153,8 +170,9 @@ public class CartController {
 			@RequestParam("productId") int productId,
 			HttpSession session) {
 
-		// 指定商品を削除
-		cartService.removeItem(session, productId);
+		cartService.removeItem(
+				session,
+				productId);
 
 		return "redirect:/cart";
 	}
@@ -165,7 +183,6 @@ public class CartController {
 			@RequestParam("productId") int productId,
 			HttpSession session) {
 
-		// 数量を1増やす
 		cartService.increaseQuantity(
 				session,
 				productId);
@@ -179,11 +196,11 @@ public class CartController {
 			@RequestParam("productId") int productId,
 			HttpSession session) {
 
-		// 数量を1減らす
 		cartService.decreaseQuantity(
 				session,
 				productId);
 
 		return "redirect:/cart";
 	}
+
 }

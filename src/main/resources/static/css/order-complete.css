@@ -1,0 +1,183 @@
+.complete-container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+
+/* 上の進捗 */
+
+.step-bar{
+    background:#f5f0e9;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    color:#999;
+    margin-bottom:30px;
+}
+
+.step-bar .active{
+    color:#d36a2e;
+    font-weight:bold;
+}
+
+
+/* チェックアイコン */
+
+.check-circle{
+    width:80px;
+    height:80px;
+
+    background:#d36a2e;
+    color:white;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:40px;
+}
+
+
+/* タイトル */
+
+h1{
+    text-align:center;
+    color:#163f56;
+    margin-top:20px;
+}
+
+.complete-text{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+
+/* 下部エリア */
+
+.info-area{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.order-box,
+.address-box{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:25px;
+    background:white;
+}
+
+.order-box{
+    background:#f8f5ed;
+}
+
+.order-box h2{
+    color:#163f56;
+    margin:10px 0;
+}
+
+.order-detail{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+    font-size:14px;
+}
+
+
+/* マイページボタン */
+
+.mypage-btn-form{
+    width:100%;
+    margin-top:15px;
+}
+
+.checkout-btn{
+
+    width:100%;
+    height:72px;
+
+    background:#d36a2e;
+    color:white;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:0.3s;
+}
+
+.checkout-btn:hover{
+    opacity:0.9;
+}
+
+
+/* 下の2つのボタン */
+
+.bottom-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+
+/* ショッピングを続ける / トップページ */
+
+.sub-btn{
+
+    flex:1;
+
+    height:55px;
+
+    background:white;
+
+    border:2px solid #999;
+    border-radius:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+    color:black;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.sub-btn:hover{
+    background:#f5f5f5;
+}
+
+
+/* スマホ対応 */
+
+@media(max-width:768px){
+
+    .info-area{
+        grid-template-columns:1fr;
+    }
+
+    .bottom-buttons{
+        flex-direction:column;
+    }
+
+}
