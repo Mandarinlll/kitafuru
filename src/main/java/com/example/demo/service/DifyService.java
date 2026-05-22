@@ -136,10 +136,31 @@ public class DifyService {
 
 		HttpEntity<String> request = new HttpEntity<>(body, headers);
 		//返ってきたJSONをDifyResponseクラスに変換して受け取る
-		DifyResponse response = restTemplate.postForObject(
-				"http://localhost/v1/chat-messages",
-				request,
-				DifyResponse.class);
+		DifyResponse response;
+		try {
+
+			response = restTemplate.postForObject(
+					"http://localhost/v1/chat-messages",
+					request,
+					DifyResponse.class);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			ChatResponse chatResponse = new ChatResponse();
+
+			chatResponse.setAnswerHtml("""
+					<div class="ai-error">
+						AIサーバーに接続できませんでした。<br>
+						しばらくしてから再度お試しください。
+					</div>
+					""");
+
+			chatResponse.setConversationId(conversationId);
+
+			return chatResponse;
+		}
 		//Difyの回答を読み取る処理
 		try {
 			//JSONをJavaオブジェクトに変換する道具
