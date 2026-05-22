@@ -293,4 +293,11 @@ body {
 	.story-products {
 		grid-template-columns: 1fr;
 	}
+		
+}
+.tatsukinokao{
+	width: 100%;
+	    max-width: 300px;
+	    margin: 0 auto;
+	    height: auto;
 }

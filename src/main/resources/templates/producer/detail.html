@@ -37,9 +37,10 @@
 						<h3>お店からのメッセージ</h3>
 						<p th:text="${profile.brandDescription}">地域の味を大切にしながら、毎日の食卓に届く商品を作っています。</p>
 					</div>
-					<div class="producer-face">
+					
+					
+					<img th:src="@{${profile.image}}" class="tatsukinokao">
 						<span>生産者の顔</span>
-					</div>
 				</div>
 			</section>
 

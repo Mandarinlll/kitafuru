@@ -32,7 +32,7 @@
 
 			<!-- パンくず -->
 			<p class="breadcrumb">
-				ホーム \ 商品詳細 \ 
+				ホーム \ 商品詳細 \
 				<span th:text="${product.name}"></span>
 			</p>
 
@@ -45,9 +45,7 @@
 					<!-- 商品画像 -->
 					<div class="product-image">
 
-						<img
-							th:src="@{${product.image}}"
-							th:alt="${product.name}">
+						<img th:src="@{${product.image}}" th:alt="${product.name}">
 
 					</div>
 
@@ -83,15 +81,10 @@
 						</p>
 
 						<!-- カート追加フォーム -->
-						<form
-							th:action="@{/cart/add}"
-							method="post">
+						<form th:action="@{/cart/add}" method="post">
 
 							<!-- 商品ID -->
-							<input
-								type="hidden"
-								name="productId"
-								th:value="${product.id}">
+							<input type="hidden" name="productId" th:value="${product.id}">
 
 							<!-- 数量 -->
 							<div class="quantity-box">
@@ -101,28 +94,18 @@
 								<div class="quantity-control">
 
 									<!-- マイナス -->
-									<button
-										type="submit"
-										formaction="/products/decrease"
-										class="quantity-btn">
+									<button type="submit" formaction="/products/decrease" class="quantity-btn">
 
 										−
 
 									</button>
 
 									<!-- 数量 -->
-									<input
-										type="text"
-										name="quantity"
-										th:value="${quantity != null ? quantity : 1}"
-										readonly
-										class="quantity-input">
+									<input type="text" name="quantity" th:value="${quantity != null ? quantity : 1}"
+										readonly class="quantity-input">
 
 									<!-- プラス -->
-									<button
-										type="submit"
-										formaction="/products/increase"
-										class="quantity-btn">
+									<button type="submit" formaction="/products/increase" class="quantity-btn">
 
 										＋
 
@@ -133,9 +116,7 @@
 							</div>
 
 							<!-- カート追加 -->
-							<button
-								type="submit"
-								class="cart-button">
+							<button type="submit" class="cart-button">
 
 								🛒 カートに入れる
 
@@ -173,7 +154,7 @@
 
 					<div class="shop-header">
 
-						<div class="shop-icon"></div>
+						<img th:src="@{${producer.image}}" class="tatsukinokao">
 
 						<div>
 
